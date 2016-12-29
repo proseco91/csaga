@@ -1,0 +1,242 @@
+﻿@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( min--moz-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( -o-min-device-pixel-ratio: 2/1) and (min-width: 320px), only screen and ( min-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( min-resolution: 192dpi) and (min-width: 320px), only screen and ( min-resolution: 2dppx) and (min-width: 320px), only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 132dpi) and (max-device-width: 1024px)
+{
+    .contentFaceBookChatNewVer2
+    {
+        width: 100% !important;
+        bottom: 0px !important;
+        position: absolute !important;
+        right: 0px !important;
+        height: 100% !important;
+        background-color: rgba(0,0,0,0.9) !important;
+        overflow: hidden;
+        transition: bottom 0.1s ease-out 0s;
+    }
+    .panelListWindowChat
+    {
+        width: 100% !important;
+        bottom: 0px !important;
+        position: absolute !important;
+        right: 0px;
+        height: 100% !important;
+        margin: 0px !important;
+        -webkit-transform: translateX(0);
+        -webkit-transition: .3s -webkit-transform ease-in-out;
+        transform: translateX(0);
+        transition: all .3s ease-in-out;
+    }
+    .panelListWindowChatRemoveTransition
+    {
+        -webkit-transition: .0s -webkit-transform ease-in-out !important;
+        transition: all .0s ease-in-out !important;
+    }
+    .windowChatContent
+    {
+        position: absolute !important;
+        width: calc(100% - 50px);
+        margin: 0px 25px !important;
+        height: calc(100% - 100px) !important;
+        bottom: 25px;
+        left: 0px;
+    }
+    .windowChatContentTranslateX
+    {
+        -webkit-transform: translateX(0);
+        -webkit-transition: .1s -webkit-transform ease-in-out !important;
+        transform: translateX(0);
+        transition: all .1s ease-in-out !important;
+    }
+    .allWinDownHidel
+    {
+        display: none !important;
+    }
+    .windowChatContent .contentDataChat
+    {
+        height: calc(100% - 20px) !important;
+    }
+    .inputChatNew
+    {
+        /*width: calc(100% - 30px) !important;
+        max-width: calc(100% - 30px) !important;*/
+    }
+    .contentDataChatMess
+    {
+        max-height: 100% !important;
+    }
+    .windowChatContent-Title .closeWindowChat, .windowChatContent-Title .hilldenWindowChat
+    {
+        display: none;
+    }
+    .windowChatContent-Title-Avarta
+    {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 0px !important;
+        top: -75px;
+        display: block !important;
+        background-image: none !important;
+        left: calc(50% - 25px);
+        background-color: transparent !important;
+    }
+    .windowChatContent-Title-Avarta-Online, .windowChatContent-Title-Avarta-Offline
+    {
+        height: 50px !important;
+        width: 50px !important;
+        opacity: 1 !important;
+        margin: 0px !important;
+        left: 0px;
+    }
+    .windowChatContentDown
+    {
+        -webkit-transform: scale(1);
+        -webkit-transition: .0s -webkit-transform ease-in-out;
+        transform: scale(1);
+        transition: all .0s ease-in-out !important;
+    }
+    .itemChilChat .itemChilChat-Right
+    {
+        width: calc(100% - 70px) !important;
+        max-width: calc(100% - 70px) !important;
+    }
+    .contentFaceBookChatNewVer2Hildel
+    {
+        bottom:-100% !important;
+        overflow:visible !important;
+        position: fixed !important;
+    }
+    .statusTrangThaiOnline .windowChatContent-Title-Avarta-Online
+    {
+        opacity: 1 !important;
+    }
+    .statusTrangThaiOnline .windowChatContent-Title-Avarta-Offline
+    {
+        opacity: 0 !important;
+    }
+    .contentFaceBookChatNewVerMobileAvarta
+    {
+        display:none;
+    }
+    .contentFaceBookChatNewVerMobileAvarta .panelDeleteHoverAvarta
+    {
+        position: fixed;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        left: calc(50% - 25px);
+        background-image:url('../../Images/Close-icon-web.png');
+        background-position:center center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        display:none;
+        opacity:0.6;
+        -webkit-transform: translateX(1);
+        -webkit-transition: .3s all ease-in-out;
+        transform: translateX(1);
+        transition: all .3s ease-in-out;
+    }
+    .contentFaceBookChatNewVer2Hildel .contentFaceBookChatNewVerMobileAvarta
+    {
+        display:block !important;
+        opacity:1;
+        transition: opacity .1s ease-in-out !important;
+        position:fixed;
+        z-index:10;
+        top:0px;
+        left:0px;
+    }
+    .contentFaceBookChatNewVer2Hildel .contentFaceBookChatNewVerMobileAvarta-Opacity
+    {
+        opacity:0.8;
+    }
+    .contentFaceBookChatNewVerMobileAvarta .windowChatContent-Title-Avarta
+    {
+        top:0%;
+        left:0px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 8px #333;
+        width:60px !important;
+        height:60px !important;
+        position:fixed;
+        -webkit-transition:.1s all ease-in-out;
+        transition:.1s all ease-in-out;
+    }
+    .contentFaceBookChatNewVerMobileAvarta .windowChatContent-Title-Avarta-Online, .contentFaceBookChatNewVerMobileAvarta .windowChatContent-Title-Avarta-Offline
+    {
+        width:60px !important;
+        height:60px !important;
+    }
+    .panelShowAll-ShowChat
+    {
+        width: 100% !important;
+        overflow: scroll !important;
+        height: 100% !important;
+        position: absolute;
+    }
+    .objPageBBAddTag span
+    {
+        -webkit-transform:scale(1.2);
+    }
+    .panelDeleteHoverAvartaHover
+    {
+        -webkit-transform:scale(1.5);
+        transform: translateX(1.5);
+        opacity:1;
+    }
+    .contentFaceBookChatNewVerMobile-DisMove
+    {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+        top: 0px;
+        left: 0px;
+        display:none;
+        opacity: 0.7;
+        background-color:#FFF;
+    }
+    .contentFaceBookChatNewVerMobileAvarta .windowChatContent-Title-Avarta-Loading
+    {
+        position: absolute;
+        z-index: 3;
+        width: 100%;
+        text-align: center;
+        bottom: 5px;
+        left: 0px;
+        opacity:0;
+        -webkit-transition:.3s all ease-in-out;
+        transition:.3s all ease-in-out;
+    }
+    .contentFaceBookChatNewVerMobileAvarta .windowChatContent-Title-Avarta-Loading span
+    {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #ca1119;
+        display: inline-block;
+        line-height: 25px;
+        font-size: 11px;
+        color: #FFF;
+        -ms-transform: scale(0.7);
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+        -webkit-animation: phongto .75s infinite linear;
+        animation: phongto .75s infinite linear;
+    }
+    .panelInputChatNew
+    {
+        min-height:27px;
+    }
+    .inputChatNew
+    {
+        /*font-size:12px;
+        min-height: 22px;*/
+    }
+    .itemChilChat .itemChilChat-Err
+    {
+        font-size:13px;
+    }
+    .itemChilChat .itemChilChat-Right div
+    {
+        font-size:13px;
+    }
+}

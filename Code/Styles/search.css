@@ -1,0 +1,148 @@
+﻿.itemSelectCate select
+{
+    min-width: 200px;
+    padding: 1px 0px 1px 5px;
+    font-size: 13px;
+}
+.itemSelectSort
+{
+    font-size: 12px;
+}
+.itemSelectSort select
+{
+    padding: 1px 0px 1px 5px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+.titrleCate
+{
+    color: #5e5e5e;
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+.panelDataItemRow .itemRowChuyenGia
+{
+    padding:1px;
+    background-color:#FFF;
+    margin:10px 0px;
+    height:193px;
+    box-shadow: 0 0 0px transparent;
+    cursor:pointer;
+    transition: box-shadow 0.3s ease-in-out 0s;
+    position:relative;
+    overflow:hidden;
+}
+.panelDataItemRow .itemRowChuyenGia:hover
+{
+    box-shadow: 0 0 5px #333;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Banner
+{
+    float:left;
+    width:300px;
+    height:100%;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size: cover;
+    position:relative;
+    z-index:3;
+    background-color:#FFF;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Banner .itemRowChuyenGia-Avarta
+{
+    background-color: #fff;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 100px;
+    position: absolute;
+    right: -50px;
+    top: calc(50% - 50px);
+    box-shadow: 0 0 3px #333;
+    width: 100px;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Banner .itemRowChuyenGia-Status
+{
+    bottom: 0;
+    color: #fff;
+    font-size: 14px;
+    left: 10px;
+    margin-right: 35px;
+    position: absolute;
+    text-align: center;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data
+{
+    background-color: #fff;
+    left: 0;
+    margin: 0 0px 0 365px;
+    padding: 10px 20px 0 0;
+    position: relative;
+    transition: left 0.3s ease-in-out 0s;
+    z-index: 2;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-Name
+{
+    font-size:20px;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-ChuyenNganh
+{
+    color:#7f7f7f;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-GT
+{
+    text-align:justify;
+    font-size:13px;
+    color:#7f7f7f;
+    min-height:56px;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-Rate
+{
+    margin-top:5px;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-NextTime
+{
+    border-bottom: 1px dashed #ddd;
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+    padding-bottom: 3px;
+    position: relative;
+    text-align: center;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Data .itemRowChuyenGia-Data-Money
+{
+    bottom: 0;
+    color: #e44b4b;
+    font-size: 13px;
+    height: 50px;
+    position: absolute;
+    right: 20px;
+    width: calc(100% - 130px);
+    text-align:right;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Btn
+{
+    height: calc(100% - 2px);
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 160px;
+    z-index: 1;
+}
+.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Btn .btnStartTuVan,.panelDataItemRow .itemRowChuyenGia .itemRowChuyenGia-Btn .btnChiTietChuyenGia
+{
+    font-size: 25px;
+    height: 50%;
+    line-height: 80px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+.itemRowChuyenGiaSelect .itemRowChuyenGia-Data
+{
+    left: -160px !important;
+}

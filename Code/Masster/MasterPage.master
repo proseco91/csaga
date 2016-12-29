@@ -1,0 +1,240 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Masster_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Styles/fonts.css" rel="stylesheet">
+    <link href="../Styles/font-awesome.min.css" rel="stylesheet">
+    <link href="../Styles/theme.css" rel="stylesheet">
+    <script src="<%=Lib.urlhome %>/Scripts/jquery-1.10.2.js"></script>
+    <script src="<%=Lib.urlhome %>/Scripts/home.js"></script>
+    <script type="text/javascript">
+        var url_home = '<%=Lib.urlhome %>';
+        $(document).ready(function () {
+            $('.search-bar input:text').keypress(function (event) {
+                if (event.which == 13) {
+                    $('.search-bar button').click();
+                    event.preventDefault();
+                }
+            });
+            $('.search-bar button').click(function () {
+                var _val = $.trim($('.search-bar input:text').val());
+                if (_val.length > 0)
+                    window.location.href = '<%=Lib.urlhome+"/search?q="%>' + _val;
+            });
+            $('.cart-badge--desktop').text(NumberItemCart == 0 ? '' : NumberItemCart);
+            $('.header-cart-btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: url_home + '/service/service.asmx/GetCart',
+                    data: '',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#loading_masster').css({ 'display': 'block' });
+                    },
+                    success: function (message) {
+                        $('#popupCart [content]').html(message.d);
+                        $('#popupCart,#popupCartOverlay').css('display', 'block');
+
+                        $('#loading_masster').css({ 'display': 'none' });
+                    },
+                    error: function (errormessage) {
+                        $('#loading_masster').css({ 'display': 'none' });
+                    }
+                });
+                return false;
+            });
+            $('#popupCart [remove]').click(function () {
+                $('#popupCart,#popupCartOverlay').css('display', 'none');
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="popupCartOverlay">
+    </div>
+    <div id="popupCart">
+        <span remove class="fa fa-times"></span>
+        <div content></div>
+    </div>
+    <div id="loading_masster"></div>
+    <form id="form1" runat="server">
+        <header role="banner" class="site-header">
+            <div class="wrapper">
+                <div class="grid--full">
+                    <div class="grid-item large--one-half">
+                        <h1 class="header-logo">
+                            <a itemprop="url" href="/"><%=sql.GetSetting().WebName %></a>
+                        </h1>
+                    </div>
+                    <div class="grid-item large--one-half text-center large--text-right">
+                        <div class="site-header--text-links medium-down--hide">
+                            <span class="site-header--meta-links medium-down--hide">
+
+
+                                <%if (user == null)
+                                  { %>
+                                <a id="customer_login_link" href="<%=Lib.urlhome %>/account/login?url=<%=Request.RawUrl.ToString() %>">Sign in</a>
+                                <span class="site-header--spacer">or</span>
+                                <a id="customer_register_link" href="<%=Lib.urlhome %>/account/register">Create an Account</a>
+                                <%}
+                                  else
+                                  { %>
+                                Logged in as <a href="<%=Lib.urlhome %>/bills"><%=user.FullName %></a> · <a id="customer_logout_link" href="<%=Lib.urlhome %>/account/logout?url=<%=Request.RawUrl.ToString() %>">Log out</a>
+                                <%}%>
+                            </span>
+                        </div>
+                        <br class="medium-down--hide">
+                        <div role="search" class="search-bar">
+                            <input type="text" placeholder="Search all products...">
+
+                            <button class="search-bar--submit icon-fallback-text" type="button">
+                                <span aria-hidden="true" class="fa fa-search" style="font-size: 20px;"></span>
+                            </button>
+                        </div>
+                        <a class="header-cart-btn cart-toggle" href="<%=Lib.urlhome %>/cart">
+                            <span class="fa fa-shopping-cart" style="font-size: 20px; margin-right: 10px;"></span>
+                            Cart <span class="cart-count cart-badge--desktop"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        <nav role="navigation" class="nav-bar">
+            <div class="wrapper">
+
+                <ul id="accessibleNav" class="site-nav">
+                    <li class="site-nav--active">
+                        <a href="<%=Lib.urlhome %>">Home</a>
+                    </li>
+
+
+                    <%foreach (var item in Category)
+                      {%>
+                    <li>
+                        <a href="<%=Lib.urlhome %>/collections/<%=Lib.LocDau(item.Name) %>"><%=item.Name %></a>
+                    </li>
+                    <%}%>
+                </ul>
+
+            </div>
+        </nav>
+        <main class="wrapper main-content" role="main">
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+        <footer role="contentinfo" class="site-footer small--text-center">
+
+            <div class="wrapper">
+
+                <div class="grid">
+
+
+                    <div class="grid-item medium--one-half large--three-twelfths">
+                        <h3>Quick Links</h3>
+                        <ul>
+
+                            <li><a href="<%=Lib.urlhome %>/search">Search</a></li>
+
+                            <li><a href="<%=Lib.urlhome %>/contact-us">About us</a></li>
+
+                            <li><a href="<%=Lib.urlhome %>/shipping-return-policy">Shipping and Return policy</a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="grid-item medium--one-half large--five-twelfths">
+                        <h3>Get In Touch</h3>
+
+                        <p>
+                            Contact me: <%=sql.GetSetting().Email %>
+                        </p>
+
+
+                        <%--                        <ul class="inline-list social-icons">
+
+
+                            <li>
+                                <a title="TWStore USA on Facebook" href="" class="icon-fallback-text">
+                                    <span aria-hidden="true" class="icon icon-facebook"></span>
+                                    <span class="fallback-text">Facebook</span>
+                                </a>
+                            </li>
+                        </ul>--%>
+                    </div>
+
+
+
+                    <div class="grid-item large--one-third">
+                        <h3>Newsletter</h3>
+
+
+                        <div class="form-vertical">
+                            <form accept-charset="UTF-8" class="contact-form" id="contact_form" action="/contact#contact_form" method="post" data-soundest-checked="true">
+                                <input type="hidden" name="form_type" value="customer"><input type="hidden" value="✓" name="utf8">
+
+
+                                <input type="hidden" value="newsletter" name="contact[tags]">
+                                <div class="input-group">
+                                    <input type="email" autocapitalize="off" autocorrect="off" aria-label="Email Address" class="input-group-field" id="Email" name="contact[email]" placeholder="Email Address" value="">
+                                    <span class="input-group-btn">
+                                        <button id="subscribe" name="commit" class="btn-secondary btn--small" type="submit">Sign Up</button>
+                                    </span>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="hr--small">
+
+                <div class="grid">
+                    <div class="grid-item large--two-fifths">
+
+                        <ul class="legal-links inline-list">
+                        </ul>
+
+                        <ul class="legal-links inline-list">
+                            <li>&copy; 2016 <a title="" href="/"><%=sql.GetSetting().WebName %></a>
+                            </li>
+                            <li>
+                                <a href="" rel="nofollow" target="_blank">Powered by Shopify</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="grid-item large--three-fifths large--text-right">
+                        <ul class="inline-list payment-icons">
+
+                            <li>
+                                <span class="icon-fallback-text">
+                                    <span aria-hidden="true" class="icon icon-paypal"></span>
+                                    <span class="fallback-text">paypal</span>
+                                </span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </footer>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,4263 @@
+﻿input[type=text], input[type=password]
+{
+    outline: none;
+}
+
+.statusChatCus
+{
+    height: 7px;
+    margin-top: 4px;
+    position: absolute;
+    width: 7px;
+}
+
+.statusOnline
+{
+    background: url("../linktamchat/images/statusOnline.png") no-repeat scroll 0 0 transparent;
+}
+
+.statusOffline
+{
+    background: url("../linktamchat/images/statusOnline.png") no-repeat scroll 0 -10px transparent;
+}
+
+.textChatSMS
+{
+    margin-left: 15px;
+    color: #838383;
+}
+
+.contentFaceBookChat
+{
+    bottom: 38px;
+    height: 1px;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+.panelListWindowChat
+{
+    bottom: 43px; /*bottomPx*/
+    position: fixed;
+    right: 0px;
+    height: 0px;
+    /*z-index: -1;*/
+    z-index: 11;
+    margin-right: 0px;
+    transition: margin-right 0.3s ease-out 0s;
+}
+
+.panelTimeChat
+{
+    position: absolute;
+    height: 15px;
+    width: 100%;
+    text-align: center;
+    top: -25px;
+    z-index: 2;
+    transition: all 0.3s ease-out 0s;
+}
+
+.panelTimeChat-Data-Total
+{
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+    display: none;
+}
+
+.panelTimeChat-Data-Time
+{
+    display: none;
+}
+
+.panelTimeChat-Data-Time, .panelTimeChat-Data-Time-Text
+{
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+}
+
+.panelTimeChat-Data-Time-BtnStop
+{
+    background: url("../linktamchat/images/btnStopChat.png") no-repeat scroll -2px -2px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: inline-table;
+    height: 11px;
+    margin: 2px 5px 0 0;
+    width: 11px;
+    float: left;
+    opacity: 0.5;
+    transition: all 0.3s ease-out 0s;
+    position: relative;
+    /*display: none !important;*/
+}
+
+    .panelTimeChat-Data-Time-BtnStop:hover
+    {
+        opacity: 1;
+    }
+
+.panelTimeChat-Data
+{
+    display: inline-table;
+    padding: 0px 10px;
+    border: 1px solid #EEE;
+    border-top: none;
+    height: calc(100% - 1px);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #FFF;
+    box-shadow: 0 0 7px #999999;
+}
+
+.windowChatContent
+{
+    width: 250px;
+    margin-left: 10px;
+    float: right;
+    position: relative;
+    margin-top: -283px;
+    box-shadow: 0 0 2px #4c4c4c;
+    transition: margin-top 0.3s ease-out 0s;
+}
+
+    .windowChatContent th, td
+    {
+        padding: 0px !important;
+    }
+
+    .windowChatContent .contentDataChat
+    {
+        height: 280px;
+        /*border: 1px solid #eee;
+    border-bottom: none;*/
+        background-color: #efefef;
+        position: relative;
+        overflow: hidden;
+    }
+
+.windowChatContent-Title
+{
+    width: 100%; /*background:#D84FAF;*/
+    /*background: linear-gradient(#D84FAF, #b6278b) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -webkit-linear-gradient(#D84FAF, #b6278b);*/
+    /*cursor: pointer;*/
+    position: relative;
+    /*overflow: hidden;*/
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    height: 25px;
+}
+
+.windowChatContent-Title-Content
+{
+    bottom: 0;
+    height: calc(100%);
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    background-color: #efefef;
+}
+
+.windowChatContent-Title-Content-EffL
+{
+    height: 100%;
+    /*width:calc(100% - 160px);*/
+    width: 51%;
+    border: 1px solid #EEE;
+    border-right: none;
+    border-bottom: none;
+    position: absolute;
+    z-index: 0;
+    top: -1px;
+    left: 0px;
+    border-top-left-radius: 3px;
+}
+
+.windowChatContent-Title-Content-EffR
+{
+    height: 100%;
+    /*width:calc(100% - 160px);*/
+    width: 51%;
+    border: 1px solid #EEE;
+    border-left: none;
+    border-bottom: none;
+    position: absolute;
+    z-index: 0;
+    top: -1px;
+    right: 0px;
+    border-top-right-radius: 3px;
+}
+
+.windowChatContent-Title-Content-Data
+{
+    color: #B8B8B8;
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    height: calc(100%);
+    margin: -1px 0px 0px 0px;
+    text-align: left;
+    -webkit-transform: rotate(0deg) !important;
+    transform: rotate(0deg) !important;
+}
+
+.statusTrangThaiOffline .nameTitleChatLinkTam
+{
+    /*background-color:#acbcd7 !important;*/
+    background: linear-gradient(#acbcd7, #98a8c1)!important;
+    color: #FFFFFF;
+}
+
+.statusTrangThaiOnline .nameTitleChatLinkTam
+{
+    /*background-color:#63a924 !important;*/
+    background: linear-gradient(#63a924, #3d8300)!important;
+    color: #FFFFFF;
+}
+
+.nameTitleChatLinkTamEffBo
+{
+    background-color: #FFFFFF;
+    display: inline-table;
+    height: 12px;
+    position: absolute;
+    right: -4px;
+    top: 3px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 12px;
+    z-index: 1;
+    display: none;
+}
+
+.windowChatContent-Title-Content-Data .nameTitleChatLinkTam
+{
+    color: #FFFFFF;
+    background-color: #FFFFFF;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    box-sizing: initial;
+    display: inline-table;
+    padding: 0 25px 0 5px;
+    height: 100%;
+    line-height: 22px;
+    position: relative;
+    width: calc(100% - 30px);
+    transition: all 1s ease-out 0s;
+}
+
+    .windowChatContent-Title-Content-Data .nameTitleChatLinkTam .nameGetLinKtamnewOk2
+    {
+        cursor: pointer;
+        padding: 0px 5px 0px 0px;
+    }
+
+        .windowChatContent-Title-Content-Data .nameTitleChatLinkTam .nameGetLinKtamnewOk2:hover
+        {
+            text-decoration: underline;
+        }
+
+        .windowChatContent-Title-Content-Data .nameTitleChatLinkTam .nameGetLinKtamnewOk2 span
+        {
+            font-size: 11px;
+            margin: 0 0 0 5px;
+        }
+
+.statusTrangThaiOffline .windowChatContent-Title-Avarta-Online
+{
+    opacity: 0;
+}
+
+.statusTrangThaiOffline .windowChatContent-Title-Avarta-Offline
+{
+    opacity: 1;
+}
+
+.statusTrangThaiOnline .windowChatContent-Title-Avarta-Online
+{
+    opacity: 1;
+}
+
+.statusTrangThaiOnline .windowChatContent-Title-Avarta-Offline
+{
+    opacity: 0;
+}
+
+
+.windowChatContent-Title-Avarta-Online, .windowChatContent-Title-Avarta-Offline
+{
+    border-radius: 50px;
+    display: inline-table;
+    height: 35px;
+    width: 35px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    margin-left: -17px;
+    margin-top: 12px;
+    position: absolute;
+    opacity: 0;
+    left: 50%;
+    z-index: 2;
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    transition: all 0.3s ease-out 0s;
+}
+/*.loadingAvartaLinkTam .windowChatContent-Title-Avarta-Online,.loadingAvartaLinkTam .windowChatContent-Title-Avarta-Offline
+{
+    -ms-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+}
+.loadingAvartaLinkTam .windowChatContent-Title-Avarta-Loading
+{
+    opacity: 1;
+}
+.windowChatContent-Title-Avarta-Loading
+{
+    background-image: url("../linktamchat/images/loadingAvartaChat.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-table;
+    height: 33px;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: 13px;
+    opacity: 0;
+    position: absolute;
+    width: 33px;
+    z-index: 3;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: xoaytron .75s infinite linear;
+    animation: xoaytron .75s infinite linear;
+    transition: all 0.3s ease-out 0s;
+}*/
+.windowChatContent-Title-Avarta
+{
+    width: 100%;
+    height: 60px;
+    margin: -20px auto;
+    position: absolute;
+    top: -14px;
+    background-image: url('../linktamchat/images/boderChatAvarta.png');
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    text-align: center;
+    display: none;
+}
+
+.windowChatContent-Title .statusChatCus
+{
+    margin-top: 10px !important;
+    margin-left: 5px;
+}
+
+.windowChatContent-Title .nameWindowChat
+{
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+    .windowChatContent-Title .nameWindowChat span
+    {
+        color: #FFF;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 20px;
+        line-height: 27px;
+    }
+
+    .windowChatContent-Title .nameWindowChat:hover
+    {
+        text-decoration: underline;
+    }
+
+.windowChatContentHillden .hilldenWindowChat
+{
+    background-image: url("../linktamchat/images/btnMaxFrom_new.png") !important;
+}
+
+.windowChatContentHillden
+{
+    margin-top: 21px !important;
+}
+
+.windowChatContent-Title .hilldenWindowChat
+{
+    background-image: url("../linktamchat/images/btnHilldenFrom_new.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 14px;
+    position: absolute;
+    right: 20px;
+    top: 2px;
+    width: 14px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0s;
+    z-index: 1;
+}
+
+.windowChatContent-Title .closeWindowChat
+{
+    background-image: url("../linktamchat/images/btnCloseFrom_new.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 14px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 14px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    opacity: 0.5;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s ease-out 0s;
+}
+
+    .windowChatContent-Title .closeWindowChat:hover, .windowChatContent-Title .hilldenWindowChat:hover
+    {
+        opacity: 1;
+    }
+
+.windowChatContent-Title .loading9px
+{
+    background-image: url("../linktamchat/images/sprites9px.png");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    height: 9px;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 9px;
+}
+
+.loading9pxOpenWindowHidel
+{
+    background-image: url("../linktamchat/images/sprites9px.png");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    height: 9px;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 9px;
+}
+
+
+.windowChatContent-Title-Hidel
+{
+    background: linear-gradient(#FFFFFF, #F3F3F2) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -webkit-linear-gradient(#FFFFFF, #F3F3F2);
+    border-color: #EEEEEE;
+    border-style: solid solid none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 2px;
+    border-width: 1px 1px medium;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    width: 150px;
+    display: none;
+    box-shadow: -2px -1px 1px #CECECE;
+}
+
+.windowChatContent-Title-Content .panelShowMessOff, .panelRightChatKinkTamMenu .messOfflineNewPanel
+{
+    background: url("../linktamchat/images/bgNoti.png") no-repeat scroll left bottom rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    width: 20px;
+    z-index: 1;
+    display: none;
+    -ms-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    -webkit-animation: phongto .75s infinite linear;
+    animation: phongto .75s infinite linear;
+    top: -7px;
+    right: -8px;
+}
+
+.panelRightChatKinkTamMenu .messOfflineNewPanel
+{
+    right: -13px;
+    top: 6px;
+}
+
+    .windowChatContent-Title-Content .panelShowMessOff span, .panelRightChatKinkTamMenu .messOfflineNewPanel span
+    {
+        background-color: #CA1119;
+        border-radius: 50px;
+        color: #FFFFFF;
+        display: inline-table;
+        font-family: Roboto-Regular;
+        font-size: 12px;
+        margin: -3px 0 0 4px;
+        min-height: 20px;
+        min-width: 11px;
+        padding: 0 5px;
+        text-align: center;
+    }
+
+.windowChatContent-Title-Hidel .statusChatCus
+{
+    margin-top: 10px !important;
+    margin-left: 5px;
+}
+
+.windowChatContent-Title-Hidel .nameWindowChat
+{
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+    .windowChatContent-Title-Hidel .nameWindowChat div
+    {
+        color: #777;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 20px;
+        line-height: 27px;
+        width: 200px;
+    }
+
+    .windowChatContent-Title-Hidel .nameWindowChat:hover
+    {
+        text-decoration: underline;
+    }
+
+.hiddelWindowChat
+{
+    height: 28px !important;
+    margin-top: 12px !important;
+    width: 150px !important;
+}
+
+    .hiddelWindowChat .windowChatContent-Title-Hidel
+    {
+        display: block !important;
+    }
+
+    .hiddelWindowChat .windowChatContent-Title
+    {
+        display: none !important;
+    }
+
+    .hiddelWindowChat .contentDataChat
+    {
+        /*display: none !important;*/
+        right: -10000px;
+        position: fixed !important;
+    }
+
+.contentDataChat td
+{
+    border: none !important;
+}
+
+.windowChatContent-Title-Hidel .nameWindowChat:hover
+{
+    text-decoration: underline;
+}
+
+.contentDataChatMess
+{
+    width: 100%;
+    height: 100%;
+    max-height: 257px;
+    overflow: hidden;
+}
+
+    .contentDataChatMess .mCSB_container
+    {
+        margin-right: 0px !important;
+    }
+
+.inputChatNew
+{
+    /*width: 220px;*/
+    width: 100%;
+    height: 15px;
+    min-height: 15px;
+    max-width: 100%;
+    border: none;
+    resize: none;
+    -moz-box-sizing: border-box;
+    font-family: 'Roboto-Regular';
+    font-size: 12px;
+    outline: none;
+    padding: 5px 5px 0 !important;
+    /*padding-right: 25px;*/
+}
+
+.btnChatNew
+{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.panelInputChatNew
+{
+    /*padding-right:20px;*/
+    max-height: 100px;
+    overflow: auto;
+    border-top: 1px solid #EEE;
+    position: relative;
+    min-height: 20px;
+}
+
+.btnEmotion
+{
+    z-index: 2;
+    /*background-color: #FFFFFF;*/
+    background-image: url("../linktamchat/images/UjZRTWi-pjm.png");
+    background-position: -105px -403px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border-image: none;
+    bottom: 1px;
+    cursor: pointer;
+    height: 20px;
+    position: absolute;
+    right: 3px;
+    width: 20px;
+    opacity: 0.5;
+}
+
+    .btnEmotion:hover
+    {
+        background-color: #3B5998;
+        background-position: -131px -403px;
+        opacity: 1;
+    }
+
+.btnEmotionHover
+{
+    opacity: 1 !important;
+    background-color: #3B5998 !important;
+    background-position: -131px -403px !important;
+}
+
+    .btnEmotionHover .pnelListIcon
+    {
+        display: block !important;
+    }
+
+.pnelListIcon
+{
+    height: 150px;
+    margin: -151px 0 0 -224px;
+    position: absolute;
+    width: 242px;
+    z-index: 1;
+    display: none;
+    box-shadow: 0 -2px 7px #cbc6c6;
+}
+
+.pnelListRateLinkTam, .pnelListRateLinkTamNew
+{
+    /*box-shadow: 0 -2px 7px #CBC6C6;*/
+    display: none;
+    left: 2px;
+    top: 19px;
+    position: absolute;
+    width: 242px;
+    z-index: 2;
+}
+
+.pnelListRateLinkTamNew
+{
+    top: 5px !important;
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    text-align: center;
+}
+
+.pnelListIconEffRate
+{
+    background: url("../linktamchat/images/bg_tooltipEffIcon.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 6px;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    position: absolute;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    width: 10px;
+}
+
+.pnelListIconContentDataRate
+{
+    width: 100%;
+}
+
+.pnelListIconContentTitle, .pnelListIconContentTitleRate
+{
+    height: 25px;
+    width: 100%;
+    border-bottom: 1px solid #8a8a8a;
+    background: linear-gradient(#FFFFFF, #FFFFFF) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -webkit-linear-gradient(#FFFFFF, #FFFFFF);
+    text-align: left;
+    position: relative;
+}
+
+.pnelListIconContentListE
+{
+    height: 118px;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.pnelListIconContent, .pnelListIconContentRate
+{
+    /*height: 144px;*/
+    width: 100%;
+    border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    background: #FFF;
+}
+
+.pnelListIconEff
+{
+    width: 10px;
+    height: 6px;
+    background: url('../linktamchat/images/bg_tooltipEffIcon.png');
+    float: right;
+    margin: -1px 3px 0 0;
+}
+
+.pnelListIconContentTitle a, .pnelListIconContentTitleRate a
+{
+    background: linear-gradient(#7D828A, #9196A0) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -webkit-linear-gradient(#7D828A, #9196A0);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.33) inset;
+    display: inline-block;
+    height: 25px;
+    text-align: center;
+    width: 34px;
+}
+
+    .pnelListIconContentTitle a img, .pnelListIconContentTitleRate a img
+    {
+        vertical-align: middle;
+        max-height: 20px;
+        max-width: 20px;
+        margin-top: 3px;
+    }
+
+.pnelListIconContentListE div
+{
+    float: left;
+    height: 14px;
+    padding: 1px;
+    width: 14px;
+    margin: 6px 11px 6px 11px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+    .pnelListIconContentListE div:hover
+    {
+        border: 1px solid #CCC;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.33) inset;
+    }
+
+.emoticon_smile
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -102px -868px;
+}
+
+.emoticon_frown
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -187px -851px;
+}
+
+.emoticon_tongue
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -153px -868px;
+}
+
+.emoticon_grin
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -238px -851px;
+}
+
+.emoticon_gasp
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -204px -851px;
+}
+
+.emoticon_wink
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -204px -868px;
+}
+
+.emoticon_glasses
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -221px -851px;
+}
+
+.emoticon_sunglasses
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -136px -868px;
+}
+
+.emoticon_grumpy
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -255px -851px;
+}
+
+.emoticon_unsure
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -170px -868px;
+}
+
+.emoticon_cry
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -153px -851px;
+}
+
+.emoticon_devil
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -170px -851px;
+}
+
+.emoticon_angel
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -85px -851px;
+}
+
+.emoticon_kiss
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: 0 -868px;
+}
+
+.emoticon_heart
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -272px -851px;
+}
+
+.emoticon_kiki
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -289px -851px;
+}
+
+.emoticon_squint
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -119px -868px;
+}
+
+.emoticon_confused
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -119px -851px;
+}
+
+.emoticon_confused_rev
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -136px -851px;
+}
+
+.emoticon_upset
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -187px -868px;
+}
+
+.emoticon_pacman
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -17px -868px;
+}
+
+.emoticon_robot
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -16px -885px;
+}
+
+.emoticon_colonthree
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -102px -851px;
+}
+
+.emoticon_penguin
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -34px -868px;
+}
+
+.emoticon_putnam
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -68px -868px;
+}
+
+.emoticon_shark
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -85px -868px;
+}
+
+.emoticon_like
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -52px -566px;
+}
+
+.emoticon_poop
+{
+    background-image: url('../linktamchat/images/akMH6WWgy9q.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -51px -868px;
+}
+
+.statusDangViet, .statusMatKetNoi
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    color: #fff;
+    display: none;
+    font-family: "Roboto-Regular";
+    font-size: 11px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.timeMathChatNew
+{
+    margin: -1px 0 0;
+    /*margin: -5px 0 0;*/
+    padding: 2px 2px 2px 0;
+    position: absolute;
+    right: -1px;
+    text-align: center;
+    /*width: 70px;*/
+    z-index: 1;
+    border-bottom-left-radius: 3px;
+    background-color: #CCCCCC;
+    display: none;
+}
+
+    .timeMathChatNew .timeEffNew
+    {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        background: url('../linktamchat/images/Time-disabled-icon.png');
+        float: right;
+        margin: 1px 0px 0px 0px;
+        display: none;
+    }
+
+    .timeMathChatNew .timeEffStop
+    {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        background: url('../linktamchat/images/btnStopChat.png');
+        background-position: -2px -2px;
+        background-repeat: no-repeat;
+        float: left;
+        margin: 1px 0px 0 5px;
+        /*margin:-18px 0 0 35px;*/
+        cursor: pointer;
+        position: absolute;
+    }
+
+        .timeMathChatNew .timeEffStop:hover
+        {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: url('../linktamchat/images/btnStopChatHover.png');
+            background-position: 0px 0px;
+            background-repeat: no-repeat;
+            float: left;
+            border: 1px solid #EEE;
+            border-radius: 3px;
+            margin: -2px 0 0 2px;
+        }
+
+    .timeMathChatNew .loading11px
+    {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        background: url('../linktamchat/images/sprites11px.png');
+        left: 0px;
+        margin: 1px 0 0 5px;
+        position: absolute;
+    }
+
+.loading11pxScorll
+{
+    background-image: url('../linktamchat/images/sprites11px.png');
+    background-repeat: no-repeat;
+    height: 11px;
+    margin: -13px 0 0 120px;
+    position: absolute;
+    width: 11px;
+    display: none;
+}
+
+.timeMathChatNew .timeShowChatTotal
+{
+    display: none;
+}
+
+.timeMathChatNew font
+{
+    color: #333;
+    font-family: 'Roboto-Regular';
+    font-size: 11px;
+    float: left;
+    margin: 0px 5px 0px 22px;
+    display: none;
+}
+
+.itemChilChat
+{
+    border-top: 1px dashed #CCCCCC;
+    margin: 7px 0;
+    padding-top: 7px;
+    /*background-color:#FFF;*/
+    background-color: transparent;
+    transition: background-color 0.2s ease-out 0s;
+    /*max-width: calc(100% - 5px);*/
+    max-width: calc(100%);
+}
+
+.itemChilChatEffNewLinkTam
+{
+    background-color: #F9FFB3 !important;
+}
+
+.itemChilChat:hover .itemChilChat-Time
+{
+    display: block;
+}
+
+.itemChilChat .itemChilChat-Time
+{
+    margin: -15px 0 0 5px;
+    position: absolute;
+    text-align: center;
+    width: 240px;
+    display: none;
+}
+
+    .itemChilChat .itemChilChat-Time span
+    {
+        background-color: #FFFFFF;
+        color: #999999;
+        font-family: 'Roboto-Regular';
+        font-size: 10px;
+        padding: 0 6px;
+    }
+
+.itemChilChat .itemChilChat-Left
+{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    float: left;
+    margin: 0 5px 0 2px;
+    padding: 1px;
+    width: 40px;
+}
+
+    .itemChilChat .itemChilChat-Left img
+    {
+        border-radius: 2px;
+        height: auto;
+        max-width: 100%;
+        width: 40px;
+    }
+
+.itemChilChat .itemChilChat-Right
+{
+    width: 195px;
+    float: left;
+    font-family: 'Roboto-Regular';
+    font-size: 11px;
+    line-height: 15px;
+    text-align: justify;
+}
+
+.itemChilChat a
+{
+    font-family: 'Roboto-Regular';
+    font-size: 10px;
+    font-weight: bold;
+    color: #98333f;
+    text-decoration: underline;
+}
+
+.itemChilChat .itemChilChat-Right div
+{
+    font-family: 'Roboto-Regular';
+    font-size: 11px;
+    line-height: 15px;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.itemChilChat .itemChilChat-Err
+{
+    color: #555;
+    /*float: left;*/
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    line-height: 20px;
+    padding: 0 10px;
+    text-align: justify;
+}
+    /*.scrollable .scroll-bar
+{
+    opacity: 1 !important;
+}*/
+    .itemChilChat .itemChilChat-Err div
+    {
+        /*width:100%;*/
+        color: #9A9A9A;
+        float: left;
+        font-family: Roboto-Regular;
+        font-size: 11px;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+.emoticonNew
+{
+    display: inline-block;
+    height: 16px;
+    vertical-align: top;
+    width: 16px;
+}
+
+#allWinDownHidel
+{
+    height: 25px;
+    position: relative;
+    float: right;
+    background: #FFF url('../linktamchat/images/bghilldenMess.png');
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding: 0 5px 0 25px;
+    border: 1px solid #EEE;
+    border-bottom: none;
+    font-family: 'Roboto-Regular';
+    font-size: 11px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    margin: 16px 0 0;
+    cursor: pointer;
+    display: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-shadow: 0 0 5px #999999;
+}
+
+    #allWinDownHidel span
+    {
+        font-family: 'Roboto-Regular';
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+#listWinDownHidel
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #EEE;
+    border-bottom: none;
+    bottom: 25px;
+    margin-left: -94px;
+    position: absolute;
+    right: -1px;
+    border-radius: 3px;
+    border-bottom-right-radius: 0px;
+    border-bottom-right-radius: none;
+    box-shadow: 0 0 5px #999999;
+}
+
+.hiddelListChatNew .effNewHildel
+{
+    height: 0px;
+}
+
+.effNewHildel
+{
+    background-color: #FFFFFF;
+    height: 7px;
+    left: -1px;
+    position: absolute;
+    top: -2px;
+    width: 106%;
+    z-index: 3;
+    border-radius: 52px;
+}
+
+.itemHidel
+{
+    border-bottom: 1px solid #EEE;
+    color: #5B5B5B;
+    font-family: 'Roboto-Regular';
+    font-size: 10px;
+    padding: 0 20px 0 10px;
+    position: relative;
+    min-width: 50px;
+}
+
+    .itemHidel:hover
+    {
+        background: #4f6aa3;
+        color: #FFF;
+    }
+
+.hiddelListChatNew #listWinDownHidel
+{
+    display: none !important;
+}
+
+.btnActionChat
+{
+    display: inline-block;
+    width: 75px !important;
+    height: 20px;
+    background: url('../linktamchat/images/btnChatVip.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+    .btnActionChat .statusChatCus
+    {
+        margin: 6px 0px 0px 5px !important;
+    }
+
+.btnActionChat2
+{
+    display: inline-block;
+    width: 75px !important;
+    height: 20px;
+    background: url('../linktamchat/images/btnChatVip.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+    .btnActionChat2 .statusChatCus
+    {
+        margin: 6px 0 0 -31px !important;
+    }
+
+.btnActionTextChat
+{
+    text-align: center;
+    margin: 5px 0px 0px 0px;
+}
+
+    .btnActionTextChat .statusChatCus
+    {
+        margin: 4px 0px 0px 0px !important;
+    }
+
+.parenNotiSMS
+{
+    position: absolute;
+    left: -30px;
+    top: -7px;
+    z-index: 10002;
+    display: none;
+}
+
+.parenNotiSMS-Close
+{
+    z-index: 10001;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    background: #FFF;
+    opacity: 0.1;
+    cursor: pointer;
+    display: none;
+}
+
+.parenNotiSMS .parenNotiSMSNumber span
+{
+    color: #FFFFFF;
+    float: left;
+    font-family: 'Roboto-Regular';
+    font-size: 10px;
+    font-weight: bold;
+    height: 11px;
+    line-height: 10px;
+    margin: 0 0 0 6px;
+    text-align: center;
+    width: 24px;
+}
+
+.parenNotiSMS .parenNotiSMSNumber
+{
+    /*background-color: #CA1119;
+    border-radius: 50px;
+    color: #FFFFFF;
+    float: right;
+    font-family: 'Roboto-Regular';
+    font-size: 10px;
+    font-weight: bold;
+    margin: 1px 4px 0 0;
+    min-height: 20px;
+    min-width: 11px;
+    padding: 0 5px;
+    text-align: center;
+    line-height:18px;
+    cursor:pointer;*/
+    background: url("../linktamchat/images/bgNotinew3.png");
+    width: 29px;
+    height: 19px;
+    float: left;
+    margin-top: 4px;
+    cursor: pointer;
+    margin-left: -5px;
+}
+
+.parenNotiSMS .parenNotiSMSListItem
+{
+    width: 250px;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    border-radius: 3px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    background-color: #FFF;
+    display: none;
+    margin: 30px 0 0 -115px;
+    position: absolute;
+}
+
+    .parenNotiSMS .parenNotiSMSListItem .parenNotiSMSListItem-parent
+    {
+        max-height: 320px;
+    }
+
+.parenNotiSMSShow .parenNotiSMSNumber
+{
+    background-position: -29px 0px !important;
+}
+
+    .parenNotiSMSShow .parenNotiSMSNumber span
+    {
+        color: #db0005 !important;
+    }
+
+.parenNotiSMSShow .parenNotiSMSListItem
+{
+    display: block !important;
+}
+
+.parenNotiSMSItem
+{
+    padding: 5px 0px;
+    border-bottom: 1px solid #E9E9E9;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+    .parenNotiSMSItem:last-child
+    {
+        border-bottom: 0px dashed #CCC;
+    }
+
+    .parenNotiSMSItem:hover
+    {
+        background-color: #eee;
+    }
+
+.parenNotiSMSItem-Avar
+{
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    margin: 0px 5px;
+    overflow: hidden;
+}
+
+    .parenNotiSMSItem-Avar img
+    {
+        width: 32px;
+        height: 27px;
+    }
+
+.parenNotiSMSItem-Content
+{
+    float: left;
+    width: 200px;
+    text-align: justify;
+    font-size: 11px;
+    font-family: Tahoma;
+}
+
+.parenNotiSMSItem-ContentName
+{
+    font-family: Tahoma;
+    font-size: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+    .parenNotiSMSItem-ContentName span
+    {
+        float: left;
+        margin: 3px 5px 0 0;
+        height: 7px;
+        width: 7px;
+    }
+
+.parenNotiSMSItem-ContentData
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #666;
+}
+
+.itemEffListOff
+{
+    background-image: url("../linktamchat/images/KPI4HIL9JJy.png");
+    background-position: -58px -131px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    height: 11px;
+    position: absolute;
+    margin: -11px 0px 0px 120px;
+    width: 20px;
+}
+
+.statusOffline, .statusOnline
+{
+    float: right;
+    height: 7px;
+    margin-right: 10px;
+    margin-top: 18px;
+    width: 7px;
+}
+/*Danh sách chuyên gia*/
+.contentChuyenGia ul li
+{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.listChuyenGiaChat img
+{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    margin: 0 5px;
+    padding: 0 !important;
+    border-radius: 5px;
+}
+
+.contentChuyenGia ul li ._4zc
+{
+    float: left;
+    font-size: 11px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: Arial;
+    color: #999;
+    font-weight: bold;
+}
+
+.listChuyenGiaChat
+{
+    border-bottom: 1px dashed #C9D0DA;
+    cursor: pointer;
+    padding: 5px 0 8px !important;
+}
+
+    .listChuyenGiaChat:last-child
+    {
+        border-bottom: 0 dashed #C9D0DA;
+    }
+
+    .listChuyenGiaChat img
+    {
+        background-color: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        margin: 0 5px;
+        padding: 0 !important;
+    }
+
+    .listChuyenGiaChat:hover
+    {
+        background-color: #EEEEEE;
+    }
+
+
+/*------------------------------*/
+.showPopupWelcomeLinkTam
+{
+}
+
+    .showPopupWelcomeLinkTam .panelPopupWelcomeLinkTam
+    {
+        /*css .panelPopupWelcomeLinkTam đây*/
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: fixed;
+        z-index: 10;
+        cursor: pointer;
+        display: none;
+    }
+
+    .showPopupWelcomeLinkTam .panelPopupWelcomeTextLinkTam
+    {
+        position: fixed;
+        z-index: 10;
+        cursor: pointer;
+        display: none;
+        text-align: center;
+        font-family: Roboto-Regular;
+        font-size: 12px;
+    }
+
+.panelPopupWelcomeLinkTam .panelPopupWelcomeLinkTam-close
+{
+    background-image: url("../linktamchat/images/close-popupnew.png");
+    background-size: contain;
+    height: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 13px;
+    opacity: 0.3;
+}
+
+.panelPopupWelcomeLinkTam:hover .panelPopupWelcomeLinkTam-close
+{
+    opacity: 1;
+}
+
+.hidelListChuyenGiaLinkTam .panelPopupWelcomeLinkTam
+{
+    /*css .hidelListChuyenGiaLinkTam .panelPopupWelcomeLinkTam đây*/
+}
+
+.hidelListChuyenGiaLinkTam .panelPopupWelcomeTextLinkTam
+{
+    /*css .hidelListChuyenGiaLinkTam .panelPopupWelcomeTextLinkTam đây*/
+}
+
+.panelRightChatKinkTam
+{
+    bottom: 0px; /*bottomPx*/
+    right: 0px; /*rightPx*/
+    width: 200px; /*Chiều rộng Chat*/
+    position: fixed;
+    transition: bottom 0.3s ease-out 0s;
+    z-index: 11;
+}
+
+    .panelRightChatKinkTam .panelRightChatKinkTamMenu
+    {
+        background: #F2F2F2;
+        border: 1px solid #E8E8E8;
+        height: 25px;
+        border-top-left-radius: 3px;
+    }
+
+.panelRightChatKinkTamMenu-ChuyenGia
+{
+    border-right: 1px solid #F2F2F2;
+    background-image: url('../linktamchat/images/Users-icon.png');
+    padding: 0px 10px 0px 32px;
+}
+
+.panelRightChatKinkTamMenu-Account
+{
+    border-left: 1px solid #F2F2F2;
+    background-image: url('../linktamchat/images/settings-icon.png');
+    padding: 0px 5px 0px 27px;
+}
+
+.panelRightChatKinkTamMenu-ChuyenGia, .panelRightChatKinkTamMenu-Account
+{
+    font-family: Roboto-Regular;
+    font-size: 12px;
+    color: #BEBEBE;
+    float: left;
+    height: 26px;
+    background-position: 3px center;
+    background-repeat: no-repeat;
+    line-height: 24px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    transition: all 0.3s ease-out 0s;
+    cursor: pointer;
+    position: relative;
+}
+
+.panelRightChatKinkTamSelectChuyenGia .panelRightChatKinkTamMenu-ChuyenGia
+{
+    background-color: #FFF;
+    border-right: 1px solid #E8E8E8;
+    color: #777;
+    cursor: default;
+}
+
+.panelRightChatKinkTamSelectUse .panelRightChatKinkTamMenu-Account
+{
+    background-color: #FFF;
+    border-left: 1px solid #E8E8E8;
+    color: #777;
+    cursor: default;
+}
+
+.panelRightChatKinkTamSelectUse .messOfflineNewPanel
+{
+    right: 25px;
+    top: 45px;
+}
+
+.panelRightChatKinkTamContentData
+{
+    border-left: 1px solid #E8E8E8;
+    height: 300px; /*Chiều cao Chat*/
+    overflow: hidden;
+    width: calc(100% - 1px);
+    position: relative;
+    background-color: #FFF;
+}
+
+
+.panelRightChatKinkTamContentDataHildel
+{
+    width: 400%;
+    height: 100%;
+    position: relative;
+    transition: left 0.3s ease-out 0s;
+}
+
+.panelRightChatKinkTamSelectUse .panelRightChatKinkTamContentData-Account
+{
+    left: 0px;
+    opacity: 1;
+}
+
+.panelRightChatKinkTamSelectUse .panelRightChatKinkTamContentData-ChuyenGia
+{
+    left: calc(100% - 100% - 25%);
+    opacity: 0;
+}
+
+.panelRightChatKinkTamSelectChuyenGia .panelRightChatKinkTamContentData-Account
+{
+    left: calc(100%);
+    opacity: 0;
+}
+
+.panelRightChatKinkTamSelectChuyenGia .panelRightChatKinkTamContentData-ChuyenGia
+{
+    left: 0px;
+    opacity: 1;
+}
+
+
+
+.panelRightChatKinkTamContentData-Account
+{
+    left: calc(100%);
+    opacity: 0;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia
+{
+    left: 0px;
+    opacity: 1;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia, .panelRightChatKinkTamContentData-Account
+{
+    width: calc(100%);
+    max-width: calc(100%);
+    overflow: hidden;
+    height: 100%;
+    position: absolute;
+    opacity: 1;
+    transition: all 0.5s ease-out 0s;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-TimKiem
+{
+    border-bottom: 1px solid #E8E8E8;
+}
+
+    .panelRightChatKinkTamContentData-ChuyenGia-TimKiem input[type=text]
+    {
+        width: calc(100% - 10px);
+        padding: 3px 5px;
+        border: none;
+        background-color: transparent;
+        font-family: Roboto-Regular;
+        font-size: 12px;
+        color: #BEBEBE;
+    }
+
+.panelRightChatKinkTamContentData-ChuyenGia-ShowOffline
+{
+    position: absolute;
+    z-index: 8;
+    width: 100%;
+    height: calc(100% - 21px);
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 1);
+    display: none;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-ShowOffline-Show
+{
+    display: block;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-ShowOffline .panelRightChatKinkTamContentData-ChuyenGia-ShowOffline-content
+{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px 20px;
+    text-align: center;
+    font-family: Roboto-Regular;
+    font-size: 15px;
+    line-height: 20px;
+    color: #555;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-ShowOffline .btn-submit-new
+{
+    margin-top: 10px;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-SendMess
+{
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    bottom: -100%;
+    background-color: #efefef;
+    transition: all 0.2s ease-out 0s;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-SendMess-Show
+{
+    bottom: 0px;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-TimKiem input[type=text]:focus
+{
+    color: #777;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-List
+{
+    height: calc(100% - 45px);
+    width: 100%;
+}
+
+.panelRightChatKinkTamContentData-login
+{
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    bottom: 0;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+    .panelRightChatKinkTamContentData-login .panel_login_linktam_new
+    {
+        background-image: url("../linktamchat/images/icon_account.png");
+        background-position: 5px 3px;
+        background-repeat: no-repeat;
+        color: #999;
+        font-size: 11px;
+        left: 0;
+        letter-spacing: 1px;
+        line-height: 20px;
+        padding: 0 0 0 22px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        cursor: pointer;
+        font-family: Roboto-Regular;
+    }
+
+    .panelRightChatKinkTamContentData-login .panel_login_linktam_logined
+    {
+        background-position: 5px -15px;
+    }
+
+    .panelRightChatKinkTamContentData-login .panel_login_linktam_new:hover
+    {
+        color: #555;
+    }
+
+.itemChuyenGiaLinkTam-Avar
+{
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+    height: 45px;
+    padding: 2px;
+    width: 45px;
+    float: left;
+}
+
+.itemChuyenGiaLinkTam-Avar-Chi
+{
+    background-position: center center;
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+}
+
+.itemChuyenGiaLinkTam
+{
+    margin-top: 5px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #E8E8E8;
+    cursor: pointer;
+    padding: 5px;
+    -ms-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    transition: all 0.2s ease-out 0s;
+}
+
+.itemChuyenGiaLinkTamShow
+{
+    -ms-transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    transform: scale(1) !important;
+}
+
+.itemChuyenGiaLinkTam-Avar-Chi
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.itemChuyenGiaLinkTam:hover
+{
+    box-shadow: 0 -6px 7px #eee inset;
+}
+
+.panelRightChatKinkTamContentData-ChuyenGia-List-ApentData .itemChuyenGiaLinkTam:last-child
+{
+    border-bottom: none;
+}
+
+.itemChuyenGiaLinkTam-Content
+{
+    margin: 0px 0px 0px 55px;
+    position: relative;
+}
+
+.itemChuyenGiaLinkTam-Content-Name
+{
+    color: #777777;
+    font-family: Roboto-Regular;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.itemChuyenGiaLinkTam-Content-money
+{
+    color: #BEBEBE;
+    font-family: Roboto-Regular;
+    font-size: 11px;
+}
+
+.statusTrangThaiOnline
+{
+    /*background-position:0px 0px;*/
+    background-color: #3c9228 !important;
+}
+
+.statusTrangThaiOffline
+{
+    /*background-position:0px -10px;*/
+    background-color: #7f7f7f;
+}
+
+.statusTrangThaiOnOff
+{
+    /*background-image: url("../linktamchat/images/statusOnline.png");*/
+    background-color: #7f7f7f;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -2px;
+    top: calc(50% - 5px);
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+}
+
+.loadingInput
+{
+    background-image: url("../linktamchat/images/loading.gif");
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.titleErrLinktam
+{
+    font-family: Roboto-Regular;
+    font-size: 13px;
+    color: #999;
+    margin: 10px;
+    text-align: center;
+}
+
+.panelBtnDangNhapLinkTam
+{
+    margin-top: 10px;
+}
+
+.panelBtnDangNhapLinkTam-Btn
+{
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 5px 5px 5px 102px;
+}
+
+.btnFacebookLinkTam
+{
+    background-color: #2275D1;
+    background-image: url('../linktamchat/images/logo.png');
+}
+
+    .btnFacebookLinkTam:hover
+    {
+        background-color: #4093EF;
+    }
+/*------------------------------*/
+
+#facebookchat
+{
+    /*background: none repeat scroll 0 0 #ffffff;*/
+    width: 183px;
+    height: 350px;
+    background-color: #f2f4f8;
+    border-bottom: 2px solid #e1e3e6;
+}
+
+.panelChatList
+{
+    bottom: 0px;
+    right: 0px;
+    position: fixed;
+    width: 180px;
+    overflow: hidden;
+    border: 1px solid #dbdfe8;
+    border-right: 0px;
+    border-bottom: 0px;
+}
+
+.panelChatListTitle
+{
+    background-color: #b06db4;
+    font-size: 12px;
+    font-weight: bold;
+    color: #f2f4f8;
+    padding: 5px 0px 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#facebookchat ul
+{
+    padding: 0 !important;
+}
+
+.statusOfflineChat .statusOlineChatNew
+{
+    background: url("../images/statusOnline.png") no-repeat scroll 0 -10px rgba(0, 0, 0, 0);
+    float: left;
+    height: 7px;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 7px;
+}
+
+.statusOnlineChat .statusOlineChatNew
+{
+    background: url("../images/statusOnline.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    height: 7px;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 7px;
+}
+
+#facebookchat ul li
+{
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+    #facebookchat ul li a
+    {
+        height: 32px;
+        line-height: 32px;
+        color: #333333;
+        font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+        font-size: 11px;
+    }
+
+    #facebookchat ul li ._4zc
+    {
+        line-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        float: left;
+        font-size: 11px;
+    }
+
+.statusOnline
+{
+    float: right;
+    width: 7px;
+    height: 7px;
+    margin-right: 10px;
+    background: url('../images/statusOnline.png')no-repeat;
+    margin-top: 14px;
+}
+
+.statusOffline
+{
+    float: right;
+    width: 7px;
+    height: 7px;
+    margin-right: 10px;
+    background: url('../images/statusOnline.png')no-repeat;
+    margin-top: 14px;
+    background-position: 0px -10px;
+}
+
+.chatOnline
+{
+    height: 401px;
+    background-color: #ffffff; /*border: 1px solid #E9EAEE;     border-bottom: 0px solid #E9EAEE;*/
+    width: 250px;
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden !important;
+    margin-top: -400px;
+}
+
+#chatall .chatOnline .name
+{
+    background-color: #b06db4;
+    border-color: rgba(0, 39, 121, 0.76) rgba(0, 39, 121, 0.76) -moz-use-text-color;
+    width: 250px;
+}
+
+#chatall .chatOnline .contentApChat
+{
+    height: 330px;
+    margin-top: 38px;
+    position: relative;
+    width: 252px;
+}
+
+#chatall .chatOnline .itemChatContent
+{
+    width: 100%;
+    padding-top: 5px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 5px;
+}
+
+    #chatall .chatOnline .itemChatContent:first-child
+    {
+        width: 100%;
+        padding-top: 5px;
+        border-bottom: 1px solid #eeeeee;
+        padding-bottom: 5px;
+        margin: 5px 0px 0px 0px;
+    }
+
+.chatborderPhanCach
+{
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#chatall .chatOnline .itemChatContent:last-child
+{
+    border-bottom: 0px dashed #CCCCCC;
+}
+
+#chatall .chatOnline .itemChatContent .itemAvarChat
+{
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    width: 36px;
+}
+
+    #chatall .chatOnline .itemChatContent .itemAvarChat img
+    {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #ccc;
+        padding: 1px;
+    }
+
+.contentApChatXemLai
+{
+    height: 11px;
+    margin: 5px 0 0 108px;
+    position: fixed;
+    width: 16px;
+    display: none;
+}
+
+    .contentApChatXemLai img
+    {
+        height: 7px;
+        width: auto;
+    }
+
+#chatall .chatOnline .itemChatContent .chatDateTime
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #808080;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+    margin: -14px 0 0;
+    padding: 0 5px;
+    position: absolute;
+    right: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.3s,opacity 0.3s linear;
+}
+
+#chatall .chatOnline .itemChatContent:hover .chatDateTime
+{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+#chatall .chatOnline .itemChatContent .chatcontentText
+{
+    padding-left: 2px;
+    font-size: 11px;
+    vertical-align: top;
+    color: #333333;
+    float: left;
+    width: 195px;
+    text-align: justify;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    line-height: 17px;
+}
+
+    #chatall .chatOnline .itemChatContent .chatcontentText a
+    {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+#chatall .chatOnline .name .nameChat
+{
+    color: #FFFFFF;
+    margin: 6px 7px 2px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 195px;
+    overflow: hidden;
+    height: 15px;
+}
+
+    #chatall .chatOnline .name .nameChat span
+    {
+        color: #f0c9f2;
+        font-size: 11px;
+        font-weight: normal;
+    }
+
+#chatall .chatOnline .close
+{
+    background-image: url("../linktamchat/images/zazNn_L1jRw.png");
+    background-position: -185px -587px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    width: 21px;
+    height: 21px;
+}
+
+.mas
+{
+    border: none;
+    border-top: 1px solid #CCCCCC;
+    color: #333333;
+    font-size: 14px;
+    height: 30px;
+    max-height: 100px;
+    max-width: 240px;
+    min-height: 30px;
+    min-width: 240px;
+    outline: medium none;
+    overflow: hidden;
+    padding: 0 4px;
+    position: fixed;
+    bottom: 39px;
+    width: 240px;
+    z-index: 0;
+    overflow: auto;
+    -webkit-transition: height 0.1s;
+    -moz-transition: height 0.1s;
+    transition: height 0.1s;
+}
+
+.listChuyenGiaChat
+{
+    cursor: pointer;
+    border-bottom: 1px dashed #c9d0da;
+    padding: 5px 0px 8px 0px !important;
+}
+
+    .listChuyenGiaChat:last-child
+    {
+        border-bottom: 0px dashed #c9d0da;
+    }
+
+    .listChuyenGiaChat img
+    {
+        padding: 2px;
+        background-color: #FFF;
+        border: 1px solid #ccc;
+        margin: 0px 5px 0px 5px;
+        padding: 0px 0px 0px 0px !important;
+    }
+
+    .listChuyenGiaChat:hover
+    {
+        background-color: #EEE;
+    }
+
+.textDemNguoc
+{
+    background-color: #FF0000;
+    bottom: 5px;
+    font-family: Arial;
+    font-size: 10px;
+    margin-left: 68px;
+    position: absolute;
+    text-align: center;
+    width: 95px;
+    border: 1px solid #ccc;
+    background-color: #FFF;
+    border-bottom: 0px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-weight: bold;
+    padding: 3px 0px 3px 0px;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.chatTimeSpan
+{
+    color: #333333;
+    font-size: 10px;
+    margin: 0px 19px 2px;
+    text-align: left;
+    width: 216px;
+    float: left;
+}
+
+.contentFaceBookChatNewVer2
+{
+    width: 100%;
+    bottom: 24px;
+    position: fixed;
+    z-index: 100; /*Z-Index Sửa*/
+    right: 0px;
+    height: 0px;
+}
+
+.panelSearch
+{
+    border-top: 1px solid #C9D0DA;
+    background-color: #f2f4f8;
+}
+
+    .panelSearch input[type=text]
+    {
+        border: none;
+        padding: 3px 5px 3px 25px;
+        font-size: 11px;
+        font-weight: bold;
+        background-image: url("../linktamchat/images/listImgFace.png");
+        background-position: left -288px;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+        color: #555555;
+        width: 100px;
+    }
+
+    .panelSearch .btnHidelChat
+    {
+        background-image: url("../linktamchat/images/listImgFace2.png");
+        background-position: -173px -34px;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+        border-left: 1px solid #C9D0DA;
+        height: 20px;
+        width: 24px;
+        cursor: pointer;
+    }
+
+    .panelSearch .btnSetingChat
+    {
+        background-image: url("../linktamchat/images/listImgFace2.png");
+        background-position: -1px -66px;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+        border-left: 1px solid #C9D0DA;
+        height: 20px;
+        width: 24px;
+        cursor: pointer;
+    }
+
+.settingTuVanNew
+{
+    background-image: url("../linktamchat/images/listImgFace2.png");
+    background-position: -27px -65px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    width: 24px;
+}
+
+.contentApBorder
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #CCCCCC #CCCCCC;
+    border-image: none;
+    border-right: 1px solid #CCCCCC;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    position: relative;
+    width: 248px;
+    height: 362px;
+}
+
+.inputEcterChat
+{
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    background-color: #FFF;
+    position: absolute;
+    z-index: 2;
+    height: 30px;
+    line-height: 30px;
+    margin: 3px 0 0;
+    right: 0px;
+    border-bottom: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    padding: 0 10px;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.3s,opacity 0.3s linear;
+}
+
+    .inputEcterChat:hover
+    {
+        background-color: #333;
+        color: #fff;
+        border-bottom: 0px;
+        border-top: 0px;
+        border-right: 0px;
+        border: 1px solid #333;
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+
+.mas:hover + input[type=hidden] + .inputEcterChat
+{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.mas:hover > input[type=hidden] > .inputEcterChat
+{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.mas:hover ~ input[type=hidden] ~ .inputEcterChat
+{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+#searchChuyenGia
+{
+}
+
+.searchChuyenGiaLoading
+{
+    background-image: url("../linktamchat/images/loaddinguploadAv.gif") !important;
+    background-position: left center !important;
+    background-repeat: no-repeat !important;
+}
+
+.panelSettingChat
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    height: 42px;
+    margin: -67px 0 0 50px;
+    /*margin: -67px 0 0 -101px;*/
+    position: fixed;
+    width: 125px;
+    z-index: 1;
+}
+
+.btnSetingChatInput
+{
+    margin: 5px 0px 5px 10px;
+}
+
+    .btnSetingChatInput input[type=radio]
+    {
+        float: left;
+    }
+
+    .btnSetingChatInput span
+    {
+        float: left;
+        font-size: 10px;
+        font-weight: bold;
+        color: #333;
+        margin-left: 5px;
+    }
+
+/*------------------------------*/
+.panelContentAccLinkTam
+{
+    text-align: center;
+    margin: 10px auto;
+    height: 100%;
+    position: relative;
+}
+
+.panelContentAccLinkTamAvarta
+{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #E0E0E0;
+    background-color: #FFF;
+    padding: 2px;
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    overflow: hidden;
+}
+
+    .panelContentAccLinkTamAvarta span
+    {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover !important;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+.arrow-right-container-newok_linktam
+{
+    clip: rect(-15px, 50px, 8px, -50px);
+    left: 69px;
+    margin: 0 0 0 -15px;
+    position: absolute;
+    top: -8px;
+    z-index: 4;
+    transition: left 0.2s ease-out 0s;
+}
+
+.arrow-newok_linktam
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    height: 30px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 10px;
+    z-index: 3;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.panelDataCusLinkTam
+{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    height: calc(100% - 54px);
+    position: relative;
+    top: 45px;
+}
+
+.panelDataCusLinkTam-Data
+{
+    height: calc(100% - 1px);
+}
+
+    .panelDataCusLinkTam-Data .panelDataCusLinkTamArraPanelHillden
+    {
+        height: calc(100% - 55px);
+        width: 100%;
+        margin: 10px 0px 0px 0px;
+    }
+
+    .panelDataCusLinkTam-Data .panelDataCusLinkTamArraPanel
+    {
+        display: none;
+    }
+
+    .panelDataCusLinkTam-Data .panelDataCusLinkTamArraPanelShow
+    {
+        display: block;
+    }
+
+.panelDataCusLinkTam-NameLogin
+{
+    color: #777777;
+    font-family: Roboto-Regular;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.panelDataCusLinkTamTitle
+{
+    height: 20px;
+    padding-left: 45px;
+    position: absolute;
+    text-align: left;
+    top: 15px;
+    width: calc(100% - 45px);
+}
+
+    .panelDataCusLinkTamTitle span
+    {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        margin: 0px 10px;
+        display: inline-block;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.3s ease-out 0s;
+    }
+
+        .panelDataCusLinkTamTitle span.selectrowinffoaaa
+        {
+            opacity: 1;
+        }
+
+.panelDataCusLinkTamTitleItemData
+{
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    margin: 5px 8px;
+    color: #555;
+    text-align: left;
+}
+
+    .panelDataCusLinkTamTitleItemData span
+    {
+        color: #333333;
+        display: inline-table;
+        font-family: Roboto-Regular;
+        font-size: 11px;
+        text-align: left;
+        width: 60px;
+        font-weight: 700;
+    }
+
+    .panelDataCusLinkTamTitleItemData input[type=text]
+    {
+        border: 1px solid #EEEEEE;
+        border-radius: 3px;
+        font-size: 11px;
+        padding: 2px 5px;
+        width: calc(100% - 75px);
+    }
+
+.btnLogoutLinkTam
+{
+    background-image: url("../linktamchat/images/Extras-Shutdown-icon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 20px;
+    position: absolute;
+    right: 6px;
+    top: -3px;
+    width: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s ease-out 0s;
+}
+
+    .btnLogoutLinkTam:hover
+    {
+        opacity: 1;
+    }
+
+.loading7px, .loadingAvartaLinkTam .nameTitleChatLinkTamLoading
+{
+    background-image: url('../linktamchat/images/loading40px.png') !important;
+    background-position: left center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: xoaytron .75s infinite linear;
+    animation: xoaytron .75s infinite linear;
+    background-color: transparent !important;
+}
+
+.loadingAvartaLinkTam .nameTitleChatLinkTamLoading
+{
+    background-position: right center !important;
+    display: inline-table;
+    height: 7px;
+    margin-top: -3.5px;
+    position: absolute;
+    left: calc(50% - 3px);
+    bottom: 2px;
+    width: 7px;
+    z-index: 2;
+}
+
+@-webkit-keyframes xoaytron
+{
+    from
+    {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to
+    {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes xoaytron
+{
+    from
+    {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to
+    {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes phongto
+{
+    0%
+    {
+        -ms-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    25%
+    {
+        -ms-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    50%
+    {
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    75%
+    {
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100%
+    {
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes phongto
+{
+    0%
+    {
+        -ms-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    25%
+    {
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    50%
+    {
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    75%
+    {
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100%
+    {
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+
+/*.statusMatKetNoi {
+    background-color: #999999;
+    color: #FFFFFF;
+    display: none;
+    font-family: Roboto-Regular;
+    font-size: 10px;
+    margin: -13px 0 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}*/
+
+.pnelListIconContentDataRate, .pnelListIconContentDataRateSelect
+{
+    margin: 10px 0px;
+    position: relative;
+}
+
+.startLinkTamDis
+{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0px 3px;
+    background-image: url('../linktamchat/images/star-icon-dis.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0s;
+}
+
+.startLinkTamSelect
+{
+    background-image: url('../linktamchat/images/star-icon.png') !important;
+}
+
+.pnelListIconContentDataRateSelect select
+{
+    border: 1px solid #DCDCDC;
+    border-radius: 3px;
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    outline: medium none;
+    padding: 0;
+    width: calc(100% - 6px - 10px);
+}
+
+.pnelListIconContentDataRateSelect input[type=text]
+{
+    background-color: #FFFFFF;
+    border: medium none;
+    display: none;
+    font-family: Roboto-Regular;
+    font-size: 11px;
+    left: 13px;
+    outline: medium none;
+    padding: 0;
+    position: absolute;
+    top: 2px;
+    width: calc(100% - 40px);
+}
+
+.btnSendRateLinkTam
+{
+    border: 1px solid #EDEDED;
+    border-radius: 3px;
+    display: inline-table;
+    line-height: 19px;
+    text-align: left;
+    width: 75px;
+    cursor: pointer;
+    background-color: #FFF;
+    color: #555555;
+    margin: auto;
+    transition: all 0.3s ease-out 0s;
+}
+
+    .btnSendRateLinkTam:hover
+    {
+        background-color: #EDEDED;
+        color: #000;
+    }
+
+    .btnSendRateLinkTam span
+    {
+        background-image: url("../linktamchat/images/iocnBtnKetThuc.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-right: 1px solid #EDEDED;
+        display: inline-table;
+        float: left;
+        height: 19px;
+        margin-right: 5px;
+        width: 20px;
+        background-color: #FFF;
+    }
+
+.panelContentAccLinkTamLoading
+{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('../linktamchat/images/loadingLoginStep1.gif');
+}
+
+.iconWarningChat
+{
+    background-image: url("../linktamchat/images/warning-icon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-table;
+    height: 16px;
+    margin-top: 3px;
+    position: absolute;
+    width: 16px;
+}
+
+.iconTimeOffline
+{
+    background-image: url("../linktamchat/images/Time-Machine-icon-link.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-table;
+    height: 16px;
+    margin-top: 3px;
+    position: absolute;
+    width: 16px;
+    background-size: contain;
+}
+
+.btnCloseWindowLinkTam
+{
+    height: 84px;
+    left: 5px;
+    position: absolute;
+    top: 50px;
+    width: 20px;
+    border-radius: 25px 0px 0px 25px;
+    background-color: #ededed;
+    background-image: url('../../linktamchat/images/btnHidel.png');
+    background-position: 2px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 1 !important;
+    box-shadow: 0 0 6px #A0A0A0 !important;
+    transition: left 0.3s ease-out 0s;
+}
+
+    .btnCloseWindowLinkTam:hover
+    {
+        opacity: 1;
+    }
+
+.btnCloseWindowLinkTamNew
+{
+    background-image: url("../linktamchat/Images/close-popupnew.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    height: 10px;
+    position: absolute;
+    right: 3px;
+    top: 10px;
+    width: 10px;
+    z-index: 1;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 0.5;
+    transition: -webkit-transform,transform 0.3s ease-out 0s,opacity 0.3s ease-out 0s;
+}
+
+    .btnCloseWindowLinkTamNew:hover
+    {
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+.panelRightChatKinkTam:hover .btnCloseWindowLinkTamNew
+{
+    opacity: 1;
+}
+
+.panelRightChatKinkTam:hover .btnCloseWindowLinkTam
+{
+    /*left: -13px;*/
+}
+
+.hidelListChuyenGiaLinkTam .btnCloseWindowLinkTam
+{
+    background-position: -17px center !important;
+    box-shadow: 0 0 6px #A0A0A0 !important;
+    left: -13px !important;
+    opacity: 1 !important;
+    display: none;
+}
+
+.hidelListChuyenGiaLinkTam .panelRightChatKinkTam
+{
+    right: -200px !important; /*hildel right panel*/
+}
+
+.hidelListChuyenGiaLinkTamNew .panelRightChatKinkTam
+{
+    right: -200px !important; /*hildel right new panel*/
+}
+
+.hidelListChuyenGiaLinkTam .panelListWindowChat
+{
+    margin-right: 30px !important;
+}
+
+.elePlayAufioLinktam
+{
+    width: 0px;
+    height: 0px;
+    position: fixed;
+    top: -2px;
+    left: -2px;
+}
+
+.classOfflineTitleAAAA
+{
+    font-size: 11px;
+    text-align: center;
+    color: #9a9a9a;
+    font-family: Roboto-Regular;
+}
+
+.arraymessageofflinepanel .rowmessageoff
+{
+    min-height: 40px;
+    position: relative;
+    cursor: pointer;
+    left: 0px;
+    transition: left 0.3s ease-out 0s;
+}
+
+    .arraymessageofflinepanel .rowmessageoff .rowmessageoff-eff
+    {
+        background-color: #0b80c1;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 2px;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.2s ease-out 0s;
+    }
+
+    .arraymessageofflinepanel .rowmessageoff:hover .rowmessageoff-eff
+    {
+        opacity: 1;
+    }
+
+    .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Avar
+    {
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data
+    {
+        margin: 0px 0px 0px 45px;
+    }
+
+        .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data *
+        {
+            font-size: 12px;
+            color: #9f9f9f;
+            font-family: Roboto-Regular;
+        }
+
+        .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data .rowmessageoff-name
+        {
+            text-align: left;
+            color: #777;
+        }
+
+        .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data .rowmessageoff-nummess
+        {
+            font-size: 9px;
+            font-style: italic;
+            margin: 1px 0px 2px 0px;
+            text-align: left;
+        }
+
+        .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data .rowmessageoff-name
+        {
+            font-size: 11px;
+            text-align: justify;
+        }
+
+        .arraymessageofflinepanel .rowmessageoff .rowmessageoff-Data .rowmessageoff-time
+        {
+            color: #9c9c9c;
+            font-size: 9px;
+            margin-right: 5px;
+            text-align: right;
+        }
+
+    .arraymessageofflinepanel .rowmessageoff:nth-child(2n+1)
+    {
+        background-color: #EEE;
+    }
+
+.panelLoadingNewLinkTam
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-top-left-radius: 3px;
+    display: none;
+}
+
+.panelLoadingNewLinkTamShow
+{
+    display: block;
+}
+
+.panelLoadingNewLinkTam span
+{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: xoaytron 1s infinite linear;
+    animation: xoaytron 1s infinite linear;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('../linktamchat/images/loading128px.png');
+    background-size: contain;
+    opacity: 0.5;
+}
+
+.btn-submit-new
+{
+    border-radius: 2px;
+    color: #ffffff !important;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #428bca;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 2px 10px;
+    font-family: 'Roboto-Regular';
+    opacity: 1;
+    transition: opacity 0.3s ease-out 0s;
+}
+
+    .btn-submit-new:hover
+    {
+        opacity: 0.7;
+    }
+
+.textEnterMessOffLine textarea
+{
+    border: medium none;
+    font-family: "Roboto-Regular" !important;
+    font-size: 15px !important;
+    height: 150px;
+    resize: none;
+    width: 100%;
+}
+
+.infoContentAAAAAAAA, .infoContentAAAAAAAA *
+{
+    font-size: 12px !important;
+    font-family: "Roboto-Regular" !important;
+    text-align: justify;
+}
+
+    .infoContentAAAAAAAA ul
+    {
+        margin: 0px;
+        padding: 0px;
+    }
+
+.contentFaceBookChatNewVerMobileAvarta
+{
+    display: none;
+}
+
+.viewport .itemChilChat-Err-New
+{
+    background-color: #fff;
+    border-top: 1px dashed #ededed;
+    bottom: 0;
+    box-shadow: 0 0 3px #333;
+    padding: 20px 10px 5px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+    .viewport .itemChilChat-Err-New .itemChilChat-Err-New-Close
+    {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url("../linktamchat/images/close-popupnew.png");
+        background-size: contain;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .viewport .itemChilChat-Err-New a
+    {
+        font-family: 'Roboto-Regular';
+        font-weight: bold;
+        color: #98333f;
+        text-decoration: underline;
+    }
+
+.contentFaceBookChat_infomation
+{
+    background-color: #fd6700;
+    border-radius: 2px 2px 0 0;
+    bottom: -20px;
+    color: #fff;
+    font-family: Roboto-Regular;
+    font-size: 12px;
+    left: 50%;
+    padding: 3px 15px 2px;
+    position: fixed;
+    height: 15px;
+    z-index: 12;
+    -webkit-transform: translateY(0);
+    -webkit-transition: .1s -webkit-transform ease-in-out;
+    transform: translateY(0);
+    transition: transform .1s ease-in-out;
+}
+
+.contentFaceBookChat_infomation_show
+{
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+.itemChuyenGiaLinkTam .chi-tiet-ex-link-tam
+{
+    background-color: #fd6700;
+    border-radius: 3px;
+    bottom: 5px;
+    color: #fff;
+    font-family: "Roboto-Regular" !important;
+    font-size: 12px;
+    padding: 2px 0px;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 50px;
+    opacity: 0;
+    -webkit-transform: translateX(55px);
+    -webkit-transition: .3s -webkit-transform ease-in-out;
+    transform: translateX(55px);
+    transition: transform .3s ease-in-out;
+}
+
+.itemChuyenGiaLinkTam:hover .chi-tiet-ex-link-tam
+{
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 0.3;
+}
+
+.itemChuyenGiaLinkTam .chi-tiet-ex-link-tam:hover
+{
+    opacity: 1;
+}
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item
+{
+    border: 1px solid #eee;
+    display: inline-table;
+    float: left;
+    max-height: 57px;
+    margin: 5px;
+    text-align: center;
+    width: calc(50% - 12px);
+    cursor: pointer;
+    background-color: #FFF;
+}
+
+    .itemChilChat-Err-New-pack .itemChuyen-money-item:hover
+    {
+        background-color: #EEE;
+    }
+
+    .itemChilChat-Err-New-pack .itemChuyen-money-item span
+    {
+        line-height: 16px;
+    }
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item-money
+{
+    font-size: 14px;
+    color: #555;
+    font-weight: 700;
+}
+
+.itemChuyen-money-item-money-free
+{
+    color: #55a94c !important;
+}
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item-money-giam
+{
+    font-size: 11px;
+    color: #9f9f9f;
+    /*text-decoration: line-through*/
+    background: linear-gradient(transparent 49%,#000000 49%,#000000 51%,transparent 55%);
+}
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item-time
+{
+    font-size: 10px;
+    color: #9f9f9f;
+    font-weight: normal;
+}
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item-or
+{
+    color: #999;
+    display: inline-table;
+    font-size: 11px;
+    margin-bottom: 17px;
+    margin-left: 15px;
+    margin-right: 15px;
+    vertical-align: bottom;
+}
+
+.itemChilChat-Err-New-pack .itemChuyen-money-item-money-giam span
+{
+    line-height: 20px;
+}
+
+.itemChilChat-Err-New-pack
+{
+    max-height: 100%;
+    padding: 20px 0px 0px 0px !important;
+    overflow: auto;
+}
+
+.itemChilChat-Err-New-Title
+{
+    color: #777;
+    font-size: 13px;
+    margin-top: -20px;
+    text-align: center;
+    width: calc(100% - 20px);
+}
+
+.itemChilChat-Err-New-pack-next .itemChuyen-money-item
+{
+    width: calc(100% - 10px);
+    cursor: default;
+}
+
+    .itemChilChat-Err-New-pack-next .itemChuyen-money-item:hover
+    {
+        background-color: #FFF;
+    }
+
+.itemChilChat-Err-New-pack-next .itemChuyen-money-btn
+{
+    float: left;
+    margin: 0px 5px;
+    width: calc(100% - 10px);
+}
+
+    .itemChilChat-Err-New-pack-next .itemChuyen-money-btn .itemChuyen-money-btn-tiep
+    {
+        background-color: #0b80c1;
+        height: 25px;
+        margin-top: 20px;
+        display: inline-table;
+        font-size: 12px;
+        line-height: 25px;
+        text-align: center;
+        width: 100%;
+        color: #FFF;
+        cursor: pointer;
+    }
+
+
+        .itemChilChat-Err-New-pack-next .itemChuyen-money-btn .itemChuyen-money-btn-tiep:hover
+        {
+            background-color: #2fa4e5;
+        }
+
+    .itemChilChat-Err-New-pack-next .itemChuyen-money-btn .itemChuyen-money-btn-close
+    {
+        position: absolute;
+        right: 5px;
+        margin: 0px 0px 0px 0px;
+        font-size: 11px;
+        color: #777;
+    }
+
+        .itemChilChat-Err-New-pack-next .itemChuyen-money-btn .itemChuyen-money-btn-close input[type=checkbox]
+        {
+            float: left;
+            margin: 2px 4px 0px 0px;
+        }
+
+.conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input
+{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 10px;
+    background-color: #fff;
+    border-top: 1px solid #c9d0da;
+}
+
+    .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-panel-api
+    {
+        position: relative;
+        top: 13px;
+        z-index: 1;
+    }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-panel-api .group_new_linktam
+        {
+            display: none;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-panel-api .group_new_linktam_block
+        {
+            display: block;
+            padding-bottom: 13px;
+        }
+
+    .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api
+    {
+        border-bottom: 1px dashed #ddd;
+        height: 23px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        text-align: right;
+        z-index: 1;
+    }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api input[type=file]
+        {
+            display: none;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .conten-add-chat-new-linktam-add-api-icon
+        {
+            display: inline-table;
+            height: calc(100% - 2px);
+            margin: 1px 3px 0;
+            position: relative;
+            width: 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+            z-index: 1;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .upload_file_pt_linktam
+        {
+            position: absolute;
+            z-index: 0;
+            height: 100%;
+            width: 100%;
+            top: 0px;
+            left: 0px;
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .upload_file_pt_linktam .upload_file_pt_linktam_text
+            {
+                color: #6c6c6c;
+                font-family: Roboto-Regular;
+                font-size: 10px;
+                left: 0;
+                line-height: 23px;
+                max-width: calc(100% - 120px);
+                min-height: 100%;
+                padding: 0 10px 0 35px;
+                position: absolute;
+                text-align: left;
+                top: 0;
+                width: 100%;
+            }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_emoticon
+        {
+            background-image: url("../linktamchat/Images/UjZRTWi-pjm.png");
+            background-position: -157px -403px;
+            background-repeat: no-repeat;
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_emoticon:hover, .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_emoticon_select
+            {
+                background-position: -183px -403px;
+            }
+
+                .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_emoticon_select span
+                {
+                    border-bottom: 1px solid #DDD;
+                    bottom: -2px;
+                    display: inline-table;
+                    height: 1px;
+                    left: 50%;
+                    padding: 0 16px;
+                    position: absolute;
+                    transform: translateX(-50%);
+                    -webkit-transform: translateX(-50%);
+                    width: 100%;
+                }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file
+        {
+            background-image: url("../linktamchat/Images/icon-share-file.png");
+            background-position: 3px 2px;
+            background-repeat: no-repeat;
+            position: relative;
+            /*display:none;*/
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file:hover
+            {
+                background-position: -28px 2px;
+            }
+
+
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_text
+        {
+            background-image: url("../linktamchat/Images/icon_text.png");
+            background-position: 0px 5px;
+            background-repeat: no-repeat;
+            left: 5px;
+            position: absolute;
+            width: 21px;
+            /*display:none;*/
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_text:hover, .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_text_select
+            {
+                background-position: -39px 5px;
+            }
+
+                .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_text_select span
+                {
+                    border-bottom: 1px solid #DDD;
+                    bottom: -2px;
+                    display: inline-table;
+                    height: 1px;
+                    left: 50%;
+                    padding: 0 16px;
+                    position: absolute;
+                    transform: translateX(-50%);
+                    -webkit-transform: translateX(-50%);
+                    width: 100%;
+                }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file_loading:hover
+        {
+            background-position: 3px 2px;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file_loading
+        {
+            cursor: default;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file span
+        {
+            display: none;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_share_file_loading span
+        {
+            display: block !important;
+            border: none !important;
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            top: calc(50% - 10.5px);
+            left: calc(50% - 10.5px);
+            background-image: url("../linktamchat/Images/icon_microphone_loading.png");
+            background-position: center center;
+            background-repeat: no-repeat;
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-animation: xoaytron 2s infinite linear;
+            animation: xoaytron 2s infinite linear;
+        }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone
+        {
+            background-image: url("../linktamchat/Images/icon_microphone.png");
+            background-position: 4px 2px;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone span
+            {
+                display: none;
+            }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone_select
+        {
+            background-position: -23px 2px;
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone_select span
+            {
+                border: 2px solid #4e6fcc;
+                border-radius: 50%;
+                position: absolute;
+                width: 36px;
+                height: 36px;
+                top: calc(50% - 18px);
+                left: calc(50% - 18px);
+                -webkit-transform: scale(0);
+                -webkit-transition: .1s -webkit-transform ease-in-out,.1s border ease-in-out;
+                transform: scale(0);
+                transition: transform .1s ease-in-out,.1s border ease-in-out;
+                display: block !important;
+            }
+
+        .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone_loading
+        {
+            cursor: default;
+        }
+
+            .conten-add-chat-new-linktam .conten-add-chat-new-linktam-add-input .conten-add-chat-new-linktam-add-api .btn_microphone_loading span
+            {
+                display: block !important;
+                border: none !important;
+                position: absolute;
+                width: 21px;
+                height: 21px;
+                top: calc(50% - 10.5px);
+                left: calc(50% - 10.5px);
+                background-image: url("../linktamchat/Images/icon_microphone_loading.png");
+                background-position: center center;
+                background-repeat: no-repeat;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                -webkit-animation: xoaytron 1s infinite linear;
+                animation: xoaytron 1s infinite linear;
+            }
+
+.itemChilChat-Err-Emoticon .itemChilChat-Err-New-Add span
+{
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    display: inline-table;
+    height: 18px;
+    margin: 5px 10px;
+    width: 18px;
+    cursor: pointer;
+}
+
+    .itemChilChat-Err-Emoticon .itemChilChat-Err-New-Add span:hover
+    {
+        background-color: #ededed;
+        border: 1px solid #ddd;
+    }
+
+.popup_invitation_voice
+{
+    text-align: center;
+    font-size: 12px;
+}
+
+    .popup_invitation_voice div span
+    {
+        display: inline-table;
+        width: calc(50% - 20px);
+        margin: 10px;
+        padding: 3px 0px;
+        color: #FFF;
+        cursor: pointer;
+    }
+
+        .popup_invitation_voice div span:first-child
+        {
+            background-color: #0b80c1;
+        }
+
+        .popup_invitation_voice div span:last-child
+        {
+            background-color: #e44b4b;
+        }
+
+.loadingBarCrazyPt
+{
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    color: #fc3f00;
+    font-size: 12px;
+    text-align: right;
+    background-color: rgba(221, 221, 221, 0.5);
+}
+
+.linktam_text_auto_split
+{
+    height: 0;
+    left: -100px;
+    overflow: hidden;
+    position: fixed;
+    top: -100px;
+    width: 0;
+}
+
+    .linktam_text_auto_split *
+    {
+        display: inline-table !important;
+        position: fixed !important;
+    }
+
+.itemChilChat-Err .btn_powerpoint
+{
+    border-top: 1px dashed #ddd;
+    color: #777 !important;
+    font-size: 11px !important;
+    margin: 1px 0 0;
+    padding: 1px 0 0px;
+    text-align: left !important;
+    line-height: 15px !important;
+    position: relative;
+    width: 100%;
+    clear: both;
+}
+
+.itemChilChat-Err .emoticonNew
+{
+    vertical-align: middle;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-moi
+{
+    padding-bottom: 25px;
+}
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-moi span
+    {
+        bottom: 0;
+        display: inline-table;
+        height: 20px;
+        position: absolute;
+        text-align: center;
+        width: calc(50% - 10px);
+        color: #FFF;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+        .itemChilChat-Err .btn_powerpoint .powerpoint-moi span:first-child
+        {
+            left: 0px;
+            background-color: #0b80c1;
+        }
+
+        .itemChilChat-Err .btn_powerpoint .powerpoint-moi span:last-child
+        {
+            right: 0px;
+            background-color: #e44b4b;
+        }
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-convert span, .itemChilChat-Err .btn_powerpoint .powerpoint-wait span
+{
+    display: inline-table;
+    margin-left: 3px;
+    height: 7px;
+    width: 7px;
+    background-image: url('../linktamchat/images/loading40px.png') !important;
+    background-position: left center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: xoaytron .75s infinite linear;
+    animation: xoaytron .75s infinite linear;
+    background-color: transparent !important;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-moi,
+.itemChilChat-Err .btn_powerpoint .powerpoint-convert,
+.itemChilChat-Err .btn_powerpoint .powerpoint-wait,
+.itemChilChat-Err .btn_powerpoint .powerpoint-img
+{
+    display: none;
+}
+
+.itemChilChat-Err .btn_powerpoint-moi .powerpoint-moi,
+.itemChilChat-Err .btn_powerpoint-convert .powerpoint-convert,
+.itemChilChat-Err .btn_powerpoint-wait .powerpoint-wait,
+.itemChilChat-Err .btn_powerpoint-img .powerpoint-img
+{
+    display: block;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img
+{
+    position: relative;
+    width: 100%;
+    margin: 5px 0px 0px 0px;
+    cursor: url('../linktamchat/images/zoom-in-icon.png'), auto;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img-no-action .powerpoint-img-next, .itemChilChat-Err .btn_powerpoint .powerpoint-img-no-action .powerpoint-img-prev
+{
+    display: none;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-item
+{
+    opacity: 1;
+    z-index: 0;
+    display: none;
+    transition: opacity 0.3s ease-out 0s;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-item-show
+{
+    opacity: 1;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-item img
+{
+    width: 100%;
+    height: auto;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img span
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 18px auto;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    height: 25px;
+    position: absolute;
+    top: calc(50%);
+    transform: translateY(-50%);
+    width: 25px;
+    z-index: 2;
+    transition: background-size 0.1s ease-out 0s;
+}
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img span:hover
+    {
+        background-size: 15px auto;
+    }
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-prev
+{
+    left: -5px;
+    background-image: url("../linktamchat/images/btn_powerpoint_prev.png");
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-next
+{
+    right: -5px;
+    background-image: url("../linktamchat/images/btn_powerpoint_next.png");
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img .powerpoint-img-info
+{
+    background-color: rgba(255, 255, 255, 0.3);
+    bottom: 0;
+    color: #333;
+    font-weight: bold;
+    height: 18px;
+    left: 0;
+    letter-spacing: 1px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom
+{
+    height: 100%;
+    left: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 51111111;
+    cursor: default;
+}
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom .powerpoint-img-item-show
+    {
+        height: 100%;
+        position: relative;
+        width: 100%;
+        cursor: url('../linktamchat/images/zoom-out-icon.png'), auto;
+    }
+
+        .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom .powerpoint-img-item-show img
+        {
+            height: initial !important;
+            left: 50%;
+            max-height: calc(100% - 50px);
+            max-width: calc(100% - 50px);
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            width: initial !important;
+            cursor: default !important;
+            box-shadow: 0 0 3px #333;
+        }
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom .powerpoint-img-info
+    {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 3px;
+        bottom: 3px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 0 10px;
+        width: auto;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        left: 50%;
+    }
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom .powerpoint-img-prev
+    {
+        left: 10px;
+    }
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom .powerpoint-img-next
+    {
+        right: 10px;
+    }
+
+    .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom span
+    {
+        height: 42px;
+        width: 42px;
+        background-size: 27px auto;
+    }
+
+        .itemChilChat-Err .btn_powerpoint .powerpoint-img-zoom span:hover
+        {
+            background-size: 24px auto;
+        }
+
+.linktam_zoom_img
+{
+    height: 100%;
+    left: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    display: none;
+}
+
+    .linktam_zoom_img img
+    {
+        width: 100%;
+        height: auto;
+        max-width: calc(100% - 50px);
+        max-height: calc(100% - 50px);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+.group_new_linktam_emoticon
+{
+    text-align: center;
+}
+
+.logo_siren_bottom
+{
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    height: 20px;
+    text-align: right;
+    position: relative;
+}
+
+    .logo_siren_bottom *
+    {
+        font-family: Roboto-Regular;
+    }
+
+    .logo_siren_bottom img
+    {
+        height: 14px;
+        margin-right: 5px;
+        margin-top: 2px;
+        vertical-align: middle;
+        width: auto;
+    }
+
+    .logo_siren_bottom .panel_login_linktam_new
+    {
+        background-image: url("../linktamchat/images/icon_account.png");
+        background-position: 5px 3px;
+        background-repeat: no-repeat;
+        color: #999;
+        font-size: 11px;
+        height: 100%;
+        left: 0;
+        letter-spacing: 1px;
+        line-height: 20px;
+        padding: 0 0 0 22px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .logo_siren_bottom .panel_login_linktam_logined
+    {
+        background-position: 5px -15px;
+    }
+
+    .logo_siren_bottom .panel_login_linktam_new:hover
+    {
+        color: #555;
+    }
+
+.linktam_panel_login_data
+{
+    background-color: #DDD;
+    border-radius: 2px;
+    box-shadow: 0 0 3px #333;
+    position: fixed;
+    z-index: 11;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.linktam_panel_login_data_none
+{
+    top: 200% !important;
+    left: 200% !important;
+    opacity: 0 !important;
+}
+
+.linktam_panel_login_data *
+{
+    position: relative;
+    z-index: 1;
+}
+
+.linktam_panel_login_data iframe
+{
+    border: none;
+    overflow: hidden;
+    width: calc(100% - 6px);
+    margin: 3px;
+    height: 0px;
+    transition: height 0s ease-out 0s;
+}
+
+.linktam_panel_login_data span
+{
+    background-image: url("../linktamchat/images/iconTriangleLogin.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: -7px;
+    height: 12px;
+    left: 10px;
+    position: absolute;
+    width: 15px;
+    z-index: 0;
+}
+
+.linktam_panel_iframe_naptien
+{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 12;
+    max-height: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    top: 10px;
+    left: 10px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 3px #333;
+    display: none;
+}
+
+    .linktam_panel_iframe_naptien iframe
+    {
+        width: 100%;
+        height: 100%;
+    }
+
+.linktam_panel_iframe_naptien_show
+{
+    display: block;
+}
+
+.panel_login_linktam_logined span
+{
+    background-color: #ca1119;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 9px;
+    height: 13px;
+    left: calc(100% + 5px);
+    letter-spacing: 1px;
+    line-height: 12px;
+    padding: 0 4px;
+    position: absolute;
+    top: 3px;
+}
+
+.group_new_linktam_emoticon span
+{
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    display: inline-table;
+    height: 16px;
+    margin: 5px 8px;
+    width: 16px;
+    box-sizing: content-box !important;
+    cursor: pointer;
+}
+
+    .group_new_linktam_emoticon span:hover
+    {
+        background-color: #ddd;
+        border: 1px solid #ccc;
+    }
