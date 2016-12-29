@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website", "{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{5d5896c7-2684-444b-9396-ebb58ffa216f}|Entity.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/Website"
+		Debug.AspNetCompiler.PhysicalPath = "Website\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Website"
+		Release.AspNetCompiler.PhysicalPath = "Website\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1456"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{5D5896C7-2684-444B-9396-EBB58FFA216F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{0439BFF1-3F53-41A0-B6F0-ED69421D6A4B}.Release|x86.ActiveCfg = Debug|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5896C7-2684-444B-9396-EBB58FFA216F}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

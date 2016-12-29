@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Thoat.aspx.cs" Inherits="View_Thoat" %>
