@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Masster/MasterPage.master" AutoEventWireup="true" CodeFile="news.aspx.cs" Inherits="admin_mat_hang" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Masster/MasterPage.master" AutoEventWireup="true" CodeFile="news.aspx.cs" Inherits="admin_category" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">
@@ -75,9 +75,9 @@
                         <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
                         <td style="width: 150px;text-align:center;"><%=item.value.Status==1?"Hiển thị":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
-                            <a href="tin-tuc-chinh-sua-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
-                            <a delete-link="Bạn chắc chắn muốn thay đổi trạng thái từ <%=item.value.Status==0?"ẩn thành hiển thị":"hiển thị thành ẩn" %> <%=item.value.TieuDe_Vn %>" href="tin-tuc-trangthai-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><i class="fa fa-check-circle" title="<%=item.value.Status==1?"Ẩn":"Hiển thị" %>" style="<%=item.value.Status==1?"":"color:#CCC;" %>"></i></a>
-                            <a delete-link="Bạn chắc chắn muốn xóa <%=item.value.TieuDe_Vn %>" href="tin-tuc-xoa-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><i class="fa fa-times" title="Xóa"></i></a>
+                            <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
+                            <a delete-link="Bạn chắc chắn muốn thay đổi trạng thái từ <%=item.value.Status==(int)Enums.Status.active?"ẩn thành hiển thị":"hiển thị thành ẩn" %> <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.LoaiTinTucUrlTrangThai((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-check-circle" title="<%=item.value.Status==1?"Ẩn":"Hiển thị" %>" style="<%=item.value.Status==1?"":"color:#CCC;" %>"></i></a>
+                            <a delete-link="Bạn chắc chắn muốn xóa <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.LoaiTinTucUrlXoa((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-times" title="Xóa"></i></a>
                         </td>
                     </tr>
                     <%}%>
@@ -104,7 +104,7 @@
                 <div class="panel_from_row panel_from_row_input">
                     <lable>Tiêu đề (En)</lable>
                     <span style="width: 400px;">
-                        <asp:TextBox ID="txtTitleEn" runat="server" no-empty Width="100%" MaxLength="200"></asp:TextBox>
+                        <asp:TextBox ID="txtTitleEn" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
                     </span>
                 </div>
                 <asp:Panel ID="panelImg" runat="server" Visible="true">
@@ -113,7 +113,16 @@
                         <lable>Ảnh đại diên</lable>
                         <span img-oldaaa></span>
                         <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" runat="server"/>
+                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg/>
+                        </span>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="PanelMucLuc" runat="server" Visible="true">
+                    <div style="clear: both; height: 20px;"></div>
+                    <div class="panel_from_row panel_from_row_input" panel-danhmuc>
+                        <lable>Thuộc danh mục</lable>
+                        <span list-checkbox>
+                            <asp:CheckBoxList ID="cbCate" runat="server"></asp:CheckBoxList>
                         </span>
                     </div>
                 </asp:Panel>
@@ -129,7 +138,7 @@
                     <div class="panel_from_row panel_from_row_input">
                         <lable style="vertical-align:top;">Giới thiệu (En)</lable>
                         <span style="width: 400px;">
-                            <asp:TextBox ID="txtDesEn" runat="server" no-empty Width="100%" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtDesEn" runat="server" Width="100%" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
                         </span>
                     </div>
                 </asp:Panel>
@@ -160,6 +169,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $.each(typeof ListImgOld == 'undefined' ? [] : ListImgOld, function (i, item) {
+                    $('[dataImg]').attr('valdata', item);
                     var elClick = $('<span title="Xóa" style="background-image:url(\'<%=Lib.urlhome+"/Images/imageUpload/"%>' + item + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="img_old" value="' + item + '"/></span>').appendTo($('[img-oldaaa]'));
                     elClick.click(function () {
                         elClick.remove();
@@ -169,20 +179,19 @@
                 CKEDITOR.inline('<%=txtChiTiet.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
                 CKEDITOR.inline('<%=txtChiTietEn.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
 
-                $('[list-checkbox] [isparent="False"]').each(function () {
-                    $(this).parent('td').css({ 'padding-left': '20px' });
-                });
+                
                 $('[list-checkbox] input:checkbox').change(function () {
-                    var parent = $(this).parent('span');
+                    setTimeout(function () {
+                        if($('[list-checkbox] input:checkbox').size()==0)
+                            $('[list-checkbox] input:checkbox').eq(0).prop('checked', true);
+                    }, 100)
 
-                    if (parent.attr('isparent') == 'False' && $(this).prop('checked')) {
-                        $('span[valid="' + parent.attr('valparent') + '"]').children('input:checkbox').prop('checked', true);
-                    } else if (parent.attr('isparent') == 'True') {
-                        if ($('span[valparent="' + parent.attr('valid') + '"] input:checkbox:checked').size() > 0 && !$(this).prop('checked')) {
-                            $(this).prop('checked', true);
-                        }
+                });
+                $('#<%=Action_AddNew.ClientID%>').click(function () {
+                    if ($('[panel-danhmuc]').size() > 0 && $('[list-checkbox] input:checkbox:checked').size() == 0) {
+                        chatLinkTamFun.message(false, 'Vui lòng chọn danh mục');
+                        return false;
                     }
-
                 });
             });
         </script>

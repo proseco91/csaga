@@ -27,35 +27,164 @@ using System.Web.UI;
 public static class Lib
 {
 
-    
+
     public static string urlhome;
 
+    public static string getLag()
+    {
+        string lang = HttpContext.Current.Request.QueryString["lang"] == null ? "vi" : HttpContext.Current.Request.QueryString["lang"];
+        if (lang.Equals("en"))
+            return "en-US";
+        return "vi-VN";
+    }
 
+    public static Entity.ip2location_db1 getInfoFromIp(string ip)
+    {
+        var listIP = LibCache.cache_iplocation;
+        if (listIP == null)
+            listIP = new Entity.LinqDataContext().getIpLocation();
+
+        ip = ip.Split('.').Length < 4 ? "127.0.0.1" : ip;
+        int[] ipArray = ip.Split('.').Where(d => !string.IsNullOrEmpty(d)).Select(d => Convert.ToInt32(d)).ToArray();
+        int numberIp = 16777216 * ipArray[0] + 65536 * ipArray[1] + 256 * ipArray[2] + ipArray[3];
+        return (from p in listIP where p.ip_to >= numberIp && p.ip_from <= numberIp select p).FirstOrDefault();
+    }
+    public static string GetIPAddress(bool GetLan = false)
+    {
+        string visitorIPAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+        if (String.IsNullOrEmpty(visitorIPAddress))
+            visitorIPAddress = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+
+        if (string.IsNullOrEmpty(visitorIPAddress))
+            visitorIPAddress = HttpContext.Current.Request.UserHostAddress;
+
+        if (string.IsNullOrEmpty(visitorIPAddress) || visitorIPAddress.Trim() == "::1")
+        {
+            GetLan = true;
+            visitorIPAddress = string.Empty;
+        }
+
+        if (GetLan && string.IsNullOrEmpty(visitorIPAddress))
+        {
+            //This is for Local(LAN) Connected ID Address
+            string stringHostName = Dns.GetHostName();
+            //Get Ip Host Entry
+            IPHostEntry ipHostEntries = Dns.GetHostEntry(stringHostName);
+            //Get Ip Address From The Ip Host Entry Address List
+            IPAddress[] arrIpAddress = ipHostEntries.AddressList;
+
+            try
+            {
+                visitorIPAddress = arrIpAddress[arrIpAddress.Length - 2].ToString();
+            }
+            catch
+            {
+                try
+                {
+                    visitorIPAddress = arrIpAddress[0].ToString();
+                }
+                catch
+                {
+                    try
+                    {
+                        arrIpAddress = Dns.GetHostAddresses(stringHostName);
+                        visitorIPAddress = arrIpAddress[0].ToString();
+                    }
+                    catch
+                    {
+                        visitorIPAddress = "127.0.0.1";
+                    }
+                }
+            }
+
+        }
+        if (visitorIPAddress.IndexOf("::") > -1)
+            visitorIPAddress = "127.0.0.1";
+
+        return visitorIPAddress;
+    }
+
+    public static string CreateMenu(Entity.Admin admin)
+    {
+        string htmlMenu = "";
+        if (admin != null)
+        {
+            for (int i = 1; i <= 7; i++)
+            {
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(i))
+                {
+                    string html = "<div class=\"page-menu-group\">";
+                    html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                    if (i != (int)Enums.LoaiTinTuc.TinVeLGBT && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && i != (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && i != (int)Enums.LoaiTinTuc.Event)
+                    {
+                        html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
+                        html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                        html += "         </a>";
+                    }
+                    html += "         <a href=\"" + Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
+                    html += "             <div class=\"page-menu-group-item\" menu-tintuc=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                    html += "         </a>";
+                    html += "     </div>";
+                    htmlMenu += html;
+                }
+
+            }
+
+
+            if (admin.IsSuperAdmin || admin.getQuyen.Contains(8) || admin.getQuyen.Contains(9))
+            {
+                htmlMenu += "<div class=\"page-menu-group\">";
+                htmlMenu += "   <div class=\"page-menu-group-title\">Khác</div>";
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(8))
+                {
+                    htmlMenu += "   <a href=\"tai-khoan-quan-tri.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-account=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.Account) + "</div>";
+                    htmlMenu += "   </a>";
+                }
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(9))
+                {
+                    htmlMenu += "   <a href=\"tu-van-truc-tuyen.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-tuvan=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TuVan) + "</div>";
+                    htmlMenu += "   </a>";
+                }
+
+                htmlMenu += "</div>";
+            }
+
+        }
+
+
+
+
+        return htmlMenu;
+    }
+
+    public static string saveImgFromBase64(string base64, string serverMap)
+    {
+        string fileName = Lib.CreateGuid() + ".png";
+        var imageData = Convert.FromBase64String(Regex.Replace(base64, "data:image/.*?;base64,", ""));
+        Lib.ResizeByWidth(new MemoryStream(imageData), 800).Save(serverMap + fileName, ImageFormat.Png);
+        return fileName;
+    }
 
     public static string convertNoiDungHTML(string noidung, string serverMap)
     {
 
-        
+
         string regexImgSrc = @"<img[^>]*?src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
         MatchCollection matchesImgSrc = Regex.Matches(noidung, regexImgSrc, RegexOptions.IgnoreCase | RegexOptions.Singleline);
         foreach (Match m in matchesImgSrc)
         {
-            string a = m.Value;
-            string href1 = m.Groups[0].Value;
             string href = m.Groups[1].Value;
-            if (href.IndexOf("data:image") > -1) {
-                string fileName = Lib.CreateGuid() + ".png";
-                var imageData = Convert.FromBase64String(Regex.Replace(href, "data:image/.*?;base64,", ""));
-                Lib.ResizeByWidth(new MemoryStream(imageData), 800).Save(serverMap + fileName, ImageFormat.Png);
-                noidung = noidung.Replace(href, Lib.urlhome+"/Images/imageUpload/"+fileName);
-                //noidung = Regex.Replace(noidung, href, fileName);
+            if (href.IndexOf("data:image") > -1)
+            {
+                noidung = noidung.Replace(href, Lib.urlhome + "/Images/imageUpload/" + Lib.saveImgFromBase64(href, serverMap));
             }
-                
         }
-
         return noidung;
     }
-    
+
     public static string RenderHtml(this Control control)
     {
         using (var sw = new StringWriter())
@@ -67,8 +196,8 @@ public static class Lib
         }
     }
 
-    
-    
+
+
     public static string CreateGuid()
     {
         return Guid.NewGuid().ToString().Trim();
@@ -135,10 +264,7 @@ public static class Lib
     }
 
 
-    public static string getLag()
-    {
-        return "vi-VN";
-    }
+
 
     static Lib()
     {
@@ -853,60 +979,7 @@ public static class Lib
     {
         return Regex.Replace(source, "<.*?>", string.Empty);
     }
-    public static string GetIPAddress(bool GetLan = false)
-    {
-        string visitorIPAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
-        if (String.IsNullOrEmpty(visitorIPAddress))
-            visitorIPAddress = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-
-        if (string.IsNullOrEmpty(visitorIPAddress))
-            visitorIPAddress = HttpContext.Current.Request.UserHostAddress;
-
-        if (string.IsNullOrEmpty(visitorIPAddress) || visitorIPAddress.Trim() == "::1")
-        {
-            GetLan = true;
-            visitorIPAddress = string.Empty;
-        }
-
-        if (GetLan && string.IsNullOrEmpty(visitorIPAddress))
-        {
-            //This is for Local(LAN) Connected ID Address
-            string stringHostName = Dns.GetHostName();
-            //Get Ip Host Entry
-            IPHostEntry ipHostEntries = Dns.GetHostEntry(stringHostName);
-            //Get Ip Address From The Ip Host Entry Address List
-            IPAddress[] arrIpAddress = ipHostEntries.AddressList;
-
-            try
-            {
-                visitorIPAddress = arrIpAddress.Last().ToString();
-            }
-            catch
-            {
-                try
-                {
-                    visitorIPAddress = arrIpAddress[0].ToString();
-                }
-                catch
-                {
-                    try
-                    {
-                        arrIpAddress = Dns.GetHostAddresses(stringHostName);
-                        visitorIPAddress = arrIpAddress[0].ToString();
-                    }
-                    catch
-                    {
-                        visitorIPAddress = "127.0.0.1";
-                    }
-                }
-            }
-
-        }
-
-
-        return visitorIPAddress;
-    }
     public static void waitSaveFileUpload(Stream buffupload, string pathsave)
     {
         using (FileStream fs = File.Create(pathsave))

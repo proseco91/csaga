@@ -26,7 +26,7 @@ namespace Entity.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=admin_HShop;Persist Security Info=True;User" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User" +
             " ID=sa")]
         public string Connection {
             get {
@@ -38,7 +38,18 @@ namespace Entity.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=113.160.38.149;Initial Catalog=admin_s;Persist Security Info=True;Use" +
-            "r ID=thangnv;Password=thangnv")]
+            "r ID=thangnv")]
+        public string admin_sConnectionString1 {
+            get {
+                return ((string)(this["admin_sConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User" +
+            " ID=sa;Password=1234567")]
         public string admin_sConnectionString {
             get {
                 return ((string)(this["admin_sConnectionString"]));
@@ -48,11 +59,11 @@ namespace Entity.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=113.160.38.149;Initial Catalog=admin_s;Persist Security Info=True;Use" +
-            "r ID=thangnv")]
-        public string admin_sConnectionString1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=admin_s;Persist Security Info=True;User ID=" +
+            "sa;Password=1234567")]
+        public string admin_sConnectionString2 {
             get {
-                return ((string)(this["admin_sConnectionString1"]));
+                return ((string)(this["admin_sConnectionString2"]));
             }
         }
     }

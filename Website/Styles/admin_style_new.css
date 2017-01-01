@@ -2,7 +2,7 @@
 {
     padding-left: 0px !important;
     padding-right: 0px !important;
-    margin-left: 200px;
+    margin-left: 260px !important;
 }
 
 input[type=text], input[type=password], input[type=button]
@@ -299,10 +299,12 @@ input[type=text], input[type=password], input[type=button]
     {
         vertical-align: top;
     }
+
         .panel_from .panel_from_row_file lable + span:empty
         {
-            display:none;
+            display: none;
         }
+
     .panel_from .panel_from_row_file > span
     {
         display: inline-table;
@@ -1019,13 +1021,25 @@ input[type=text], input[type=password], input[type=button]
     height: 100%;
     position: fixed;
     top: 0;
-    width: 200px;
+    width: 260px;
     z-index: 1036;
-    overflow: auto;
+    overflow: hidden;
 }
-
+    #page-menu .page-menu-scroll-hildel
+    {
+        max-height:calc(100% - 83px);
+        overflow:auto;
+    }
+    #page-menu .page-menu-scroll-hildel .page-menu-scroll
+    {
+        padding-bottom:50px;
+    }
 .page-menu-group
 {
+    border-bottom: 1px solid #151515;
+    box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
     .page-menu-group .page-menu-group-title

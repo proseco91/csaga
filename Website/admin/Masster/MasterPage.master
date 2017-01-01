@@ -234,26 +234,23 @@
     <form id="form1sada" runat="server">
         <div id="wrapper">
             <div id="page-menu">
+
                 <div class="page-menu-logo">
                     <img src="http://sirenchat.com/cat-anh.htm?url=linktamchat/images/logo_siren.png&width=120&color=FFFFFF" />
                 </div>
                 <div class="page-logined">
                     <div class="page-logined-aaaa ellipsis">
-                        <%=(Session["Admin_Login"]!=null?((Entity.Admin)Session["Admin_Login"]).FullName:"?") %>
+                        <%=admin!=null?admin.FullName:"?" %>
                     </div>
                     <a href="dang-xuat.htm">Đăng xuất</a>
                     <div class="page-logined-menu">
                         <a href="dang-xuat.htm">Đăng xuất</a>
                     </div>
                 </div>
-                <div class="page-menu-group">
-                    <div class="page-menu-group-title">Quản lý</div>
-
-                    <a href="tin-ve-lgbt.htm">
-                        <div class="page-menu-group-item" menu-tintuc="<%=(int)Enums.LoaiTinTuc.TinVeLGBT %>"><span class="fa fa-th"></span><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TinVeLGBT) %></div>
-                    </a>
-
-                    
+                <div class="page-menu-scroll-hildel">
+                    <div class="page-menu-scroll">
+                        <%=Lib.CreateMenu(admin) %>
+                    </div>
                 </div>
             </div>
             <div id="page-wrapper">

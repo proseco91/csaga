@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="expandClass\Admin.cs" />
+    <Compile Include="Linq.cs">
+      <DependentUpon>Linq.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Linq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,7 +62,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Linq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Linq.designer.cs</LastGenOutput>

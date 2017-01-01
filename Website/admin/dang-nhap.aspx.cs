@@ -17,7 +17,7 @@ public partial class admin_dang_nhap : BasePage
             if (Request.QueryString["url"] != null)
                 Response.Redirect(Request.QueryString["url"]);
             else
-                Response.Redirect("mat-hang.htm");
+                Response.Redirect(Lib.urlhome + "/admin", true);
         }
     }
     protected void btnInsert_Click(object sender, EventArgs e)
@@ -27,12 +27,12 @@ public partial class admin_dang_nhap : BasePage
             if (Request.QueryString["url"] != null)
                 Response.Redirect(Request.QueryString["url"]);
             else
-                Response.Redirect("mat-hang.htm");
+                Response.Redirect(Lib.urlhome+"/admin",true);
         }
         else
         {
             string txtLogin = txtEmailLogin.Text.Trim().ToLower();
-            Admin _adminLogin = sql.getAdmin().Where(d => (d.UserName.ToLower().Equals(txtLogin) || d.Email.ToLower().Equals(txtLogin)) && d.Password.Equals(Lib.createMd5(txtPass.Text))).FirstOrDefault();
+            Admin _adminLogin = sql.getAdmin().Where(d => d.Status==(int)Enums.Status.active && (d.UserName.ToLower().Equals(txtLogin) || d.Email.ToLower().Equals(txtLogin)) && d.Password.Equals(Lib.createMd5(txtPass.Text))).FirstOrDefault();
             if (_adminLogin == null)
             {
                 ltStatus.Text = Lib.createInfo("Url hoặc mật khẩu không đúng</br>Xin vui lòng thử lại", false);
@@ -51,7 +51,7 @@ public partial class admin_dang_nhap : BasePage
                 if (Request.QueryString["url"] != null)
                     Response.Redirect(Request.QueryString["url"]);
                 else
-                    Response.Redirect("mat-hang.htm");
+                    Response.Redirect(Lib.urlhome + "/admin", true);
             }
         }
 

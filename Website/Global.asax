@@ -56,10 +56,27 @@
     protected void Application_BeginRequest(object sender, EventArgs e)
     {
 
-        //if (Request.Url.Host.StartsWith("www") && !Request.Url.IsLoopback)
-        //{
-        //    Response.Redirect(Lib.urlhome.Replace("www.", "") + HttpContext.Current.Request.RawUrl.ToString());
-        //}
+
+        if (Request.Url.Host.StartsWith("www") && !Request.Url.IsLoopback)
+        {
+            Response.Redirect(Lib.urlhome.Replace("www.", "") + HttpContext.Current.Request.RawUrl.ToString(), true);
+        }
+        else if (Request.Url.AbsolutePath.ToLower().IndexOf("default.aspx") > -1)
+        {
+            string[] arrayLang = { "vi", "en" };
+            if (Request.QueryString["lang"] == null || !arrayLang.Contains(Request.QueryString["lang"]))
+            {
+                Entity.ip2location_db1 _ip = Lib.getInfoFromIp(Lib.GetIPAddress(true));
+                if (_ip == null || _ip.country_code.ToLower().Equals("vn") || _ip.country_code.ToLower().Equals("-"))
+                {
+                    Response.Redirect(Lib.urlhome + "/lang-vi",true);
+                }
+                else
+                {
+                    Response.Redirect(Lib.urlhome + "/lang-en", true);
+                }
+            }
+        }
     }
        
 </script>

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using Entity;
 using Newtonsoft.Json;
 
-public partial class admin_mat_hang : BasePage
+public partial class admin_category : BasePage
 {
     TinTuc _data;
     public int Type = -1;
@@ -23,24 +23,33 @@ public partial class admin_mat_hang : BasePage
 
         if (TypeAction == 0)
         {
-            this.Title = "Quản lý tin tức";
+            this.Title = "Quản lý " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type);
             index.Visible = true;
         }
         else if (TypeAction == 1 || TypeAction == 2)
         {
-            this.Title = "Thêm mới tin tức";
+            if (Type == (int)Enums.LoaiTinTuc.TinVeLGBT || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu || Type == (int)Enums.LoaiTinTuc.Event)
+            {
+                PanelMucLuc.Visible = false;
+            }
+            this.Title = "Thêm mới " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type);
             add.Visible = true;
             if (!IsPostBack)
             {
-
+                var lisCb = sql.getCategory().Where(d=>d.Type==Type);
+                foreach (var parent in lisCb.OrderBy(d => d.TieuDe_Vn))
+                {
+                    cbCate.Items.Add(new ListItem(parent.TieuDe_Vn, parent.ID.ToString()));
+                    
+                }
             }
             if (TypeAction == 2)
             {
                 _data = sql.TinTucs.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
                 if (_data == null)
                 {
-                    CreateMessage("Không tìm thấy tin tức cần cập nhật", false);
-                    Response.Redirect("mat-hang.htm");
+                    CreateMessage("Không tìm thấy "+Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type)+" cần cập nhật", false);
+                    Response.Redirect(Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)Type));
                 }
                 else
                 {
@@ -48,9 +57,19 @@ public partial class admin_mat_hang : BasePage
                     if (!IsPostBack)
                     {
                         txtTitle.Text = _data.TieuDe_Vn;
-                        txtChiTiet.Text = _data.NoiDung_Vn;
-                        txtDes.Text = _data.Des_Vn;
+                        txtTitleEn.Text = _data.TieuDe_En;
 
+                        txtDes.Text = _data.Des_Vn;
+                        txtDesEn.Text = _data.Des_En;
+
+                        txtChiTiet.Text = _data.NoiDung_Vn;
+                        txtChiTietEn.Text = _data.NoiDung_En;
+
+                        List<string> cate = _data.Category.Split(',').ToList();
+                        foreach (ListItem li in cbCate.Items)
+                        {
+                            li.Selected = cate.Contains(li.Value);
+                        }
 
                         Response.Write("<script type=\"text/javascript\">var ListImgOld = " + JsonConvert.SerializeObject(_data.Img.Split(',').Where(d => !string.IsNullOrEmpty(d))) + ";</script>");
                     }
@@ -68,10 +87,10 @@ public partial class admin_mat_hang : BasePage
             }
             else
             {
-                _data.Status = -1;
+                _data.Status = (int)Enums.Status.delete;
                 sql.SubmitChanges();
                 CreateMessage("Xóa '" + _data.TieuDe_Vn + "' thành công", true);
-                Response.Redirect("mat-hang.htm");
+                Response.Redirect(Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)Type));
             }
             Response.Redirect(Request.UrlReferrer.ToString());
         }
@@ -80,80 +99,66 @@ public partial class admin_mat_hang : BasePage
             _data = sql.TinTucs.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
             if (_data == null)
             {
-                CreateMessage("Không tìm thấy tin tức cần cập nhật", false);
+                CreateMessage("Không tìm thấy " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type) + " cần cập nhật", false);
             }
             else
             {
-                _data.Status = _data.Status == 1 ? 0 : 1;
+                _data.Status = _data.Status == (int)Enums.Status.active ? (int)Enums.Status.deactive : (int)Enums.Status.active;
                 sql.SubmitChanges();
                 CreateMessage("cập nhật trạng thái '" + _data.TieuDe_Vn + "' thành công", true);
             }
             Response.Redirect(Request.UrlReferrer.ToString());
         }
     }
-    public string getListImg(List<string> imgOld)
-    {
-        string serverMap = Server.MapPath("~/images/imageUpload/");
-        List<string> arrayImgNew = new List<string>();
-        if (Request.Form["img_upload"] != null)
-        {
-            foreach (var base64 in Regex.Split(Request.Form["img_upload"], "-->end<--,"))
-            {
-                string fileName = Lib.CreateGuid() + ".png";
-                Lib.ResizeByWidth(new MemoryStream(Convert.FromBase64String(Regex.Replace(base64.Replace("-->end<--,", "").Replace("-->end<--", ""), "data:image/.*?;base64,", ""))), 800).Save(serverMap + fileName, ImageFormat.Png);
-                arrayImgNew.Add(fileName);
-            }
-        }
-        if (Request.Form["img_old"] != null)
-        {
-            foreach (var urlOld in Request.Form["img_old"].Split(',').Where(d => !string.IsNullOrEmpty(d)))
-            {
-                arrayImgNew.Add(urlOld);
-            }
-        }
-        foreach (var imgDelete in imgOld.Where(d => !arrayImgNew.Contains(d)))
-        {
-            try
-            {
-                File.Delete(serverMap + imgDelete);
-            }
-            catch
-            {
-            }
-        }
-        return string.Join(",", arrayImgNew);
-    }
+
 
     protected void Action_AddNew_Click(object sender, EventArgs e)
     {
         if (TypeAction == 1)
         {
-            string htmlBody = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/"));
 
 
-            //_data = new TinTuc()
-            //{
-            //    Content = txtChiTiet.Text,
-            //    CreateDate = DateTime.Now,
-            //    Des = txtDes.Text,
-            //    ID = Lib.CreateGuid(),
-            //    Status = 1,
-            //    TieuDe = txtTitle.Text,
-            //    Type = Type,
-            //    Img = getListImg(new List<string>())
-            //};
-            //sql.TinTucs.InsertOnSubmit(_data);
-            //sql.SubmitChanges();
-            CreateMessage("Thêm mới tin tức thành công", true);
+
+            _data = new TinTuc()
+            {
+                Category = string.Join(",", cbCate.Items.Cast<ListItem>().Where(x => x.Selected).Select(d => d.Value)),
+                CreateBy = admin_login.ID,
+                CreateDate = DateTime.Now,
+                Des_En = txtDesEn.Text,
+                Des_Vn = txtDes.Text,
+                ID = Lib.CreateGuid(),
+                Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
+                ModifyBy = admin_login.ID,
+                ModifyDate = DateTime.Now,
+                NoiDung_En = Lib.convertNoiDungHTML(txtChiTietEn.Text, Server.MapPath("~/images/imageUpload/")),
+                NoiDung_Vn = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/")),
+                Status = (int)Enums.Status.active,
+                TieuDe_En = txtTitleEn.Text,
+                TieuDe_Vn = txtTitle.Text,
+                Type = Type
+            };
+            sql.TinTucs.InsertOnSubmit(_data);
+            sql.SubmitChanges();
+            CreateMessage("Thêm mới " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type) + " thành công", true);
         }
-        else
+        else if (TypeAction == 2)
         {
-            //_data.Content = txtChiTiet.Text;
-            //_data.Des = txtDes.Text;
-            //_data.TieuDe = txtTitle.Text;
-            //_data.Img = getListImg(_data.Img.Split(',').ToList());
-            //sql.SubmitChanges();
-            //CreateMessage("Cập nhật " + _data.TieuDe + " thành công", true);
+
+            _data.Category = string.Join(",", cbCate.Items.Cast<ListItem>().Where(x => x.Selected).Select(d => d.Value));
+            _data.Des_En = txtDesEn.Text;
+            _data.Des_Vn = txtDes.Text;
+            if (Request.Form["img_upload"] != null)
+            {
+                _data.Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"));
+            }
+            _data.ModifyBy = admin_login.ID;
+            _data.ModifyDate = DateTime.Now;
+            _data.NoiDung_En = Lib.convertNoiDungHTML(txtChiTietEn.Text, Server.MapPath("~/images/imageUpload/"));
+            _data.NoiDung_Vn = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/"));
+            _data.TieuDe_En = txtTitleEn.Text;
+            _data.TieuDe_Vn = txtTitle.Text;
+            sql.SubmitChanges();
+            CreateMessage("Cập nhật " + _data.TieuDe_Vn + " thành công", true);
         }
         Response.Redirect(Request.RawUrl);
     }
@@ -171,10 +176,10 @@ public partial class admin_mat_hang : BasePage
         var query = sql.TinTucs.Where(d => d.Type == Type && d.Status != -1);
 
 
-        //if (!string.IsNullOrEmpty(seach))
-        //{
-        //    query = (from T in query where Convert.ToBoolean(sql.sosanhstring(T.TieuDe, seach)) select T);
-        //}
+        if (!string.IsNullOrEmpty(seach))
+        {
+            query = (from T in query where Convert.ToBoolean(sql.sosanhstring(T.TieuDe_Vn, seach)) || Convert.ToBoolean(sql.sosanhstring(T.TieuDe_En, seach)) || Convert.ToBoolean(sql.sosanhstring(T.Des_Vn, seach)) || Convert.ToBoolean(sql.sosanhstring(T.Des_En, seach)) select T);
+        }
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         return query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();

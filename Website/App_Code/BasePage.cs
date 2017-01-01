@@ -22,22 +22,31 @@ public class BasePage : System.Web.UI.Page
     public LinqDataContext sql = new LinqDataContext();
     public Admin admin_login = null;
     public int TypeAction = 0;
+    public int TypePage = -1;
     protected override void InitializeCulture()
     {
-        TypeAction = Convert.ToInt32(Request.QueryString["TypeAction"]);
+        if (!string.IsNullOrEmpty(Request.QueryString["Type"]))
+            TypePage = Convert.ToInt32(Request.QueryString["Type"]);
+        if (!string.IsNullOrEmpty(Request.QueryString["TypeAction"]))
+            TypeAction = Convert.ToInt32(Request.QueryString["TypeAction"]);
         HttpCookie userInfoCookie = Request.Cookies["cusLogin_admin"];
         if (Session["Admin_Login"] == null && userInfoCookie != null)
         {
             string idCookie = Lib.Decrypt(userInfoCookie["UserID"], "crazylady9x@gmail.com");
-            var a = sql.Admins.ToList();
-            Admin _adminLogin = sql.Admins.Where(d => d.ID.Equals(idCookie)).FirstOrDefault();
+            Admin _adminLogin = sql.getAdmin().Where(d => d.ID.Equals(idCookie)).FirstOrDefault();
             if (_adminLogin != null)
                 Session["Admin_Login"] = _adminLogin;
         }
         if (Session["Admin_Login"] != null)
         {
             admin_login = (Admin)Session["Admin_Login"];
-            Response.Write("<script type=\"text/javascript\">var TypeAction = " + TypeAction + ";</script>");
+
+            if (!admin_login.IsSuperAdmin && TypePage != -1 && !admin_login.getQuyen.Contains(TypePage) && Request.RawUrl.IndexOf("khong-co-quyen") == -1)
+                Response.Redirect("khong-co-quyen-" + TypePage + ".htm", true);
+
+            if (TypePage != -1 && Request.RawUrl.IndexOf("khong-co-quyen") == -1)
+                Response.Write("<script type=\"text/javascript\">var TypeAction = " + TypeAction + ";</script>");
+
         }
         else if (Session["Admin_Login"] == null && Request.RawUrl.IndexOf("dang-nhap.htm") == -1)
         {
