@@ -29,6 +29,7 @@ public static class Lib
 
 
     public static string urlhome;
+    public static string hostchat = "http://localhost:1230";
 
     public static string getLag()
     {
