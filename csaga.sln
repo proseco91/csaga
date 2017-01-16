@@ -28,6 +28,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ChatServer(1)", "http://loc
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{5d5896c7-2684-444b-9396-ebb58ffa216f}|Entity.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ChatServer"
 		Debug.AspNetCompiler.PhysicalPath = "ChatServer\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ChatServer\"

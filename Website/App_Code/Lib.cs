@@ -31,6 +31,17 @@ public static class Lib
     public static string urlhome;
     public static string hostchat = "http://localhost:1230";
 
+
+    public static string create_codeChat(string infoLogin, Enums.LoaiAccount loaiaccount)
+    {
+        dynamic data = new ExpandoObject();
+        data.data = infoLogin;
+        data.type = (int)loaiaccount;
+        data.time = DateTime.Now.Ticks;
+        return Lib.Encrypt(JsonConvert.SerializeObject(data), "crazylady9x@gmail.com-csaga");
+
+    }
+
     public static string getLag()
     {
         string lang = HttpContext.Current.Request.QueryString["lang"] == null ? "vi" : HttpContext.Current.Request.QueryString["lang"];

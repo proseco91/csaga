@@ -1,7 +1,5 @@
 D:\GitHub\csaga\Entity\bin\Debug\Entity.dll
 D:\GitHub\csaga\Entity\bin\Debug\Entity.pdb
-D:\GitHub\csaga\Entity\bin\Debug\Newtonsoft.Json.dll
-D:\GitHub\csaga\Entity\bin\Debug\Newtonsoft.Json.xml
 D:\GitHub\csaga\Entity\obj\Debug\Entity.dll
 D:\GitHub\csaga\Entity\obj\Debug\Entity.pdb
 D:\GitHub\csaga\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache

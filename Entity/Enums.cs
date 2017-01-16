@@ -8,6 +8,11 @@ using System.Web;
 /// </summary>
 public static class Enums
 {
+    public enum LoaiAccount : byte
+    {
+        QuanTri=0,
+        KhachHang = 1
+    }
     public enum LoaiTinTuc : byte
     {
         TinVeLGBT = 1,

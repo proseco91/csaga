@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Dynamic;
+using Entity;
 
 
 /// <summary>
@@ -23,29 +24,93 @@ namespace SignalRChat
 {
     public class ChatHub : Hub
     {
-        
+
         public ChatHub()
         {
 
         }
         public override Task OnConnected()
         {
-            Clients.Caller.test("OnConnected");
-            
+            try
+            {
+                dynamic userDynimic = JsonConvert.DeserializeObject<ExpandoObject>(Lib.Decrypt(Context.QueryString["user"], "crazylady9x@gmail.com-csaga"));
+                if (((int)userDynimic.type) == (int)Enums.LoaiAccount.KhachHang)
+                {
+                    User user = JsonConvert.DeserializeObject<User>((string)userDynimic.data);
+                    user.AddAndUpdate(Context.ConnectionId);
+                }
+                else {
+                    Admin user = JsonConvert.DeserializeObject<Admin>((string)userDynimic.data);
+                    user.AddAndUpdate(Context.ConnectionId);
+                }
 
 
-            return base.OnConnected();
+                return base.OnConnected();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
         public override Task OnReconnected()
         {
-            Clients.Caller.test("OnReconnected");
+            try
+            {
+                dynamic userDynimic = JsonConvert.DeserializeObject<ExpandoObject>(Lib.Decrypt(Context.QueryString["user"], "crazylady9x@gmail.com-csaga"));
+                if (((int)userDynimic.type) == (int)Enums.LoaiAccount.KhachHang)
+                {
+                    User user = JsonConvert.DeserializeObject<User>((string)userDynimic.data);
+                    user.AddAndUpdate(Context.ConnectionId);
+                }
+                else
+                {
+                    Admin user = JsonConvert.DeserializeObject<Admin>((string)userDynimic.data);
+                    user.AddAndUpdate(Context.ConnectionId);
+                }
+
+
+                return base.OnConnected();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             return base.OnReconnected();
         }
         public override Task OnDisconnected(bool stopCalled = false)
         {
-            Clients.Caller.test("OnDisconnected");
-            return base.OnDisconnected(false);
+            try
+            {
+                dynamic userDynimic = JsonConvert.DeserializeObject<ExpandoObject>(Lib.Decrypt(Context.QueryString["user"], "crazylady9x@gmail.com-csaga"));
+                if (((int)userDynimic.type) == (int)Enums.LoaiAccount.KhachHang)
+                {
+                    User user = JsonConvert.DeserializeObject<User>((string)userDynimic.data);
+                    user.RemoveConnection(Context.ConnectionId);
+                }
+                else
+                {
+                    Admin user = JsonConvert.DeserializeObject<Admin>((string)userDynimic.data);
+                    user.RemoveConnection(Context.ConnectionId);
+                }
+
+
+                return base.OnConnected();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return base.OnDisconnected(stopCalled);
         }
+
     }
 
 }

@@ -8,64 +8,110 @@
     <script src="../Scripts/jquery-1.10.2.js"></script>
     <script src="<%=Lib.urlhome %>/create-signal-chat.js"></script>
     <script src="<%=Lib.hostchat %>/linktam/hubs"></script>
-    
+    <script src="<%=Lib.urlhome %>/Scripts/chat.js"></script>
 
     <script>
-        (function ($) {
-            $.extend({
-                chat: {
-                    server: null,
-                    connectId: null,
-                    user: null,
-                    timeReadloadConnect: null,
-                    isConnect : false,
-                    init: function (user) {
-                        this.user = user;
-                        $.connection.hub.url = '<%=Lib.hostchat %>/linktam';
-                        $.connection.hub.qs = { 'user': JSON.stringify(JSON.stringify(user)) };
-                        $.connection.hub.logging = false;
-                        this.server = $.connection.chatHub;
-                        $.connection.hub.start().done(function () {
-                            $.chat.connectId = $.connection.hub.id;
-                            $.chat.isConnect = true;
-                        });
-                        $.connection.hub.disconnected(function () {
-                            $.chat.isConnect = false;
-                            setTimeout(function () {
-                                $.connection.hub.start().done(function () {
-                                    $.chat.connectId = $.connection.hub.id;
-                                    $.chat.isConnect = true;
-                                });
-                            }, 5000);
-                        });
-                        $.connection.hub.reconnecting(function () {
-                            //console.log('reconnecting');
-                            console.log('reconnecting');
-                        });
 
-                        $.connection.hub.reconnected(function () {
-                            //console.log('reconnected');
-                        });
-                        $.connection.hub.connectionSlow(function () {
-                            //console.log('We are currently experiencing difficulties with the connection.')
-                        });
 
-                        //tạo các sự kiện nhận từ server
-                        this.server.client.test = function (messs) {
-                            alert(messs);
-                        }
-                        //
-                    }
-                }
-            });
-        })(jQuery);
         $(document).ready(function () {
-            $.chat.init();
+            //$.chat.init();
+
+            console.log('<%=Lib.create_codeChat("-1",Enums.LoaiAccount.KhachHang)%>');
+            $('.crazylady_chat_windown').create_Event_Windown();
+
         });
     </script>
-
+    <link href="../Styles/fonts.css" rel="stylesheet" />
+    <link href="../Styles/style_chat.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
 </head>
 <body>
+    <div class="test">
+    </div>
+    <div id="crazylady_chat">
+
+        <div class="crazylady_chat_windown" valid="Thắng">
+            <div class="crazylady_chat_windown_title" valname="Nguyễn Văn Thắng">
+            </div>
+            <div class="crazylady_chat_windown_content">
+                <div class="crazylady_rowchat left">
+                    <a href="javascript:;">
+                        <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
+                    </a>
+                    <div class="crazylady_rowchat_text">
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
+                        </div>
+                    </div>
+                    <div class="crazylady_rowchat_clear"></div>
+                </div>
+                <div class="crazylady_rowchat right">
+                    <a href="javascript:;">
+                        <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
+                    </a>
+                    <div class="crazylady_rowchat_text">
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
+                        </div>
+                    </div>
+                    <div class="crazylady_rowchat_clear"></div>
+                </div>
+                <div class="crazylady_rowchat left">
+                    <a href="javascript:;">
+                        <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
+                    </a>
+                    <div class="crazylady_rowchat_text">
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
+                        </div>
+                        <div class="crazylady_rowchat_text_content_parent">
+                            <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
+                        </div>
+                    </div>
+                    <div class="crazylady_rowchat_clear"></div>
+                </div>
+            </div>
+            <div class="crazylady_chat_windown_input">
+                <textarea placeholder="Nhập tin nhắn ..." maxlength="500"></textarea>
+            </div>
+            <div class="crazylady_chat_windown_input_height"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <%--<%
         List<string> a = new List<string>();
         for (int i = 0; i <= 10; i++)
