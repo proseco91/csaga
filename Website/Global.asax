@@ -55,7 +55,7 @@
     }
     protected void Application_BeginRequest(object sender, EventArgs e)
     {
-
+        string aa = Request.Url.AbsolutePath.ToLower();
 
         if (Request.Url.Host.StartsWith("www") && !Request.Url.IsLoopback)
         {

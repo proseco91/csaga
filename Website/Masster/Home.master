@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Home.master.cs" Inherits="Masster_Home" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900&amp;subset=latin-ext,tamil,vietnamese" rel="stylesheet"> 
+    <link href="../Styles/home.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.10.2.js"></script>
+
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <asp:ContentPlaceHolder ID="Banner" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <div class="bodyCrazy">
+        <div class="slogan_search">
+        </div>
+        <div class="eff_7mau">
+            <div style="background-color: #e62e1b;"></div>
+            <div style="background-color: #f89201;"></div>
+            <div style="background-color: #f8e900;"></div>
+            <div style="background-color: #3cc061;"></div>
+            <div style="background-color: #3996d3;"></div>
+            <div style="background-color: #ae4bce;"></div>
+            <div style="background-color: #dc3473;"></div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="banner">
+            <div class="banner_content">
+                <div class="item_banner" style="background-image:url('<%=Lib.urlhome %>/Images/Csaga/banner.png');"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <asp:ContentPlaceHolder ID="Body" runat="server">
+        
+    </asp:ContentPlaceHolder>
+
+    <div class="bottom">
+        <div class="bottom_line">
+            <div style="width:1000px;max-width:100%;margin:auto;position:relative;">
+                <div class="bottom_btn_tuvan" title="Tư vấn qua chát"></div>
+            </div>
+        </div>
+        <div class="bottom_center">
+            
+        </div>
+        <div class="bottom_end">
+            Địa chỉ: : Số 35 ngõ 63, đường Dịch Vọng Hâu, P Dịch Vọng Hâu, Q Cầu Giấy, Hà Nội  |  Điện thoại: (+84-4) 3754 0421  |  Fax: (+84-4) 3793 0297  |  Email: csaga@csaga.org.vn
+        </div>
+    </div>
+
+</body>
+</html>

@@ -17,8 +17,7 @@ public static class LibCache
         if (!dataConnect.ContainsKey(admin.ID))
             dataConnect.Add(admin.ID, new strucUser()
             {
-                Admin = admin,
-                User = null
+                Admin = admin
             });
         if (!dataConnect[admin.ID].LstConnectionId.Any(d => d.Equals(ConnectionId)))
             dataConnect[admin.ID].LstConnectionId.Add(ConnectionId);
@@ -28,7 +27,6 @@ public static class LibCache
         if (!dataConnect.ContainsKey(user.ID))
             dataConnect.Add(user.ID, new strucUser()
             {
-                Admin = null,
                 User = user
             });
         if (!dataConnect[user.ID].LstConnectionId.Any(d => d.Equals(ConnectionId)))
@@ -51,7 +49,7 @@ public static class LibCache
 public class strucUser
 {
 
-    public Nullable<Admin> Admin { get; set; }
-    public Nullable<User> User { get; set; }
+    public Admin Admin { get; set; }
+    public User User { get; set; }
     public List<string> LstConnectionId = new List<string>();
 }
