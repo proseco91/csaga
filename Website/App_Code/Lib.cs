@@ -950,25 +950,25 @@ public static class Lib
         else
             return "<div class='alertmessage-lintam bg-danger-lintam'>" + info + "</div>";
     }
-    public static string createPhanTrang(int totalRow, int numInPage, int pageSelect, int numberPageShow)
+    public static string createPhanTrang(int totalRow, int numInPage, int pageSelect, int numberPageShow, string scrollview = "")
     {
         int maxPage = totalRow > numInPage && totalRow % numInPage != 0 ? totalRow / numInPage + 1 : totalRow / numInPage;
         string html = "<div class=\"pagePhanTrang\">";
-        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
+        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1,scrollview) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
         int numPageFor = pageSelect + numberPageShow;
         int pageStart = pageSelect < numberPageShow ? 1 : (pageSelect) % numberPageShow == 0 ? (pageSelect) : pageSelect - ((pageSelect) % numberPageShow);
         int pageEnd = pageSelect < numberPageShow ? numberPageShow : (pageStart + numberPageShow);
         pageEnd = pageEnd > maxPage ? maxPage : pageEnd;
         for (int i = pageStart; i <= pageEnd; i++)
         {
-            html += i == pageSelect ? "<span class=\"btnPhanTrangItem\">" + i + "</span>" : "<a href=\"" + createLinkPhanTrang(i) + "\" class=\"btnPhanTrangItem\">" + i + "</a>";
+            html += i == pageSelect ? "<span class=\"btnPhanTrangItem\">" + i + "</span>" : "<a href=\"" + createLinkPhanTrang(i, scrollview) + "\" class=\"btnPhanTrangItem\">" + i + "</a>";
         }
 
-        html += pageSelect < maxPage ? "<a href=\"" + createLinkPhanTrang(pageSelect + 1) + "\" class=\"btnPhanTrangRight\"></a>" : "";
+        html += pageSelect < maxPage ? "<a href=\"" + createLinkPhanTrang(pageSelect + 1, scrollview) + "\" class=\"btnPhanTrangRight\"></a>" : "";
         html += "</div>";
         return html;
     }
-    private static string createLinkPhanTrang(int page)
+    private static string createLinkPhanTrang(int page, string scrollview)
     {
         string url = HttpContext.Current.Request.RawUrl;
         if (url.IndexOf("?") <= -1)
@@ -985,6 +985,8 @@ public static class Lib
             else
                 url = url.IndexOf("&") <= -1 ? url + "&page=" + page : url + "page=" + page;
         }
+        if (url.IndexOf("#" + scrollview) == -1)
+            url += "#" + scrollview;
         return url;
     }
     public static string removeHTMLAll(string source)

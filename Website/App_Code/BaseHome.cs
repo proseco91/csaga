@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Threading;
 using System.Globalization;
+using Entity;
 
 
 /// <summary>
@@ -18,6 +19,7 @@ using System.Globalization;
 /// </summary>
 public class BaseHome : System.Web.UI.Page
 {
+    public LinqDataContext sql = new LinqDataContext();
     protected override void InitializeCulture()
     {
         Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lib.getLag());

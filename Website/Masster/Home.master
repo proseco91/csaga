@@ -45,7 +45,7 @@
 
     <div class="bottom">
         <div class="bottom_line">
-            <div style="width:1000px;max-width:100%;margin:auto;position:relative;">
+            <div class="panel_1k" style="position:relative;">
                 <div class="bottom_btn_tuvan" title="Tư vấn qua chát"></div>
             </div>
         </div>
