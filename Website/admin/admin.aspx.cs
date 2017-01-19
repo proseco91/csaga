@@ -28,7 +28,7 @@ public partial class admin_admin : BasePage
         }
         else if (TypeAction == 1 || TypeAction == 2)
         {
-            if (Type == (int)Enums.LoaiTinTuc.TinVeLGBT || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu || Type == (int)Enums.LoaiTinTuc.Event)
+            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu || Type == (int)Enums.LoaiTinTuc.Event)
             {
                 PanelMucLuc.Visible = false;
             }
@@ -84,7 +84,7 @@ public partial class admin_admin : BasePage
                 _data.Status = (int)Enums.Status.delete;
                 sql.SubmitChanges();
                 CreateMessage("Xóa '" + _data.Email + "' thành công", true);
-                _data.AddOrUpdateCache();
+                _data.AddOrUpdateCache(sql);
                 Response.Redirect(Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)Type));
             }
             Response.Redirect(Request.UrlReferrer.ToString());
@@ -101,7 +101,7 @@ public partial class admin_admin : BasePage
                 _data = sql.Admins.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
                 _data.Status = _data.Status == (int)Enums.Status.active ? (int)Enums.Status.deactive : (int)Enums.Status.active;
                 sql.SubmitChanges();
-                _data.AddOrUpdateCache();
+                _data.AddOrUpdateCache(sql);
                 CreateMessage("cập nhật trạng thái '" + _data.Email + "' thành công", true);
             }
             Response.Redirect(Request.UrlReferrer.ToString());
@@ -137,7 +137,7 @@ public partial class admin_admin : BasePage
 
                 sql.Admins.InsertOnSubmit(_data);
                 sql.SubmitChanges();
-                _data.AddOrUpdateCache();
+                _data.AddOrUpdateCache(sql);
                 CreateMessage("Thêm mới " + _data.Email + " thành công", true);
             }
 
@@ -151,7 +151,7 @@ public partial class admin_admin : BasePage
                 _data.Password = Lib.createMd5(txtPassword.Text.Trim());
             _data.Quyen = string.Join(",", cbCate.Items.Cast<ListItem>().Where(x => x.Selected).Select(d => d.Value));
             sql.SubmitChanges();
-            _data.AddOrUpdateCache();
+            _data.AddOrUpdateCache(sql);
             CreateMessage("Cập nhật " + _data.Email + " thành công", true);
         }
         if (isChuyenTrang)

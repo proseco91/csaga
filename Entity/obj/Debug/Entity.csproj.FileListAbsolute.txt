@@ -9,3 +9,4 @@ G:\Csaga\csaga\Entity\bin\Debug\Entity.pdb
 G:\Csaga\csaga\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 G:\Csaga\csaga\Entity\obj\Debug\Entity.dll
 G:\Csaga\csaga\Entity\obj\Debug\Entity.pdb
+D:\GitHub\csaga\Entity\bin\Debug\Entity.dll.config

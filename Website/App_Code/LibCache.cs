@@ -13,9 +13,9 @@ public static class LibCache
     
     private static List<Admin> cache_admin { get; set; }
 
-    public static void AddOrUpdateCache(this Admin dataUpdate)
+    public static void AddOrUpdateCache(this Admin dataUpdate, LinqDataContext sql)
     {
-        var admin = cache_admin.Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
+        var admin = sql.getAdmin().Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
         if (admin == null)
             cache_admin.Add(dataUpdate);
         else
@@ -36,9 +36,10 @@ public static class LibCache
 
     private static List<Category> cache_category { get; set; }
 
-    public static void AddOrUpdateCache(this Category dataUpdate)
+    public static void AddOrUpdateCache(this Category dataUpdate, LinqDataContext sql)
     {
-        var admin = cache_category.Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
+
+        var admin = sql.getCategory().Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
         if (admin == null)
             cache_category.Add(dataUpdate);
         else {

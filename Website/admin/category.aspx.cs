@@ -36,7 +36,7 @@ public partial class admin_category : BasePage
             }
             if (TypeAction == 2)
             {
-                _data = sql.getCategory().Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
+                _data = sql.getCategory().Where(d => d.ID.Equals(Convert.ToInt32(Request.QueryString["ID"]))).FirstOrDefault();
                 if (_data == null)
                 {
                     CreateMessage("Không tìm thấy " + Enums.MucLucDesc((Enums.LoaiTinTuc)Type) + " cần cập nhật", false);
@@ -58,35 +58,35 @@ public partial class admin_category : BasePage
         }
         else if (TypeAction == 3)
         {
-            _data = sql.getCategory().Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
+            _data = sql.getCategory().Where(d => d.ID.Equals(Convert.ToInt32(Request.QueryString["ID"]))).FirstOrDefault();
             if (_data == null)
             {
                 CreateMessage("Không tìm thấy " + Enums.MucLucDesc((Enums.LoaiTinTuc)Type) + " cần xóa", false);
             }
             else
             {
-                _data = sql.Categories.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
+                _data = sql.Categories.Where(d => d.ID.Equals(Convert.ToInt32(Request.QueryString["ID"]))).FirstOrDefault();
                 _data.Status = (int)Enums.Status.delete;
                 sql.SubmitChanges();
                 CreateMessage("Xóa '" + _data.TieuDe_Vn + "' thành công", true);
-                _data.AddOrUpdateCache();
+                _data.AddOrUpdateCache(sql);
                 Response.Redirect(Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)Type));
             }
             Response.Redirect(Request.UrlReferrer.ToString());
         }
         else if (TypeAction == 4)
         {
-            _data = sql.getCategory().Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
+            _data = sql.getCategory().Where(d => d.ID.Equals(Convert.ToInt32(Request.QueryString["ID"]))).FirstOrDefault();
             if (_data == null)
             {
                 CreateMessage("Không tìm thấy " + Enums.MucLucDesc((Enums.LoaiTinTuc)Type) + " cần cập nhật", false);
             }
             else
             {
-                _data = sql.Categories.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
+                _data = sql.Categories.Where(d => d.ID.Equals(Convert.ToInt32(Request.QueryString["ID"]))).FirstOrDefault();
                 _data.Status = _data.Status == (int)Enums.Status.active ? (int)Enums.Status.deactive : (int)Enums.Status.active;
                 sql.SubmitChanges();
-                _data.AddOrUpdateCache();
+                _data.AddOrUpdateCache(sql);
                 CreateMessage("cập nhật trạng thái '" + _data.TieuDe_Vn + "' thành công", true);
             }
             Response.Redirect(Request.UrlReferrer.ToString());
@@ -113,7 +113,7 @@ public partial class admin_category : BasePage
             };
             sql.Categories.InsertOnSubmit(_data);
             sql.SubmitChanges();
-            _data.AddOrUpdateCache();
+            _data.AddOrUpdateCache(sql);
             CreateMessage("Thêm mới " + Enums.MucLucDesc((Enums.LoaiTinTuc)Type) + " thành công", true);
         }
         else if (TypeAction == 2)
@@ -125,12 +125,12 @@ public partial class admin_category : BasePage
             _data.TieuDe_En = txtTitleEn.Text;
             _data.TieuDe_Vn = txtTitle.Text;
             sql.SubmitChanges();
-            _data.AddOrUpdateCache();
+            _data.AddOrUpdateCache(sql);
             CreateMessage("Cập nhật " + _data.TieuDe_Vn + " thành công", true);
         }
         Response.Redirect(Request.RawUrl);
     }
-    public List<TinTuc> getTinTuc(int pageSize, out int totalRowCount, out int pageSelect)
+    public List<Category> getTinTuc(int pageSize, out int totalRowCount, out int pageSelect)
     {
         int idWeb = Convert.ToInt32(Session["websiteID"]);
         int pageNum = 1;
@@ -141,7 +141,7 @@ public partial class admin_category : BasePage
         pageSelect = pageNum;
 
         string seach = Request.QueryString["seach"];
-        var query = sql.TinTucs.Where(d => d.Type == Type && d.Status != -1);
+        var query = sql.getCategory().Where(d => d.Type == Type && d.Status != -1);
 
 
         if (!string.IsNullOrEmpty(seach))

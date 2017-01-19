@@ -50,7 +50,6 @@
 
                     <tr>
                         <th style="width: 50px; text-align: center;" enabled-sort>STT</th>
-                        <th class="row_img"></th>
                         <th style="width: calc(100% - 550px);" enabled-sort>Tên</th>
                         <th style="width: 150px;" enabled-sort sorted="desc">Ngày tạo</th>
                         <th style="width: 150px;text-align:center;">Trạng thái</th>
@@ -67,9 +66,6 @@
                     <tr>
                         <td style="width: 50px; text-align: center;" class="ellipsis">
                             <%=((pageSelect-1)*numInPage)+(item.i+1) %>
-                        </td>
-                        <td class="row_img" style="text-align:center;">
-                            <span style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></span>
                         </td>
                         <td style="width: calc(100% - 550px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
                         <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>

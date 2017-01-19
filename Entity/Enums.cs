@@ -15,12 +15,12 @@ public static class Enums
     }
     public enum LoaiTinTuc : byte
     {
-        TinVeLGBT = 1,
+        TinTucSuKien = 1,
         ThuVien = 2,
         HinhAnhCongDongYeuNu = 3,
         CacNhomNuyeuNu = 4,
         GiaiTri = 5,
-        ViecLam = 6,
+        HoTro = 6,
         Event = 7,
         Account = 8,
         TuVan = 9
@@ -35,8 +35,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "Tin về LGBT+";
+            case LoaiTinTuc.TinTucSuKien:
+                return "Tin tức & Sự kiện";
 
             case LoaiTinTuc.ThuVien:
                 return "Thư viện";
@@ -50,8 +50,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "Giải trí";
 
-            case LoaiTinTuc.ViecLam:
-                return "Việc làm";
+            case LoaiTinTuc.HoTro:
+                return "Hỗ trợ";
 
             case LoaiTinTuc.Event:
                 return "Sự kiện";
@@ -67,8 +67,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "tin-ve-lgbt.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "tintucsukien.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "thu-vien.htm";
@@ -82,8 +82,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "giai-tri.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "viec-lam.htm";
+            case LoaiTinTuc.HoTro:
+                return "ho-tro.htm";
 
             case LoaiTinTuc.Event:
                 return "event.htm";
@@ -95,8 +95,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "them-moi-tin-ve-lgbt.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "them-moi-tintucsukien.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "them-moi-thu-vien.htm";
@@ -110,8 +110,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "them-moi-giai-tri.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "them-moi-viec-lam.htm";
+            case LoaiTinTuc.HoTro:
+                return "them-moi-ho-tro.htm";
 
             case LoaiTinTuc.Event:
                 return "them-moi-event.htm";
@@ -123,8 +123,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "tin-ve-lgbt-chinh-sua-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "tintucsukien-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "thu-vien-chinh-sua-{0}-z-{1}.htm";
@@ -138,8 +138,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "giai-tri-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "viec-lam-chinh-sua-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "ho-tro-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "event-chinh-sua-{0}-z-{1}.htm";
@@ -153,8 +153,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "tin-ve-lgbt-trangthai-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "tintucsukien-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "thu-vien-trangthai-{0}-z-{1}.htm";
@@ -168,8 +168,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "giai-tri-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "viec-lam-trangthai-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "ho-tro-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "event-trangthai-{0}-z-{1}.htm";
@@ -183,8 +183,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "tin-ve-lgbt-xoa-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "tintucsukien-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "thu-vien-xoa-{0}-z-{1}.htm";
@@ -198,8 +198,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "giai-tri-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "viec-lam-xoa-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "ho-tro-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "event-xoa-{0}-z-{1}.htm";
@@ -218,7 +218,7 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
+            case LoaiTinTuc.TinTucSuKien:
                 return "Mục lục LGBT+";
 
             case LoaiTinTuc.ThuVien:
@@ -233,8 +233,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "Mục lục giải trí";
 
-            case LoaiTinTuc.ViecLam:
-                return "Mục lục việc làm";
+            case LoaiTinTuc.HoTro:
+                return "Mục lục Hỗ trợ";
 
             case LoaiTinTuc.Event:
                 return "Mục lục sự kiện";
@@ -246,7 +246,7 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
+            case LoaiTinTuc.TinTucSuKien:
                 return "muc-luc-lgbt.htm";
 
             case LoaiTinTuc.ThuVien:
@@ -261,8 +261,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "muc-luc-giai-tri.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "muc-luc-viec-lam.htm";
+            case LoaiTinTuc.HoTro:
+                return "muc-luc-ho-tro.htm";
 
             case LoaiTinTuc.Event:
                 return "muc-luc-event.htm";
@@ -274,7 +274,7 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
+            case LoaiTinTuc.TinTucSuKien:
                 return "them-moi-muc-luc-lgbt.htm";
 
             case LoaiTinTuc.ThuVien:
@@ -289,8 +289,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "them-moi-muc-luc-giai-tri.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "them-moi-muc-luc-viec-lam.htm";
+            case LoaiTinTuc.HoTro:
+                return "them-moi-muc-luc-ho-tro.htm";
 
             case LoaiTinTuc.Event:
                 return "them-moi-muc-luc-event.htm";
@@ -302,8 +302,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "muc-luc-tin-ve-lgbt-chinh-sua-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "muc-luc-tintucsukien-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-chinh-sua-{0}-z-{1}.htm";
@@ -317,8 +317,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "muc-luc-giai-tri-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "muc-luc-viec-lam-chinh-sua-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "muc-luc-ho-tro-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "muc-luc-event-chinh-sua-{0}-z-{1}.htm";
@@ -330,8 +330,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "muc-luc-tin-ve-lgbt-trangthai-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "muc-luc-tintucsukien-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-trangthai-{0}-z-{1}.htm";
@@ -345,8 +345,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "muc-luc-giai-tri-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "muc-luc-viec-lam-trangthai-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "muc-luc-ho-tro-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "muc-luc-event-trangthai-{0}-z-{1}.htm";
@@ -358,8 +358,8 @@ public static class Enums
     {
         switch (_type)
         {
-            case LoaiTinTuc.TinVeLGBT:
-                return "muc-luc-tin-ve-lgbt-xoa-{0}-z-{1}.htm";
+            case LoaiTinTuc.TinTucSuKien:
+                return "muc-luc-tintucsukien-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-xoa-{0}-z-{1}.htm";
@@ -373,8 +373,8 @@ public static class Enums
             case LoaiTinTuc.GiaiTri:
                 return "muc-luc-giai-tri-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.ViecLam:
-                return "muc-luc-viec-lam-xoa-{0}-z-{1}.htm";
+            case LoaiTinTuc.HoTro:
+                return "muc-luc-ho-tro-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.Event:
                 return "muc-luc-event-xoa-{0}-z-{1}.htm";
