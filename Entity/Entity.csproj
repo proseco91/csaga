@@ -58,8 +58,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Linq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Linq.designer.cs</LastGenOutput>
