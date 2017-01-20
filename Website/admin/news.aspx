@@ -181,11 +181,9 @@
 
                 
                 $('[list-checkbox] input:checkbox').change(function () {
-                    setTimeout(function () {
-                        if($('[list-checkbox] input:checkbox').size()==0)
-                            $('[list-checkbox] input:checkbox').eq(0).prop('checked', true);
-                    }, 100)
-
+                    var _this =  $(this);
+                    $('[list-checkbox] input:checkbox').prop('checked', false);
+                    _this.prop('checked', true);
                 });
                 $('#<%=Action_AddNew.ClientID%>').click(function () {
                     if ($('[panel-danhmuc]').size() > 0 && $('[list-checkbox] input:checkbox:checked').size() == 0) {

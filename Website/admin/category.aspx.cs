@@ -30,6 +30,8 @@ public partial class admin_category : BasePage
         {
             this.Title = "Thêm mới " + Enums.MucLucDesc((Enums.LoaiTinTuc)Type);
             add.Visible = true;
+            if (Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu)
+                panelNhom.Visible = true;
             if (!IsPostBack)
             {
 
@@ -49,7 +51,11 @@ public partial class admin_category : BasePage
                     {
                         txtTitle.Text = _data.TieuDe_Vn;
                         txtTitleEn.Text = _data.TieuDe_En;
-
+                        txtTruongNhom.Text = _data.TruongNhom;
+                        txtDiaChi.Text = _data.DiaChi;
+                        txtEmail.Text = _data.Email;
+                        txtDienThoai.Text = _data.DienThoai;
+                        Response.Write("<script type=\"text/javascript\">var ListImgOld = " + JsonConvert.SerializeObject(_data.Img.Split(',').Where(d => !string.IsNullOrEmpty(d))) + ";</script>");
                     }
                 }
 
@@ -109,7 +115,12 @@ public partial class admin_category : BasePage
                 Status = (int)Enums.Status.active,
                 TieuDe_En = txtTitleEn.Text,
                 TieuDe_Vn = txtTitle.Text,
-                Type = Type
+                Type = Type,
+                DiaChi = txtDiaChi.Text,
+                DienThoai = txtDienThoai.Text,
+                Email = txtEmail.Text,
+                TruongNhom = txtTruongNhom.Text,
+                Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
             };
             sql.Categories.InsertOnSubmit(_data);
             sql.SubmitChanges();
@@ -124,6 +135,14 @@ public partial class admin_category : BasePage
             _data.ModifyDate = DateTime.Now;
             _data.TieuDe_En = txtTitleEn.Text;
             _data.TieuDe_Vn = txtTitle.Text;
+            _data.DiaChi = txtDiaChi.Text;
+            _data.DienThoai = txtDienThoai.Text;
+            _data.Email = txtEmail.Text;
+            _data.TruongNhom = txtTruongNhom.Text;
+            if (Request.Form["img_upload"] != null)
+            {
+                _data.Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"));
+            }
             sql.SubmitChanges();
             _data.AddOrUpdateCache(sql);
             CreateMessage("Cập nhật " + _data.TieuDe_Vn + " thành công", true);

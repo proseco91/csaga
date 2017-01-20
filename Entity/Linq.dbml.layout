@@ -2,34 +2,34 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Linq">
   <DataContextMoniker Name="/LinqDataContext" />
   <nestedChildShapes>
-    <classShape Id="f6e1022c-28f3-451c-bfdd-fdc629fce72c" absoluteBounds="0.75, 0.75, 2, 3.3093082682291666">
+    <classShape Id="cb36e40d-f046-42f4-b4ea-81f9e1c3ee75" absoluteBounds="0.75, 0.75, 2, 3.3093082682291666">
       <DataClassMoniker Name="/LinqDataContext/Admin" />
       <nestedChildShapes>
-        <elementListCompartment Id="a27b7467-46d0-4b10-bbd8-c5cbdf02c31c" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b90949fa-12dc-43d8-832a-c1ff766db77d" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c5fd4840-23df-42de-8d16-1b061ddc15dc" absoluteBounds="3.75, 0.75, 2, 2.9247054036458326">
+    <classShape Id="de5d1f70-b650-4d10-8fb3-3a906488625b" absoluteBounds="3.75, 0.75, 2, 2.9247054036458326">
       <DataClassMoniker Name="/LinqDataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="ca80552c-c3bd-4d62-a34c-94c67993b5bc" absoluteBounds="3.765, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="818ec404-6300-4806-8264-4f8c50b7577e" absoluteBounds="3.765, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ba479575-dd61-44a0-86ff-0a70a8caebed" absoluteBounds="3.75, 4.75, 2, 2.9247054036458326">
+    <classShape Id="6916ac66-f51c-4edd-ab97-9570348aa676" absoluteBounds="3.75, 4.75, 2, 3.5016097005208326">
       <DataClassMoniker Name="/LinqDataContext/Category" />
       <nestedChildShapes>
-        <elementListCompartment Id="9426461d-524b-4cbe-ac1e-21103b3e09c3" absoluteBounds="3.765, 5.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="604b5034-c738-4a63-96ac-9bfe434df335" absoluteBounds="3.765, 5.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c12659f2-bf07-4ef8-8bc4-9967ff27ad6f" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
+    <classShape Id="a52163ab-c352-4cec-abe9-5566b64d25f7" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
       <DataClassMoniker Name="/LinqDataContext/ip2location_db1" />
       <nestedChildShapes>
-        <elementListCompartment Id="071869f0-6e9f-4567-9a1c-72b9cd0f2215" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="699c3ce8-06b9-4a13-8fc1-b9b231170cc4" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="41c9c1b9-6966-4b40-b6d9-78ba919fbacd" absoluteBounds="6.75, 3.75, 2, 3.6939111328124992">
+    <classShape Id="d51293bc-8eb6-47b2-9a61-5a1388545a29" absoluteBounds="6.75, 3.75, 2, 3.6939111328124992">
       <DataClassMoniker Name="/LinqDataContext/TinTuc" />
       <nestedChildShapes>
-        <elementListCompartment Id="a2b8e3b7-ca2e-4d33-9d6f-b47d88fa0505" absoluteBounds="6.765, 4.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="25c7f4ec-02ea-44a7-a809-4b02cf7dcaed" absoluteBounds="6.765, 4.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

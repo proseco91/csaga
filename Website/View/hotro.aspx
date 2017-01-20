@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="Server">
     <style type="text/css">
-        .hotro-left
-        {
+        .hotro-left {
             min-height: 1150px;
             background-color: #d7d7d7;
             width: 350px;
@@ -12,16 +11,14 @@
             padding: 50px 0px 20px 50px;
         }
 
-        .hotro-right
-        {
+        .hotro-right {
             float: left;
             width: calc(100% - 350px);
             padding: 50px 10px 20px 20px;
             box-sizing: border-box;
         }
 
-        .hotro-left .hotro-left-title
-        {
+        .hotro-left .hotro-left-title {
             height: 40px;
             width: 100%;
             background-color: #ae4bce;
@@ -29,8 +26,7 @@
             margin-bottom: 20px;
         }
 
-            .hotro-left .hotro-left-title:before
-            {
+            .hotro-left .hotro-left-title:before {
                 content: " ";
                 width: 10px;
                 height: 100%;
@@ -40,8 +36,7 @@
                 position: absolute;
             }
 
-            .hotro-left .hotro-left-title::after
-            {
+            .hotro-left .hotro-left-title::after {
                 content: "Hỗ trợ";
                 text-transform: uppercase;
                 font-size: 20px;
@@ -52,8 +47,7 @@
                 top: 7px;
             }
 
-        .detail-tintuckhac-item
-        {
+        .detail-tintuckhac-item {
             font-size: 18px;
             color: #333333;
             position: relative;
@@ -61,29 +55,25 @@
             padding-left: 30px;
         }
 
-            .detail-tintuckhac-item:before
-            {
+            .detail-tintuckhac-item:before {
                 content: url('../Images/Csaga/icon-tinkhac.png');
                 position: absolute;
                 top: 2px;
                 left: 0px;
             }
 
-            .detail-tintuckhac-item[category="selected"]
-            {
+            .detail-tintuckhac-item[category="selected"] {
                 border-bottom: 1px dashed #333;
                 font-weight: 700;
             }
 
-        .hotro-item
-        {
+        .hotro-item {
             height: 300px;
             position: relative;
             margin-bottom: 20px;
         }
 
-            .hotro-item .hotro-item-img
-            {
+            .hotro-item .hotro-item-img {
                 height: 300px;
                 width: 270px;
                 background-position: center center;
@@ -94,29 +84,25 @@
                 top: 0px;
             }
 
-            .hotro-item .hotro-item-content
-            {
+            .hotro-item .hotro-item-content {
                 margin-left: 290px;
                 position: relative;
                 height: 300px;
             }
 
-            .hotro-item .hotro-item-title
-            {
+            .hotro-item .hotro-item-title {
                 font-size: 20px;
                 font-weight: 700;
                 max-height: 64px;
                 overflow: hidden;
             }
 
-            .hotro-item .hotro-item-date
-            {
+            .hotro-item .hotro-item-date {
                 font-size: 15px;
                 color: #555;
             }
 
-            .hotro-item .hotro-item-des
-            {
+            .hotro-item .hotro-item-des {
                 margin-top: 5px;
                 border-top: 1px dashed #DDD;
                 font-size: 15px;
@@ -126,8 +112,7 @@
                 overflow: hidden;
             }
 
-            .hotro-item .item-hotro-btn
-            {
+            .hotro-item .item-hotro-btn {
                 height: 32px;
                 background-color: #ae4bce;
                 position: absolute;
@@ -135,8 +120,7 @@
                 width: 100%;
             }
 
-                .hotro-item .item-hotro-btn::before
-                {
+                .hotro-item .item-hotro-btn::before {
                     content: "Xem thêm";
                     position: absolute;
                     right: 30px;
@@ -144,68 +128,70 @@
                     color: #FFF;
                 }
 
-                .hotro-item .item-hotro-btn::after
-                {
+                .hotro-item .item-hotro-btn::after {
                     content: url('../Images/Csaga/icon-xemthem.png');
                     position: absolute;
                     right: 05px;
                     top: 10px;
                 }
-        .pagePhanTrang
-        {
-            text-align:right;
+
+        .pagePhanTrang {
+            text-align: right;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div class="panel-hotro">
-        <div class="hotro-left">
-            <div class="hotro-left-title">
-            </div>
-            <%foreach (var item in arrcate)
-              {%>
-            <a href="mucluc-hotro-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
-                <div class="detail-tintuckhac-item" category="<%=item.ID==category?"selected":"" %>">
-                    <%=item.TieuDe_Vn %>
+    <div class="panel_1k2">
+        <div class="panel-hotro">
+            <div class="hotro-left">
+                <div class="hotro-left-title">
                 </div>
-            </a>
-            <%} %>
-        </div>
-        <div class="hotro-right" id="viewnews">
-            <%
-                int totalRow = 0;
-                int pageSelect = 1;
-                int numInPage = 3;
-                foreach (var item in getHoTro(numInPage, out totalRow, out pageSelect).Select((value, i) => new { i, value }))
-                {
-            %>
+                <%foreach (var item in arrcate)
+                  {%>
+                <a href="mucluc-hotro-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
+                    <div class="detail-tintuckhac-item" category="<%=item.ID==category?"selected":"" %>">
+                        <%=item.TieuDe_Vn %>
+                    </div>
+                </a>
+                <%} %>
+            </div>
+            <div class="hotro-right" id="viewnews">
+                <%
+                    int totalRow = 0;
+                    int pageSelect = 1;
+                    int numInPage = 3;
+                    foreach (var item in getHoTro(numInPage, out totalRow, out pageSelect).Select((value, i) => new { i, value }))
+                    {
+                %>
 
-            <div class="hotro-item">
-                <div class="hotro-item-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');">
+                <div class="hotro-item">
+                    <div class="hotro-item-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');">
+                    </div>
+                    <div class="hotro-item-content">
+                        <div class="hotro-item-title">
+                            <%=Lib.subString(item.value.TieuDe_En,110) %>
+                        </div>
+                        <div class="hotro-item-date">
+                            <%=item.value.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                        </div>
+                        <div class="hotro-item-des">
+                            <%=item.value.Des_En %>
+                        </div>
+                        <a href="hotro-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                            <div class="item-hotro-btn"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="hotro-item-content">
-                    <div class="hotro-item-title">
-                        <%=Lib.subString(item.value.TieuDe_En,110) %>
-                    </div>
-                    <div class="hotro-item-date">
-                        <%=item.value.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
-                    </div>
-                    <div class="hotro-item-des">
-                        <%=item.value.Des_En %>
-                    </div>
-                    <a href="hotro-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
-                        <div class="item-hotro-btn"></div>
-                    </a>
-                </div>
+                <%}%>
+                <div style="clear: both; height: 0px;"></div>
+                <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
             </div>
-            <%}%>
-            <div style="clear: both; height: 0px;"></div>
-            <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
+            <div style="clear: both;"></div>
         </div>
-        <div style="clear: both;"></div>
     </div>
+
 
 </asp:Content>
 

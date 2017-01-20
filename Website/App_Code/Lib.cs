@@ -128,7 +128,7 @@ public static class Lib
                 {
                     string html = "<div class=\"page-menu-group\">";
                     html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
-                    if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && i != (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && i != (int)Enums.LoaiTinTuc.Event)
+                    if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu  && i != (int)Enums.LoaiTinTuc.Event && i != (int)Enums.LoaiTinTuc.ThuVien)
                     {
                         html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
                         html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
