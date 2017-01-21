@@ -36,7 +36,7 @@ public class strucItemCart
 [System.Web.Script.Services.ScriptService]
 public class service : System.Web.Services.WebService
 {
-
+    LinqDataContext sql = new LinqDataContext();
     public service()
     {
 
@@ -67,6 +67,29 @@ public class service : System.Web.Services.WebService
 
 
     }
+
+    [WebMethod]
+    public string addCommnet(string idTin, string comment)
+    {
+        Comment com = new Comment()
+        {
+            Comment1 = comment,
+            CreateBy = "",
+            CreateDate = DateTime.Now,
+            ID = Lib.CreateGuid(),
+            IsAnonymous = true,
+            TinTucID = idTin
+        };
+        sql.Comments.InsertOnSubmit(com);
+        sql.SubmitChanges();
+
+        return JsonConvert.SerializeObject(com);
+
+
+    }
+
+
+
 
     //[WebMethod]
     //public object[] AddCart(string ID, int Number)

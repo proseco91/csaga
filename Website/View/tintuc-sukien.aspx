@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div class="item-news-morre">
-                    <a href="tintuc-sukien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><span>Xem thêm >></span></a>
+                    <a href="tintuc-sukien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><span><%=Lib.ContentLag("Xem thêm","More")%> >></span></a>
                 </div>
             </div>
             <%}%>

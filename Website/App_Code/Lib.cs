@@ -31,7 +31,12 @@ public static class Lib
     public static string urlhome;
     public static string hostchat = "http://localhost:1230";
 
-
+    public static string ContentLag(string Vi, string En)
+    {
+        if (Lib.getLag().Equals("vi-VN"))
+            return Vi;
+        return En;
+    }
     public static string create_codeChat(string infoLogin, Enums.LoaiAccount loaiaccount)
     {
         dynamic data = new ExpandoObject();
@@ -126,19 +131,22 @@ public static class Lib
             {
                 if (admin.IsSuperAdmin || admin.getQuyen.Contains(i))
                 {
-                    string html = "<div class=\"page-menu-group\">";
-                    html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
-                    if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu  && i != (int)Enums.LoaiTinTuc.Event && i != (int)Enums.LoaiTinTuc.ThuVien)
+                    if (!string.IsNullOrEmpty(Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i)))
                     {
-                        html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
-                        html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                        string html = "<div class=\"page-menu-group\">";
+                        html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                        if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && i != (int)Enums.LoaiTinTuc.ThuVien)
+                        {
+                            html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
+                            html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
+                            html += "         </a>";
+                        }
+                        html += "         <a href=\"" + Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
+                        html += "             <div class=\"page-menu-group-item\" menu-tintuc=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
                         html += "         </a>";
+                        html += "     </div>";
+                        htmlMenu += html;
                     }
-                    html += "         <a href=\"" + Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
-                    html += "             <div class=\"page-menu-group-item\" menu-tintuc=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
-                    html += "         </a>";
-                    html += "     </div>";
-                    htmlMenu += html;
                 }
 
             }
@@ -954,7 +962,7 @@ public static class Lib
     {
         int maxPage = totalRow > numInPage && totalRow % numInPage != 0 ? totalRow / numInPage + 1 : totalRow / numInPage;
         string html = "<div class=\"pagePhanTrang\">";
-        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1,scrollview) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
+        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1, scrollview) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
         int numPageFor = pageSelect + numberPageShow;
         int pageStart = pageSelect < numberPageShow ? 1 : (pageSelect) % numberPageShow == 0 ? (pageSelect) : pageSelect - ((pageSelect) % numberPageShow);
         int pageEnd = pageSelect < numberPageShow ? numberPageShow : (pageStart + numberPageShow);

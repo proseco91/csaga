@@ -79,7 +79,7 @@
 
                     .list-item-thuvien .item-thuvien .item-thuvien-btn::before
                     {
-                        content: "Xem thêm";
+                        content: "<%=Lib.ContentLag("Xem thêm","More")%>";
                         position: absolute;
                         right: 30px;
                         top: 10px;

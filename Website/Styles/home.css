@@ -8,6 +8,31 @@
     background-color: #FFF;
 }
 
+#loading_masster
+{
+    position: fixed;
+    z-index: 1000000000;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255,255,255,0.7);
+    background-image: url('../images/loadingClass.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: none;
+}
+
+.htm_err_respon
+{
+    position: fixed;
+    right: 10px;
+    /*text-align: center;*/
+    top: 65px;
+    z-index: 10;
+    max-width: calc(100% - 220px);
+}
+
 a
 {
     text-decoration: none;
@@ -114,6 +139,7 @@ a
     max-width: 100%;
     margin: auto;
 }
+
 .panel_1k2
 {
     width: 1200px;
@@ -133,7 +159,53 @@ a
         padding: 6px 13px;
         margin: 0px 2px;
     }
+
         .pagePhanTrang .btnPhanTrangItem:not([href])
         {
-            background-color:#ae4bce;
+            background-color: #ae4bce;
         }
+
+#confirmLinkTam .confirm_content *
+{
+    font-family: 'Arima Madurai', cursive !important;
+}
+
+#confirmLinkTam .confirm-Btn span:first-child
+{
+    background-color: #ae4bce !important;
+}
+
+.list-item-link
+{
+    text-align: center;
+    padding-top:20px;
+    
+}
+
+    .list-item-link a
+    {
+        color: #FFF;
+        font-size: 15px;
+        display: inline-block;
+        vertical-align: middle;
+        box-sizing: border-box;
+    }
+
+    .list-item-link span
+    {
+        display: inline-block;
+        width: 2px;
+        height: 20px;
+        margin: 0px 15px;
+        vertical-align: middle;
+    }
+
+.list-item-icon
+{
+    text-align:center;
+    margin-top:40px;
+}
+.list-item-icon img
+{
+    margin:0px 10px;
+}

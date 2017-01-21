@@ -28,19 +28,30 @@ public partial class admin_category : BasePage
         }
         else if (TypeAction == 1 || TypeAction == 2)
         {
-            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu  || Type == (int)Enums.LoaiTinTuc.Event || Type == (int)Enums.LoaiTinTuc.ThuVien)
+            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.ThuVien)
             {
                 PanelMucLuc.Visible = false;
+            }
+            if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+            {
+                panelThanhPho.Visible = true;
             }
             this.Title = "Thêm mới " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type);
             add.Visible = true;
             if (!IsPostBack)
             {
-                var lisCb = sql.getCategory().Where(d=>d.Type==Type);
+                var lisCb = sql.getCategory().Where(d => d.Type == Type);
                 foreach (var parent in lisCb.OrderBy(d => d.TieuDe_Vn))
                 {
                     cbCate.Items.Add(new ListItem(parent.TieuDe_Vn, parent.ID.ToString()));
-                    
+
+                }
+                if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+                {
+                    foreach (var item in sql.ThanhPhos)
+                    {
+                        lstThanhPho.Items.Add(new ListItem(item.region_name, item.region_id.ToString()));
+                    }
                 }
             }
             if (TypeAction == 2)
@@ -48,7 +59,7 @@ public partial class admin_category : BasePage
                 _data = sql.TinTucs.Where(d => d.ID.Equals(Request.QueryString["ID"])).FirstOrDefault();
                 if (_data == null)
                 {
-                    CreateMessage("Không tìm thấy "+Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type)+" cần cập nhật", false);
+                    CreateMessage("Không tìm thấy " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type) + " cần cập nhật", false);
                     Response.Redirect(Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)Type));
                 }
                 else
@@ -71,6 +82,20 @@ public partial class admin_category : BasePage
                             li.Selected = cate.Contains(li.Value);
                         }
 
+                        if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+                        {
+                            for (int i = 0; i < lstThanhPho.Items.Count; i++)
+                            {
+                                ListItem item = lstThanhPho.Items[i];
+
+                                if (Convert.ToInt32(item.Value) == _data.ThanhPho.Value)
+                                {
+                                    item.Selected = true;
+                                    break;
+                                }
+                            }
+
+                        }
                         Response.Write("<script type=\"text/javascript\">var ListImgOld = " + JsonConvert.SerializeObject(_data.Img.Split(',').Where(d => !string.IsNullOrEmpty(d))) + ";</script>");
                     }
                 }
@@ -137,6 +162,10 @@ public partial class admin_category : BasePage
                 TieuDe_Vn = txtTitle.Text,
                 Type = Type
             };
+            if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+            {
+                _data.ThanhPho = Convert.ToInt32(lstThanhPho.SelectedItem.Value);
+            }
             sql.TinTucs.InsertOnSubmit(_data);
             sql.SubmitChanges();
             CreateMessage("Thêm mới " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type) + " thành công", true);
@@ -157,6 +186,10 @@ public partial class admin_category : BasePage
             _data.NoiDung_Vn = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/"));
             _data.TieuDe_En = txtTitleEn.Text;
             _data.TieuDe_Vn = txtTitle.Text;
+            if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+            {
+                _data.ThanhPho = Convert.ToInt32(lstThanhPho.SelectedItem.Value);
+            }
             sql.SubmitChanges();
             CreateMessage("Cập nhật " + _data.TieuDe_Vn + " thành công", true);
         }

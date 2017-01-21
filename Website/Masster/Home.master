@@ -8,13 +8,27 @@
 
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900&amp;subset=latin-ext,tamil,vietnamese" rel="stylesheet"> 
     <link href="../Styles/home.css" rel="stylesheet" />
-
-    <script src="Scripts/jquery-1.10.2.js"></script>
-
+    <link href="../linktamchat/Styles/chat/popup.css" rel="stylesheet" />
+    <script src="<%=Lib.urlhome %>/Scripts/jquery-1.10.2.js"></script>
+    <script src="<%=Lib.urlhome %>/Scripts/home.js"></script>
+    <script src="<%=Lib.urlhome %>/linktamchat/Scripts/chat/popup.js"></script>
+    <script type="text/javascript">
+        var lag = '<%=Lib.getLag()%>';
+        $(document).ready(function () {
+            $(document).click(function () {
+                $('.htm_err_respon').html('');
+            });
+        });
+    </script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div id="loading_masster"></div>
+    <div class="htm_err_respon">
+        <%=Session["Message_Popup"]!=null?Session["Message_Popup"]+"":"" %>
+        <%Session["Message_Popup"] = null; %>
+    </div>
     <asp:ContentPlaceHolder ID="Banner" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -50,10 +64,39 @@
             </div>
         </div>
         <div class="bottom_center">
-            
+            <div class="list-item-link">
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">
+                    Tin tức & Sự kiện
+                </a>
+                <span style="background-color:#981e20;"></span>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">
+                    Thư viện
+                </a>
+                <span style="background-color:#f89201;"></span>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">
+                    Hình ảnh cộng đồng
+                </a>
+                <span style="background-color:#f8e900;"></span>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">
+                    Nhóm
+                </a>
+                <span style="background-color:#358e52;"></span>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">
+                    Hỗ trợ
+                </a>
+                <span style="background-color:#3683bc;"></span>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>">
+                    Liên hệ
+                </a>
+            </div>
+             <div class="list-item-icon">
+                 <img src="<%=Lib.urlhome %>/Images/Csaga/icon-face.png" />
+                 <img src="<%=Lib.urlhome %>/Images/Csaga/icon-youtube.png" />
+                 <img src="<%=Lib.urlhome %>/Images/Csaga/icon-skyper.png" />
+             </div>
         </div>
         <div class="bottom_end">
-            Địa chỉ: : Số 35 ngõ 63, đường Dịch Vọng Hâu, P Dịch Vọng Hâu, Q Cầu Giấy, Hà Nội  |  Điện thoại: (+84-4) 3754 0421  |  Fax: (+84-4) 3793 0297  |  Email: csaga@csaga.org.vn
+            Email: csaga@csaga.org.vn
         </div>
     </div>
 

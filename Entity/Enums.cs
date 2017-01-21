@@ -19,9 +19,9 @@ public static class Enums
         ThuVien = 2,
         HinhAnhCongDongYeuNu = 3,
         CacNhomNuyeuNu = 4,
-        GiaiTri = 5,
+        //GiaiTri = 5,
         HoTro = 6,
-        Event = 7,
+        //Event = 7,
         Account = 8,
         TuVan = 9
     }
@@ -29,7 +29,8 @@ public static class Enums
     {
         delete = -1,
         deactive = 0,
-        active = 1
+        active = 1,
+        pending = 2
     }
     public static string LoaiTinTucDesc(LoaiTinTuc _type)
     {
@@ -47,14 +48,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "Các nhóm nữ yêu nữ";
 
-            case LoaiTinTuc.GiaiTri:
-                return "Giải trí";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "Giải trí";
 
             case LoaiTinTuc.HoTro:
                 return "Hỗ trợ";
 
-            case LoaiTinTuc.Event:
-                return "Sự kiện";
+            //case LoaiTinTuc.Event:
+            //    return "Sự kiện";
             case LoaiTinTuc.Account:
                 return "Tài khoản quản trị";
             case LoaiTinTuc.TuVan:
@@ -79,14 +80,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "cac-nhom-nu-yeu-nu.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "giai-tri.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "giai-tri.htm";
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro.htm";
 
-            case LoaiTinTuc.Event:
-                return "event.htm";
+            //case LoaiTinTuc.Event:
+            //    return "event.htm";
             default:
                 return "";
         }
@@ -107,14 +108,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "them-moi-cac-nhom-nu-yeu-nu.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "them-moi-giai-tri.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "them-moi-giai-tri.htm";
 
             case LoaiTinTuc.HoTro:
                 return "them-moi-ho-tro.htm";
 
-            case LoaiTinTuc.Event:
-                return "them-moi-event.htm";
+            //case LoaiTinTuc.Event:
+            //    return "them-moi-event.htm";
             default:
                 return "";
         }
@@ -135,14 +136,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "cac-nhom-nu-yeu-nu-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "giai-tri-chinh-sua-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "giai-tri-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "event-chinh-sua-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "event-chinh-sua-{0}-z-{1}.htm";
             case LoaiTinTuc.Account:
                 return "tai-khoan-quan-tri-chinh-sua-{0}-z-{1}.htm";
             default:
@@ -165,14 +166,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "cac-nhom-nu-yeu-nu-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "giai-tri-trangthai-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "giai-tri-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "event-trangthai-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "event-trangthai-{0}-z-{1}.htm";
             case LoaiTinTuc.Account:
                 return "tai-khoan-quan-tri-trangthai-{0}-z-{1}.htm";
             default:
@@ -195,14 +196,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "cac-nhom-nu-yeu-nu-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "giai-tri-xoa-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "giai-tri-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "event-xoa-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "event-xoa-{0}-z-{1}.htm";
             case LoaiTinTuc.Account:
                 return "tai-khoan-quan-tri-xoa-{0}-z-{1}.htm";
             default:
@@ -230,14 +231,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "Mục lục các nhóm nữ yêu nữ";
 
-            case LoaiTinTuc.GiaiTri:
-                return "Mục lục giải trí";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "Mục lục giải trí";
 
             case LoaiTinTuc.HoTro:
                 return "Mục lục Hỗ trợ";
 
-            case LoaiTinTuc.Event:
-                return "Mục lục sự kiện";
+            //case LoaiTinTuc.Event:
+            //    return "Mục lục sự kiện";
             default:
                 return "";
         }
@@ -258,14 +259,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "muc-luc-cac-nhom-nu-yeu-nu.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "muc-luc-giai-tri.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "muc-luc-giai-tri.htm";
 
             case LoaiTinTuc.HoTro:
                 return "muc-luc-ho-tro.htm";
 
-            case LoaiTinTuc.Event:
-                return "muc-luc-event.htm";
+            //case LoaiTinTuc.Event:
+            //    return "muc-luc-event.htm";
             default:
                 return "";
         }
@@ -286,14 +287,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "them-moi-muc-luc-cac-nhom-nu-yeu-nu.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "them-moi-muc-luc-giai-tri.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "them-moi-muc-luc-giai-tri.htm";
 
             case LoaiTinTuc.HoTro:
                 return "them-moi-muc-luc-ho-tro.htm";
 
-            case LoaiTinTuc.Event:
-                return "them-moi-muc-luc-event.htm";
+            //case LoaiTinTuc.Event:
+            //    return "them-moi-muc-luc-event.htm";
             default:
                 return "";
         }
@@ -314,14 +315,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "muc-luc-cac-nhom-nu-yeu-nu-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "muc-luc-giai-tri-chinh-sua-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "muc-luc-giai-tri-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "muc-luc-ho-tro-chinh-sua-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "muc-luc-event-chinh-sua-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "muc-luc-event-chinh-sua-{0}-z-{1}.htm";
             default:
                 return "";
         }
@@ -342,14 +343,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "muc-luc-ac-nhom-nu-yeu-nu-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "muc-luc-giai-tri-trangthai-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "muc-luc-giai-tri-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "muc-luc-ho-tro-trangthai-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "muc-luc-event-trangthai-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "muc-luc-event-trangthai-{0}-z-{1}.htm";
             default:
                 return "";
         }
@@ -370,14 +371,14 @@ public static class Enums
             case LoaiTinTuc.CacNhomNuyeuNu:
                 return "muc-luc-cac-nhom-nu-yeu-nu-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.GiaiTri:
-                return "muc-luc-giai-tri-xoa-{0}-z-{1}.htm";
+            //case LoaiTinTuc.GiaiTri:
+            //    return "muc-luc-giai-tri-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.HoTro:
                 return "muc-luc-ho-tro-xoa-{0}-z-{1}.htm";
 
-            case LoaiTinTuc.Event:
-                return "muc-luc-event-xoa-{0}-z-{1}.htm";
+            //case LoaiTinTuc.Event:
+            //    return "muc-luc-event-xoa-{0}-z-{1}.htm";
             default:
                 return "";
         }

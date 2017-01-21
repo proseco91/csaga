@@ -36,6 +36,7 @@
             color: #000;
             font-size: 17px;
             margin-top: 10px;
+            text-align:justify;
         }
 
             .detail-content img
@@ -43,6 +44,8 @@
                 text-align: center;
                 border: 1px solid #CCC;
                 padding: 2px;
+                max-width:100%;
+                height:auto;
             }
 
         .detail-tintuckhac

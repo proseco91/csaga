@@ -64,8 +64,37 @@ public static class LibCache
         return cache_iplocation;
     }
 
+    public static List<ThanhPho> cache_thanhpho { get; set; }
+
+    public static List<ThanhPho> getThanhPho(this LinqDataContext sql)
+    {
+        if (cache_thanhpho == null)
+            cache_thanhpho = sql.ThanhPhos.ToList();
+        return cache_thanhpho;
+    }
 
 
-    public static List<string> cache_thanhpho = new List<string>() { "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", "Cao Bằng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Tĩnh", "Hải Dương", "Hậu Giang", "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái", "Phú Yên", "Cần Thơ", "Đà Nẵng", "Hải Phòng", "Hà Nội", "TP HCM" };
+
+    private static List<User> cache_user { get; set; }
+
+    public static void AddOrUpdateCache(this User dataUpdate, LinqDataContext sql)
+    {
+
+        var admin = sql.getUser().Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
+        if (admin == null)
+            cache_user.Add(dataUpdate);
+        else
+        {
+            cache_user.Remove(admin);
+            if (dataUpdate.Status != (int)Enums.Status.delete)
+                cache_user.Add(dataUpdate);
+        }
+    }
+    public static List<User> getUser(this LinqDataContext sql)
+    {
+        if (cache_user == null)
+            cache_user = sql.Users.Where(d => d.Status != (int)Enums.Status.delete).ToList();
+        return cache_user;
+    }
 
 }

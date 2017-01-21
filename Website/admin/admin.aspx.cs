@@ -28,7 +28,7 @@ public partial class admin_admin : BasePage
         }
         else if (TypeAction == 1 || TypeAction == 2)
         {
-            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu || Type == (int)Enums.LoaiTinTuc.Event)
+            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu || Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu)
             {
                 PanelMucLuc.Visible = false;
             }

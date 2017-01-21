@@ -22,21 +22,21 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/sb-admin.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
+    <%--<script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
     <script src="js/flot/jquery.flot.js"></script>
     <script src="js/flot/jquery.flot.tooltip.min.js"></script>
     <script src="js/flot/jquery.flot.categories.js"></script>
     <script src="js/flot/jquery.flot.time.js"></script>
     <script src="js/flot/jquery.flot.resize.js"></script>
-    <script src="js/flot/jquery.flot.pie.js"></script>
+    <script src="js/flot/jquery.flot.pie.js"></script>--%>
 
     <link rel="stylesheet" type="text/css" href="../css/datetime/jquery.datetimepicker.css" />
     <script src="js/datetime/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="ckeditorNew/ckeditor.js"></script>
     <script type="text/javascript" src="ckeditorNew/adapters/jquery.js"></script>
 
-    <link href="../plugin/colpick/css/colpick.css" rel="stylesheet" type="text/css" />
+    <link href="../../plugin/colpick/css/colpick.css" rel="stylesheet" type="text/css" />
     <script src="../plugin/colpick/js/colpick.js"></script>
     <script src="../linktamchat/Scripts/chat/lib.js"></script>
     <script src="../linktamchat/Scripts/chat/uploadfile.js"></script>

@@ -8,7 +8,7 @@ $(document).ready(function () {
         var _parenmenu_new = $('.parenmenu_new');
         var _height = _parenmenu_new.height();
         if ($(this).scrollTop() >= _height) {
-            _parenmenu_new.attr('eff-new-parenmenu-new','');
+            _parenmenu_new.attr('eff-new-parenmenu-new', '');
         } else {
             _parenmenu_new.removeAttr('eff-new-parenmenu-new');
         }
@@ -54,7 +54,7 @@ $(document).ready(function () {
         }
     });
     $('.panel_from > .panel_from_row_input_color > span:last-child > input:text').keyup(function (event) {
-        if ($(this).parents('.panel_from_row_input_color[disabled]').size() <=0) {
+        if ($(this).parents('.panel_from_row_input_color[disabled]').size() <= 0) {
             if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || (event.keyCode >= 65 && event.keyCode <= 90)) {
                 $(this).next('span').colpickSetColor($(this).val());
             }
@@ -82,7 +82,7 @@ $(document).ready(function () {
             });
         }, 300);
         $(this).mouseup(function () {
-            if(timeout_panel_from_row_number_up_down)
+            if (timeout_panel_from_row_number_up_down)
                 clearTimeout(timeout_panel_from_row_number_up_down);
             if (interval_panel_from_row_number_up_down)
                 clearInterval(interval_panel_from_row_number_up_down);
@@ -93,7 +93,7 @@ $(document).ready(function () {
         var ele = $(this).parent('span').children('span');
         if (parseInt(ele.text()) > parseInt(ele.attr('valdefault')))
             ele.text(parseInt(ele.text()) - 1);
-        
+
         var interval_panel_from_row_number_up_down;
         var timeout_panel_from_row_number_up_down = setTimeout(function () {
             interval_panel_from_row_number_up_down = setInterval(function () {
@@ -117,7 +117,7 @@ $(document).ready(function () {
             _this.unbind("mouseup");
         });
     });
-    
+
     $('.panel_from > .panel_from_row_input > span:last-child > input:text[valtype="number"]').keypress(function (e) {
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A
@@ -180,7 +180,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
 
     $('.panel_from > .panel_from_row_file > span + span > input:file:disabled').each(function () {
         $(this).parent('span').css({ 'display': 'none' });
@@ -300,7 +300,8 @@ $(document).ready(function () {
                     else {
                         _input.parents('.panel_from_row').addClass('panel_from_row_err');
                         checkRe = false;
-                        eroTxt = _input.parents('.panel_from_row').children('lable').text()+" phải có.";
+                        if (eroTxt.length == 0)
+                            eroTxt = _input.parents('.panel_from_row').children('lable').text() + " phải có.";
                     }
                 }
             });
@@ -316,7 +317,8 @@ $(document).ready(function () {
                 else {
                     _input.parents('.panel_from_row').addClass('panel_from_row_err');
                     checkRe = false;
-                    eroTxt = _input.parents('.panel_from_row').children('lable').text() + " phải có.";
+                    if (eroTxt.length == 0)
+                        eroTxt = _input.parents('.panel_from_row').children('lable').text() + " phải có.";
                 }
             });
         });
@@ -447,7 +449,7 @@ function event_panel_support(status) {
 }
 var chatLinkTamFun = new ChatLinkTamFun();
 function ChatLinkTamFun() {
-    this.message = function (status,info) {
+    this.message = function (status, info) {
         setTimeout(function () {
             $('body > .htm_err_respon').html('<div class="alertmessage-lintam ' + (status ? 'bg-success-lintam' : 'bg-danger-lintam') + '">' + info + '</div>');
         });

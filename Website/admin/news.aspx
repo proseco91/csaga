@@ -11,9 +11,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
-
-
     <div class="htm_loading_page"></div>
     <asp:Panel ID="PanelMenu" runat="server" Visible="true">
         <div class="parenmenu_new">
@@ -42,7 +39,7 @@
         <div class="panel_from_item panel_from_item_show">
             <div class="style_table">
                 <div class="panel_search" action-default>
-                    <input type="text" placeholder="Tìm kiếm" value="<%=Request.QueryString["seach"] %>"/>
+                    <input type="text" placeholder="Tìm kiếm" value="<%=Request.QueryString["seach"] %>" />
                     <span attr-close></span>
                 </div>
                 <div style="clear: both; height: 20px;"></div>
@@ -53,7 +50,7 @@
                         <th class="row_img"></th>
                         <th style="width: calc(100% - 550px);" enabled-sort>Tiếu đề</th>
                         <th style="width: 150px;" enabled-sort sorted="desc">Ngày tạo</th>
-                        <th style="width: 150px;text-align:center;">Trạng thái</th>
+                        <th style="width: 150px; text-align: center;">Trạng thái</th>
                         <th style="width: 100px;"></th>
                     </tr>
                     <%
@@ -62,21 +59,21 @@
                         int numInPage = 30;
                         foreach (var item in getTinTuc(numInPage, out totalRow, out pageSelect).Select((value, i) => new { i, value }))
                         {
-                %>
-                    
+                    %>
+
                     <tr>
                         <td style="width: 50px; text-align: center;" class="ellipsis">
                             <%=((pageSelect-1)*numInPage)+(item.i+1) %>
                         </td>
-                        <td class="row_img" style="text-align:center;">
+                        <td class="row_img" style="text-align: center;">
                             <span style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></span>
                         </td>
                         <td style="width: calc(100% - 550px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
                         <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
-                        <td style="width: 150px;text-align:center;"><%=item.value.Status==1?"Hiển thị":"Ẩn" %></td>
+                        <td style="width: 150px; text-align: center;"><%=item.value.Status==1?"Hiển thị":item.value.Status==(int)Enums.Status.pending?"Chờ duyệt":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
                             <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
-                            <a delete-link="Bạn chắc chắn muốn thay đổi trạng thái từ <%=item.value.Status==(int)Enums.Status.active?"ẩn thành hiển thị":"hiển thị thành ẩn" %> <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.LoaiTinTucUrlTrangThai((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-check-circle" title="<%=item.value.Status==1?"Ẩn":"Hiển thị" %>" style="<%=item.value.Status==1?"":"color:#CCC;" %>"></i></a>
+                            <a delete-link="Bạn chắc chắn muốn thay đổi trạng thái từ <%=item.value.Status==(int)Enums.Status.active?"ẩn thành hiển thị":"hiển thị thành ẩn" %> <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.LoaiTinTucUrlTrangThai((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-check-circle" title="<%=item.value.Status==1?"Ẩn":"Hiển thị" %>" style="<%=item.value.Status==1?"": "color:#CCC;" %>"></i></a>
                             <a delete-link="Bạn chắc chắn muốn xóa <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.LoaiTinTucUrlXoa((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-times" title="Xóa"></i></a>
                         </td>
                     </tr>
@@ -107,13 +104,22 @@
                         <asp:TextBox ID="txtTitleEn" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
                     </span>
                 </div>
+                <asp:Panel ID="panelThanhPho" runat="server" Visible="false">
+                    <div style="clear: both; height: 20px;"></div>
+                    <div class="panel_from_row panel_from_row_input">
+                        <lable>Thành phố</lable>
+                        <span style="width: 400px;">
+                            <asp:DropDownList ID="lstThanhPho" runat="server"></asp:DropDownList>
+                        </span>
+                    </div>
+                </asp:Panel>
                 <asp:Panel ID="panelImg" runat="server" Visible="true">
                     <div style="clear: both; height: 20px;"></div>
                     <div class="panel_from_row panel_from_row_file">
                         <lable>Ảnh đại diên</lable>
                         <span img-oldaaa></span>
                         <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg/>
+                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg />
                         </span>
                     </div>
                 </asp:Panel>
@@ -129,14 +135,14 @@
                 <asp:Panel ID="panelGioiThieu" runat="server" Visible="true">
                     <div style="clear: both; height: 20px;"></div>
                     <div class="panel_from_row panel_from_row_input">
-                        <lable style="vertical-align:top;">Giới thiệu (Vn)</lable>
+                        <lable style="vertical-align: top;">Giới thiệu (Vn)</lable>
                         <span style="width: 400px;">
                             <asp:TextBox ID="txtDes" runat="server" no-empty Width="100%" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
                         </span>
                     </div>
                     <div style="clear: both; height: 20px;"></div>
                     <div class="panel_from_row panel_from_row_input">
-                        <lable style="vertical-align:top;">Giới thiệu (En)</lable>
+                        <lable style="vertical-align: top;">Giới thiệu (En)</lable>
                         <span style="width: 400px;">
                             <asp:TextBox ID="txtDesEn" runat="server" Width="100%" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
                         </span>
@@ -144,15 +150,15 @@
                 </asp:Panel>
                 <div style="clear: both; height: 20px;"></div>
                 <div class="panel_from_row panel_from_row_input">
-                    <lable style="vertical-align:top;">Nội dung (Vn)</lable>
-                    <span style="display:inline-block;width:calc(100% - 155px);":"width:calc(100% - 450px);">
+                    <lable style="vertical-align: top;">Nội dung (Vn)</lable>
+                    <span style="display: inline-block; width: calc(100% - 155px);">
                         <asp:TextBox ID="txtChiTiet" runat="server" Width="100%" contenteditable="true" TextMode="MultiLine" no-empty Text="Nội dung tại đây."></asp:TextBox>
                     </span>
                 </div>
                 <div style="clear: both; height: 20px;"></div>
                 <div class="panel_from_row panel_from_row_input">
-                    <lable style="vertical-align:top;">Nội dung (En)</lable>
-                    <span style="display:inline-block;width:calc(100% - 155px);":"width:calc(100% - 450px);">
+                    <lable style="vertical-align: top;">Nội dung (En)</lable>
+                    <span style="display: inline-block; width: calc(100% - 155px);">
                         <asp:TextBox ID="txtChiTietEn" runat="server" Width="100%" contenteditable="true" TextMode="MultiLine" no-empty Text="Nội dung tại đây."></asp:TextBox>
                     </span>
                 </div>
@@ -179,9 +185,9 @@
                 CKEDITOR.inline('<%=txtChiTiet.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
                 CKEDITOR.inline('<%=txtChiTietEn.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
 
-                
+
                 $('[list-checkbox] input:checkbox').change(function () {
-                    var _this =  $(this);
+                    var _this = $(this);
                     $('[list-checkbox] input:checkbox').prop('checked', false);
                     _this.prop('checked', true);
                 });

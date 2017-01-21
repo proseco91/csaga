@@ -4,26 +4,9 @@ function Lib() {
     this.isNumber = function (value) {
         return filter_number.test(value);
     }
-    this.add_cart = function (id, number) {
-        number = number == null ? -1 : number;
-        $.ajax({
-            type: "POST",
-            url: url_home + '/service/service.asmx/AddCart',
-            data: '{"ID":"' + id + '",Number:' + number + '}',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            beforeSend: function () {
-                $('#loading_masster').css({ 'display': 'block' });
-            },
-            success: function (message) {
-                var message = message.d;
-                if (message[0] > 0)
-                    $('.cart-badge--desktop').text(message[0]);
-                $('#loading_masster').css({ 'display': 'none' });
-            },
-            error: function (errormessage) {
-                $('#loading_masster').css({ 'display': 'none' });
-            }
+    this.message = function (status, info) {
+        setTimeout(function () {
+            $('body > .htm_err_respon').html('<div class="alertmessage-lintam ' + (status ? 'bg-success-lintam' : 'bg-danger-lintam') + '">' + info + '</div>');
         });
     }
 }
