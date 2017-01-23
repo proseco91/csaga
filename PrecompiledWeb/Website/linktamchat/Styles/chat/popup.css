@@ -1,0 +1,172 @@
+#confirmLinkTam
+{
+    position: fixed;
+    z-index: 10000;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    background-color:rgba(0,0,0,0.1);
+}
+#confirmLinkTam .confirm_content
+{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    max-width: calc(100% - 20px);
+    position: fixed;
+    z-index: 1;
+    overflow:hidden;
+}
+#confirmLinkTam .confirm_content .confirm_content_loading
+{
+    position:absolute;
+    z-index:2;
+    width:100%;
+    height:100%;
+    left:0px;
+    right:0px;
+    background-color:rgba(0,0,0,0.2);
+    display:none;
+}
+#confirmLinkTam .confirm_content .confirm_content_loading span
+{
+    position:absolute;
+    height:40px;
+    width:40px;
+    left:calc(50% - 20px);
+    top:calc(50% - 20px);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: xoaytron 1s infinite linear;
+    animation: xoaytron 1s infinite linear;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-image:url('../../Images/loading128px.png');
+    background-size: contain;
+    opacity:0.5;
+}
+#confirmLinkTam *
+{
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+}
+#confirmLinkTam .confirm-Title
+{
+    color: #777;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 10px 0 5px;
+    text-align: center;
+}
+#confirmLinkTam .confirm-Body
+{
+    color: #5c5c5c;
+    line-height: 20px;
+    padding: 5px 10px;
+}
+#confirmLinkTam .confirm-Body *
+{
+    font-size:15px;
+    letter-spacing:1px;
+}
+#confirmLinkTam .confirm-Btn
+{
+    background-color: #f4f4f4;
+    border-top: 1px solid #dbdbdb;
+    text-align: right;
+}
+#confirmLinkTam .confirm-Btn span
+{
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    margin: 8px;
+    padding: 3px 10px;
+}
+#confirmLinkTam .confirm-Btn span:first-child
+{
+    /*background-color: #0b80c1;*/
+    background-color: #555;
+}
+    #confirmLinkTam .confirm-Btn span:first-child:hover
+    {
+        box-shadow: 0 0 2px #555;
+    }
+#confirmLinkTam .confirm-Btn span:last-child
+{
+    /*background-color: #e44b4b;*/
+    background-color: #999;
+}
+#confirmLinkTam .confirm-Btn span:last-child:hover
+    {
+        box-shadow: 0 0 2px #999;
+    }
+#confirmLinkTam .confirm-Close
+{
+    background-image: url("../../Images/close-popupnew.png");
+    background-size: contain;
+    cursor: pointer;
+    height: 13px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 13px;
+    z-index: 1;
+}
+
+.confirmLinkTamAbsolute
+{
+    position:absolute !important;
+}
+.confirmLinkTamAbsolute .confirm_content
+{
+    top:10px !important;
+    position:absolute !important;
+}
+
+.bg-danger-lintam {
+  background-color: #f2dede;
+}
+.bg-success-lintam {
+  background-color: #dff0d8;
+}
+.alertmessage-lintam
+{
+    padding:20px;
+    color:#555;
+    font-family: 'Roboto-Regular';
+    font-size: 15px;
+}
+.alertmessage-lintam *
+{
+    font-family: 'Roboto-Regular';
+    font-size: 15px;
+}
+
+
+
+
+@-webkit-keyframes xoaytron {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes xoaytron {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

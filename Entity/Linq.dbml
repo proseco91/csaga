@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="admin_s" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User ID=sa" SettingsObjectName="Entity.Properties.Settings" SettingsPropertyName="admin_sConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User ID=sa;Password=1234567" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="ID" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

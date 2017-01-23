@@ -17,6 +17,7 @@ using System.ComponentModel;
 using Newtonsoft.Json;
 using System.Dynamic;
 using System.Web.UI;
+using System.Configuration;
 
 /// <summary>
 /// Summary description for Lib
@@ -30,6 +31,29 @@ public static class Lib
 
     public static string urlhome;
     public static string hostchat = "http://localhost:1230";
+
+    public static string urlChiTiet(Enums.LoaiTinTuc _type)
+    {
+        switch (_type)
+        {
+            case Enums.LoaiTinTuc.TinTucSuKien:
+                return "tintuc-sukien";
+
+            case Enums.LoaiTinTuc.ThuVien:
+                return "thuvien";
+
+            case Enums.LoaiTinTuc.HinhAnhCongDongYeuNu:
+                return "chitiet-hinh-anh-cong-dong";
+
+            case Enums.LoaiTinTuc.CacNhomNuyeuNu:
+                return "nhom-nu-yeu-nu";
+
+            case Enums.LoaiTinTuc.HoTro:
+                return "hotro";
+            default:
+                return "";
+        }
+    }
 
     public static string ContentLag(string Vi, string En)
     {
@@ -59,7 +83,7 @@ public static class Lib
     {
         var listIP = LibCache.cache_iplocation;
         if (listIP == null)
-            listIP = new Entity.LinqDataContext().getIpLocation();
+            listIP = new Entity.LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString()).getIpLocation();
 
         ip = ip.Split('.').Length < 4 ? "127.0.0.1" : ip;
         int[] ipArray = ip.Split('.').Where(d => !string.IsNullOrEmpty(d)).Select(d => Convert.ToInt32(d)).ToArray();

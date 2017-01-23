@@ -36,7 +36,7 @@ public class strucItemCart
 [System.Web.Script.Services.ScriptService]
 public class service : System.Web.Services.WebService
 {
-    LinqDataContext sql = new LinqDataContext();
+    LinqDataContext sql = new LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString());
     public service()
     {
 

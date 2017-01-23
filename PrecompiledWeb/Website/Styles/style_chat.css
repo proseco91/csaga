@@ -1,0 +1,163 @@
+﻿#crazylady_chat
+{
+    position: fixed;
+    z-index: 10000;
+    width: 0px;
+    height: 0px;
+    bottom: 0px;
+    right: 0px;
+    font-family: 'Roboto-Regular';
+    line-height: normal;
+}
+
+    #crazylady_chat .crazylady_chat_windown
+    {
+        width: 275px;
+        height: 360px;
+        background-color: #FFF;
+        position: absolute;
+        top: -362px;
+        right: 10px;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+        border-radius: 3px 3px 0px 0px;
+    }
+
+        #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_title
+        {
+            position: relative;
+            width: calc(100% + 2px);
+            height: 30px;
+            background-color: #76008a;
+            left: -1px;
+            top: 0px;
+            border-radius: 3px 3px 0px 0px;
+            color: #FFF;
+            font-size: 12px;
+            font-weight: 300;
+            box-sizing: border-box;
+            box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+        }
+
+            #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_title::after
+            {
+                content: attr(valname);
+                content: attr(valname);
+                position: absolute;
+                margin: 7px 0px 0px 0px;
+                padding-left: 10px;
+            }
+
+        #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_content
+        {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 30px - 30px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_input
+        {
+            position: relative;
+            width: 100%;
+            min-height: 30px;
+        }
+
+            #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_input textarea
+            {
+                height: calc(100% - 1px);
+                width: 100%;
+                padding: 7px;
+                box-sizing: border-box;
+                position: absolute;
+                margin: 0px;
+                border: none;
+                resize: none;
+                word-wrap: break-word;
+                display: block;
+                overflow: hidden;
+                font-size:13px;
+            }
+
+        #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_input_height
+        {
+            position: relative !important;
+            z-index: -1 !important;
+            bottom: 0px !important;
+            left: 0px !important;
+            width: 100% !important;
+            height: auto !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
+
+
+.crazylady_chat_windown_content .crazylady_rowchat
+{
+    padding: 10px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    .crazylady_chat_windown_content .crazylady_rowchat:last-child
+    {
+        margin-bottom: 0px;
+    }
+
+    .crazylady_chat_windown_content .crazylady_rowchat .crazylady_rowchat_clear
+    {
+        clear: both;
+    }
+
+    .crazylady_chat_windown_content .crazylady_rowchat .crazylady_rowchat_avarta
+    {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 3px;
+    }
+
+    .crazylady_chat_windown_content .crazylady_rowchat .crazylady_rowchat_text
+    {
+        margin-left: 35px;
+        text-align: left;
+    }
+
+        .crazylady_chat_windown_content .crazylady_rowchat .crazylady_rowchat_text .crazylady_rowchat_text_content_parent
+        {
+            display: block;
+            margin-top: 2px;
+        }
+
+            .crazylady_chat_windown_content .crazylady_rowchat .crazylady_rowchat_text .crazylady_rowchat_text_content_parent .crazylady_rowchat_text_content
+            {
+                font-size: 12px;
+                padding: 5px 5px;
+                background-color: #f1f0f0;
+                color: #4b4f56;
+                border-radius: 5px;
+                word-wrap: break-word;
+                display: inline-block;
+            }
+
+    .crazylady_chat_windown_content .crazylady_rowchat.right .crazylady_rowchat_avarta
+    {
+        display: none;
+    }
+
+    .crazylady_chat_windown_content .crazylady_rowchat.right .crazylady_rowchat_text
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+        text-align: right;
+    }
+
+        .crazylady_chat_windown_content .crazylady_rowchat.right .crazylady_rowchat_text .crazylady_rowchat_text_content_parent .crazylady_rowchat_text_content
+        {
+            text-align: right;
+            background-color: #76008a;
+            color: #FFF;
+        }

@@ -1,0 +1,162 @@
+﻿.conten-input
+{
+    width:600px;
+    margin:20px auto 0px auto;
+}
+.conten-input-row
+{
+    margin:15px 0px;
+    padding:0px;
+    transition: padding 0.3s ease-out 0s;
+}
+.conten-input-row-title
+{
+    color: #555;
+    float: left;
+    height: 100%;
+    line-height: 25px;
+    width: 89px;
+}
+.conten-input-row-input
+{
+}
+.conten-input-row-err
+{
+    background-image: url("../../images/iconErrNew.png");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    background-position:right center;
+    padding-right: 30px;
+}
+.conten-input-row-input input[type=text],.conten-input-row-input input[type=password],.conten-input-row-input textarea
+{
+    width:calc(100% - 22px);
+    padding:0px 10px;
+    height:calc(100% - 2px);
+    border:1px solid #DDD;
+    background-color:#FFF;
+
+    border-radius: 3px;
+    color: #555;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding:6px 10px;
+    resize: none !important;
+    transition: height 0.1s ease-out 0s;
+}
+
+.conten-input-row-input-img input[type=text]
+{
+    float: right;
+    width: calc(100% - 120px);
+}
+.conten-input-row-input-img img
+{
+    border: 1px solid #ccc;
+    float: left;
+    height: 28px;
+    width: auto;
+}
+.conten-input-row-input select
+{
+    border: 1px solid #ccc;
+    height: calc(100% - 0px);
+    padding: 0 7px;
+    width: calc(100% - 0px);
+}
+
+.btnSubmit input[type=submit]
+{
+    background-color: #619347;
+    border: 1px solid #619347;
+    color: #fff;
+    font-family: 'Roboto-Regular';
+    font-size: 12px;
+    height: 26px;
+    position: absolute;
+    right: 70px;
+    top: 5px;
+    cursor:pointer;
+}
+.btnSubmit input[type=submit]:hover
+{
+    background-color:#82b468;
+}
+.btnHuy input[type=button]
+{
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    color: #555;
+    font-family: 'Roboto-Regular';
+    font-size: 12px;
+    height: 26px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    cursor:pointer;
+}
+.btnHuy input[type=button]:hover
+{
+    background-color:#d2d3d2;
+}
+.btnRegister
+{
+    color: #528438;
+    font-size: 12px;
+    font-weight: bold;
+    left: 20px;
+    position: absolute;
+    text-decoration: none;
+    top: 10px;
+}
+.btnRegister:hover
+{
+    text-decoration:underline;
+}
+.message
+{
+    margin:20px 0px;
+    padding:20px;
+    font-size:15px;
+    line-height:25px;
+}
+.err
+{
+    border: 1px solid #f17b7b;
+    color: #b43f3a;
+}
+.true
+{
+    border: 1px solid #528438;
+    color: #528438;
+}
+.re-new-icon-api
+{
+    color: #444;
+    font-size: 12px;
+    vertical-align:middle;
+    
+    
+}
+    .re-new-icon-api span
+    {
+        display:inline-table;
+        margin-right:34px;
+    }
+.re-new-icon-api img
+{
+    margin:0px 3px;
+    vertical-align:middle;
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( min--moz-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( -o-min-device-pixel-ratio: 2/1) and (min-width: 320px), only screen and ( min-device-pixel-ratio: 2) and (min-width: 320px), only screen and ( min-resolution: 192dpi) and (min-width: 320px), only screen and ( min-resolution: 2dppx) and (min-width: 320px), only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 1), only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 132dpi) and (max-device-width: 1024px)
+{
+    .conten-input
+    {
+        width:100% !important;
+    }
+    .center {
+        margin: 20px 20px 0px 20px !important;
+    }
+}

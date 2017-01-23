@@ -120,8 +120,10 @@ public partial class admin_category : BasePage
                 DienThoai = txtDienThoai.Text,
                 Email = txtEmail.Text,
                 TruongNhom = txtTruongNhom.Text,
-                Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
             };
+            if(Type==(int)Enums.LoaiTinTuc.CacNhomNuyeuNu){
+                _data.Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"));
+            }
             sql.Categories.InsertOnSubmit(_data);
             sql.SubmitChanges();
             _data.AddOrUpdateCache(sql);

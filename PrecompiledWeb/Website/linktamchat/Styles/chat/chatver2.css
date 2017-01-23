@@ -1,0 +1,118 @@
+﻿.mCSB_scrollTools .mCSB_draggerContainer
+{
+    z-index:2;
+}
+.itemChilChat
+{
+    width: calc(100% - 5px);
+}
+.itemChilChatLeftPanel,.itemChilChatRightPanel
+{
+    border: 0px dashed #CCCCCC !important;
+    padding: 0px !important;
+    margin-top:5px !important;
+    margin-bottom:5px !important;
+    border-radius:20px;
+    width: calc(100% - 30px);
+    position:relative;
+}
+.itemChilChatLeftPanel
+{
+    float:left;
+    margin-left:0px !important;
+    border-left:none !important;
+    background-color:#FFF;
+}
+.itemChilChatLeftPanel .messIconEff
+{
+    height: 18px;
+    position: absolute;
+    left: -4px;
+    top: -3px;
+    width: 25px;
+    z-index: 0;
+}
+.itemChilChatLeftPanel .messIconEff
+{
+    background-image:url('../../Images/messIconEff2.png');
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+.itemChilChatRightPanel .messIconEff
+{
+    height: 18px;
+    position: absolute;
+    right: -4px;
+    top: -3px;
+    width: 25px;
+    z-index: 0;
+}
+.itemChilChatRightPanel .messIconEff
+{
+    background-image:url('../../Images/messIconEff.png');
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+.itemChilChatRightPanel
+{
+    float:right;
+    margin-right:5px !important;
+    border-right:none !important;
+    background-color:#6cc9b6;
+}
+.itemChilChatLeftPanel .itemChilChat-Left
+{
+    margin: 1px 0 0 1px;
+    float:left;
+    position:relative;
+    z-index:1;
+}
+.itemChilChatRightPanel .itemChilChat-Left
+{
+    float:right;
+    margin: 1px 1px 0 0px;
+    position:relative;
+    z-index:1;
+}
+.itemChilChatLeftPanel .itemChilChat-Left img,.itemChilChatRightPanel .itemChilChat-Left img
+{
+    border-radius:20px;
+}
+
+.itemChilChatLeftPanel .itemChilChat-Right,.itemChilChatRightPanel .itemChilChat-Right
+{
+    float:none !important;
+    width:auto !important;
+    padding:5px 0px;
+}
+.itemChilChatLeftPanel .itemChilChat-Right,.itemChilChatRightPanel .itemChilChat-Right
+{
+    max-width:180px;
+}
+.itemChilChatLeftPanel .itemChilChat-Right
+{
+    margin: 0 5px 0 50px;
+}
+.itemChilChatRightPanel .itemChilChat-Right
+{
+    margin: 0 50px 0 5px;
+}
+.itemChilChatLeftPanel .itemChilChat-Time,.itemChilChatRightPanel .itemChilChat-Time
+{
+    margin: 0 !important;
+    width:100%;
+}
+.itemChilChatLeftPanel .itemChilChat-Time span,.itemChilChatRightPanel .itemChilChat-Time span
+{
+    border-radius: 0 0 3px 3px;
+}
+.itemChilChatRightPanel .itemChilChat-Time span
+{
+    background-color: #58B5A2;
+    color:#FFF !important;
+}
+.itemChilChatLeftPanel .itemChilChat-Time span
+{
+    background-color: #E0E0E0;
+    color:#A9A9A9 !important;
+}

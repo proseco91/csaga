@@ -22,27 +22,5 @@ namespace Entity.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User" +
-            " ID=sa;Password=1234567")]
-        public string admin_sConnectionString {
-            get {
-                return ((string)(this["admin_sConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THANGNV\\SQLEXPRESS;Initial Catalog=admin_s;Persist Security Info=True" +
-            ";User ID=sa;Password=1234567")]
-        public string admin_sConnectionString2 {
-            get {
-                return ((string)(this["admin_sConnectionString2"]));
-            }
-        }
     }
 }

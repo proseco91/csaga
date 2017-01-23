@@ -51,7 +51,8 @@ namespace Entity
     #endregion
 		
 		public LinqDataContext() : 
-				base(global::Entity.Properties.Settings.Default.admin_sConnectionString, mappingSource)
+				base("Data Source=CRAZYLADY-LAB;Initial Catalog=admin_s;Persist Security Info=True;User" +
+						" ID=sa;Password=1234567", mappingSource)
 		{
 			OnCreated();
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,7 +9,6 @@ using Entity;
 
 public partial class admin_dang_nhap : BasePage
 {
-    LinqDataContext sql = new LinqDataContext();
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = "Đăng nhập";

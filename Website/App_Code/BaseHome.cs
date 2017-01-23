@@ -19,7 +19,7 @@ using Entity;
 /// </summary>
 public class BaseHome : System.Web.UI.Page
 {
-    public LinqDataContext sql = new LinqDataContext();
+    public LinqDataContext sql = new LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString());
     protected override void InitializeCulture()
     {
         Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lib.getLag());

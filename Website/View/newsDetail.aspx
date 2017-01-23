@@ -97,7 +97,7 @@
             Các tin tức khác
         </div>
         <%foreach (var item in getTinTucKhac()){%>
-        <a href="tintuc-sukien-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
+        <a href="<%=Lib.urlChiTiet((Enums.LoaiTinTuc)item.Type) %>-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
             <div class="detail-tintuckhac-item">
                 <%=item.TieuDe_Vn %>
             </div>
