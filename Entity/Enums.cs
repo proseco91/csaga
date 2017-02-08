@@ -23,7 +23,9 @@ public static class Enums
         HoTro = 6,
         //Event = 7,
         Account = 8,
-        TuVan = 9
+        TuVan = 9,
+        CauHinh = 10,
+        KhaoSat = 11
     }
     public enum Status : int
     {
@@ -43,16 +45,16 @@ public static class Enums
                 return "Thư viện";
 
             case LoaiTinTuc.HinhAnhCongDongYeuNu:
-                return "Hình ảnh cộng đồng nữ yêu nữ";
+                return "Tôi là nữ yêu nữ";
 
             case LoaiTinTuc.CacNhomNuyeuNu:
-                return "Các nhóm nữ yêu nữ";
+                return "Kết nối";
 
             //case LoaiTinTuc.GiaiTri:
             //    return "Giải trí";
 
             case LoaiTinTuc.HoTro:
-                return "Hỗ trợ";
+                return "Alo tôi nghe";
 
             //case LoaiTinTuc.Event:
             //    return "Sự kiện";
@@ -60,6 +62,10 @@ public static class Enums
                 return "Tài khoản quản trị";
             case LoaiTinTuc.TuVan:
                 return "Tư vấn trực tuyến";
+            case LoaiTinTuc.CauHinh:
+                return "Cấu hình";
+            case LoaiTinTuc.KhaoSat:
+                return "Khảo sát";
             default:
                 return "";
         }
@@ -85,6 +91,10 @@ public static class Enums
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro.htm";
+            case LoaiTinTuc.CauHinh:
+                return "cau-hinh.htm";
+            case LoaiTinTuc.KhaoSat:
+                return "khao-sat.htm";
 
             //case LoaiTinTuc.Event:
             //    return "event.htm";
@@ -141,6 +151,8 @@ public static class Enums
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-chinh-sua-{0}-z-{1}.htm";
+            case LoaiTinTuc.KhaoSat:
+                return "khao-sat-chinh-sua-{0}-z-{1}.htm";
 
             //case LoaiTinTuc.Event:
             //    return "event-chinh-sua-{0}-z-{1}.htm";
@@ -171,6 +183,8 @@ public static class Enums
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-trangthai-{0}-z-{1}.htm";
+            case LoaiTinTuc.KhaoSat:
+                return "khao-sat-trangthai-{0}-z-{1}.htm";
 
             //case LoaiTinTuc.Event:
             //    return "event-trangthai-{0}-z-{1}.htm";
@@ -201,7 +215,8 @@ public static class Enums
 
             case LoaiTinTuc.HoTro:
                 return "ho-tro-xoa-{0}-z-{1}.htm";
-
+            case LoaiTinTuc.KhaoSat:
+                return "khao-sat-xoa-{0}-z-{1}.htm";
             //case LoaiTinTuc.Event:
             //    return "event-xoa-{0}-z-{1}.htm";
             case LoaiTinTuc.Account:
@@ -229,13 +244,13 @@ public static class Enums
                 return "Mục lục hình ảnh cộng đồng nữ yêu nữ";
 
             case LoaiTinTuc.CacNhomNuyeuNu:
-                return "Mục lục các nhóm nữ yêu nữ";
+                return "Mục lục kết nối";
 
             //case LoaiTinTuc.GiaiTri:
             //    return "Mục lục giải trí";
 
             case LoaiTinTuc.HoTro:
-                return "Mục lục Hỗ trợ";
+                return "Mục lục Alo tôi nghe";
 
             //case LoaiTinTuc.Event:
             //    return "Mục lục sự kiện";

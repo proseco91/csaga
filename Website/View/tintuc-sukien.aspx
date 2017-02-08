@@ -151,8 +151,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div style="clear: both; height: 30px;"></div>
     <div class="panel_1k" id="viewnews">
+        <div class="cate-link">
+            <span class="item-link-cate">
+                <a href="<%=Lib.urlhome %>">Trang chủ</a>
+            </span>
+            <span class="item-link-cate">
+                Tin tức & sự kiện
+            </span>
+        </div>
         <div class="list-item-news">
             <%
                 int totalRow = 0;

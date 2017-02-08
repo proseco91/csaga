@@ -1,5 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Home.master.cs" Inherits="Masster_Home" %>
 
+<%@ Register Src="~/Masster/ChatHome.ascx" TagPrefix="uc1" TagName="ChatHome" %>
+<%@ Register Src="~/Masster/KhaoSat.ascx" TagPrefix="uc1" TagName="KhaoSat" %>
+
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,15 +14,58 @@
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900&amp;subset=latin-ext,tamil,vietnamese" rel="stylesheet">
     <link href="../Styles/home.css" rel="stylesheet" />
     <link href="../linktamchat/Styles/chat/popup.css" rel="stylesheet" />
+    <link href="../Styles/style_chat.css" rel="stylesheet" />
+    <link href="../Styles/khaosat.css" rel="stylesheet" />
     <script src="<%=Lib.urlhome %>/Scripts/jquery-1.10.2.js"></script>
     <script src="<%=Lib.urlhome %>/Scripts/home.js"></script>
     <script src="<%=Lib.urlhome %>/linktamchat/Scripts/chat/popup.js"></script>
     <script type="text/javascript">
         var lag = '<%=Lib.getLag()%>';
+        var urlNow = '<%=Request.RawUrl.ToString().ToLower()%>';
         $(document).ready(function () {
+            $('.eff_7mau a').each(function () {
+                if (urlNow.indexOf($(this).attr('href').toLowerCase()) > -1 || $(this).attr('href').toLowerCase().indexOf(urlNow) > -1)
+                    $(this).children('div').attr('active', '');
+            });
             $(document).click(function () {
                 $('.htm_err_respon').html('');
             });
+            $('#searchinput').keypress(function (event) {
+                var _text = $.trim($(this).val())
+                if (event.which == 13) {
+                    if (_text.length > 0) {
+                        window.location.href = '<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/" %>tim-kiem.htm?q=' + _text;
+                    }
+                    event.preventDefault();
+                }
+            });
+            var count = 0;
+            var maxCount = $('.item_banner').size();
+            var timeEff = null;
+            $('.item_banner:eq(0)').attr('show', '');
+            $('.banner_index_span span:eq(0)').attr('show', '');
+            var fnShowBanner = function () {
+                if (timeEff != null)
+                    clearInterval(timeEff);
+                timeEff = setInterval(function () {
+                    count++;
+                    if (count >= maxCount)
+                        count = 0;
+                    $('.item_banner').removeAttr('show');
+                    $('.banner_index_span span').removeAttr('show');
+                    $('.item_banner:eq(' + count + ')').attr('show', '');
+                    $('.banner_index_span span:eq(' + count + ')').attr('show', '');
+                }, 5000);
+            };
+            $('.banner_index_span span').click(function () {
+                count = $('.banner_index_span span').index($(this));
+                $('.item_banner').removeAttr('show');
+                $('.banner_index_span span').removeAttr('show');
+                $('.item_banner:eq(' + count + ')').attr('show', '');
+                $('.banner_index_span span:eq(' + count + ')').attr('show', '');
+                fnShowBanner.call($(this));
+            });
+            fnShowBanner.call($(this));
         });
     </script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
@@ -32,72 +80,89 @@
     <asp:ContentPlaceHolder ID="Banner" runat="server">
     </asp:ContentPlaceHolder>
 
-    <div class="bodyCrazy">
-        <div class="slogan_search">
-            <div class="panel_1k" style="position:relative;">
-                <marquee>
+    <div class="panel_1k2">
+
+        <div class="bodyCrazy">
+            <div class="slogan_search">
+                <div class="panel_1k" style="position: relative;">
+                    <marquee>
                     Thông tin kiến thức, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam
                 </marquee>
-                <input type="text" />
+                    <input type="text" id="searchinput" placeholder="<%=Lib.convertNoiDungHTML("Tìm kiếm ...","Search ...") %>" />
+                </div>
+            </div>
+            <div class="eff_7mau">
+                
+                <a href="<%=Lib.urlhome%>"><div style="background-color: #e62e1b;">Trang chủ</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>"><div style="background-color: #f89201;">Tin tức & Sự kiện</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>"><div style="background-color: #f8e900;">Thư viện</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>"><div style="background-color: #3cc061;">Tôi là nữ yêu nữ</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>"><div style="background-color: #3996d3;">Kết nối</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>"><div style="background-color: #ae4bce;">Alo tôi nghe</div></a>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>"><div style="background-color: #dc3473;width: 172px;position: absolute;right: 0px;">Liên hệ</div></a>
+                
+            </div>
+            <div style="clear:both;"></div>
+            <div class="banner" valindex="0">
+                <div class="banner_content">
+                    <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value,index }))
+                      {%>
+                    <div class="item_banner" style="background-image: url('<%=Lib.urlhome%>/Images/imageUpload/<%=item.value%>');" valindex="<%=item.index %>"></div>
+                    <%}%>
+                </div>
+                <div class="banner_index">
+                    <span  class="banner_index_span">
+                        <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value,index }))
+                          {%>
+                        <span valindex="<%=item.index %>"></span>
+                        <%}%>
+                    </span>
+                </div>
             </div>
         </div>
-        <div class="eff_7mau">
-            <div style="background-color: #e62e1b;"></div>
-            <div style="background-color: #f89201;"></div>
-            <div style="background-color: #f8e900;"></div>
-            <div style="background-color: #3cc061;"></div>
-            <div style="background-color: #3996d3;"></div>
-            <div style="background-color: #ae4bce;"></div>
-            <div style="background-color: #dc3473;"></div>
-            <div style="clear: both;"></div>
-        </div>
-        <div class="banner">
-            <div class="banner_content">
-                <div class="item_banner" style="background-image: url('<%=Lib.urlhome %>/Images/Csaga/banner.png');"></div>
+
+
+        <asp:ContentPlaceHolder ID="Body" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <div class="bottom">
+            <%--<div class="bottom_line">
+                <div class="panel_1k" style="position: relative;">
+                    <div class="bottom_btn_tuvan" title="Đang kết nối"></div>
+                </div>
+            </div>--%>
+            <div class="bottom_center">
+                <div class="list-item-link">
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">Tin tức & Sự kiện
+                    </a>
+                    <span style="background-color: #981e20;"></span>
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">Thư viện
+                    </a>
+                    <span style="background-color: #f89201;"></span>
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">Tôi là nữ yêu nữ
+                    </a>
+                    <span style="background-color: #f8e900;"></span>
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">Kết nối
+                    </a>
+                    <span style="background-color: #358e52;"></span>
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">Alo tôi nghe
+                    </a>
+                    <span style="background-color: #3683bc;"></span>
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>">Liên hệ
+                    </a>
+                </div>
+                <div class="list-item-icon">
+                    <img src="<%=Lib.urlhome %>/Images/Csaga/icon-face.png" />
+                    <img src="<%=Lib.urlhome %>/Images/Csaga/icon-youtube.png" />
+                    <img src="<%=Lib.urlhome %>/Images/Csaga/icon-skyper.png" />
+                </div>
+            </div>
+            <div class="bottom_end">
+                Website này được thành lập và duy trì với sự tài trợ bởi COC Hà Lan (12/2016 - 4/2017). Vận hành bởi CSAGA và cồng đồng nữ yêu nữ tại Việt Nam.
             </div>
         </div>
     </div>
-
-
-    <asp:ContentPlaceHolder ID="Body" runat="server">
-    </asp:ContentPlaceHolder>
-
-    <div class="bottom">
-        <div class="bottom_line">
-            <div class="panel_1k" style="position: relative;">
-                <div class="bottom_btn_tuvan" title="Tư vấn qua chát"></div>
-            </div>
-        </div>
-        <div class="bottom_center">
-            <div class="list-item-link">
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">Tin tức & Sự kiện
-                </a>
-                <span style="background-color: #981e20;"></span>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">Thư viện
-                </a>
-                <span style="background-color: #f89201;"></span>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">Hình ảnh cộng đồng
-                </a>
-                <span style="background-color: #f8e900;"></span>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">Nhóm
-                </a>
-                <span style="background-color: #358e52;"></span>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">Hỗ trợ
-                </a>
-                <span style="background-color: #3683bc;"></span>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>">Liên hệ
-                </a>
-            </div>
-            <div class="list-item-icon">
-                <img src="<%=Lib.urlhome %>/Images/Csaga/icon-face.png" />
-                <img src="<%=Lib.urlhome %>/Images/Csaga/icon-youtube.png" />
-                <img src="<%=Lib.urlhome %>/Images/Csaga/icon-skyper.png" />
-            </div>
-        </div>
-        <div class="bottom_end">
-            Email: csaga@csaga.org.vn
-        </div>
-    </div>
-
+    <uc1:ChatHome runat="server" ID="ChatHome" />
+    <uc1:KhaoSat runat="server" ID="KhaoSat" />
 </body>
 </html>

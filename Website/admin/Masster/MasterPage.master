@@ -231,6 +231,7 @@
         <%=Session["Message_Popup"]!=null?Session["Message_Popup"]+"":"" %>
         <%Session["Message_Popup"] = null; %>
     </div>
+    <div class="htm_loading_page"></div>
     <form id="form1sada" runat="server">
         <div id="wrapper">
             <div id="page-menu">

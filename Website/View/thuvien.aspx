@@ -5,12 +5,15 @@
         .list-item-thuvien
         {
             padding-bottom: 0px;
+        bo
         }
-            .list-item-thuvien:nth-child(2)
+            .list-item-thuvien:nth-child(2n+0)
             {
                 background-color: #c9dbff;
             }
-
+            .list-item-thuvien:nth-child(2n+0) .cate-link{
+                border-bottom: 1px dashed #FFF;
+            }
             .list-item-thuvien .item-thuvien
             {
                 width: 240px;
@@ -102,9 +105,49 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div style="clear: both; height: 30px;"></div>
-    <div id="viewnews">
-        <%
+    <div>
+
+        <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.ThuVien))
+          {%>
+        <div class="list-item-thuvien">
+            <div style="clear: both; height: 1px;"></div>
+            <div class="cate-link" style="padding-left: 5px;">
+                <span class="item-link-cate">
+                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
+                </span>
+                <span class="item-link-cate">
+                    <%=Lib.convertNoiDungHTML(cate.TieuDe_Vn,cate.TieuDe_En) %>
+                </span>
+            </div>
+            <div style="clear: both; height: 0px;"></div>
+            <div class="panel_1k " id="view<%=cate.ID %>">
+                <% 
+              int totalRow = 0;
+              int pageSelect = 1;
+              int numInPage = 3;
+              var thuVien = getThuVien(numInPage, cate.ID, out totalRow, out pageSelect);
+              foreach (var item in thuVien.Select((value, i) => new { i, value }))
+              {    
+                %>
+
+                <div class="item-thuvien">
+                    <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
+                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_En,40) %></div>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_En,140) %></div>
+                    <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                        <div class="item-thuvien-btn"></div>
+                    </a>
+                </div>
+
+                <%}%>
+                <div style="clear: both;"></div>
+                <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"view"+cate.ID,"page"+cate.ID)%>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <%}%>
+
+        <%--<%
             int totalRow = 0;
             int pageSelect = 1;
             int numInPage = 6;
@@ -116,6 +159,7 @@
           { %>
         <div class="list-item-thuvien">
             <div class="panel_1k ">
+
                 <%}%>
 
 
@@ -147,7 +191,7 @@
     </div>
     </div>
                 <%}%>
-    <div style="clear: both; height: 0px;"></div>
+    <div style="clear: both; height: 0px;"></div>--%>
     </div>
 </asp:Content>
 

@@ -30,7 +30,13 @@ public static class Lib
 
 
     public static string urlhome;
-    public static string hostchat = "http://localhost:1230";
+    //public static string hostchat = "http://localhost:1230";
+    public static string hostchat = "http://chat.nuyeunu.vn";
+
+    public static Entity.LinqDataContext createSQL()
+    {
+        return new Entity.LinqDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ToString());
+    }
 
     public static string urlChiTiet(Enums.LoaiTinTuc _type)
     {
@@ -159,7 +165,7 @@ public static class Lib
                     {
                         string html = "<div class=\"page-menu-group\">";
                         html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
-                        if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && i != (int)Enums.LoaiTinTuc.ThuVien)
+                        if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
                         {
                             html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
                             html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
@@ -176,20 +182,32 @@ public static class Lib
             }
 
 
-            if (admin.IsSuperAdmin || admin.getQuyen.Contains(8) || admin.getQuyen.Contains(9))
+            if (admin.IsSuperAdmin || admin.getQuyen.Contains(8) || admin.getQuyen.Contains(9) || admin.getQuyen.Contains(10) || admin.getQuyen.Contains(11))
             {
                 htmlMenu += "<div class=\"page-menu-group\">";
                 htmlMenu += "   <div class=\"page-menu-group-title\">Khác</div>";
-                if (admin.IsSuperAdmin || admin.getQuyen.Contains(8))
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(9))
                 {
-                    htmlMenu += "   <a href=\"tai-khoan-quan-tri.htm\">";
-                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-account=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.Account) + "</div>";
+                    htmlMenu += "   <a href=\"khao-sat.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-khaosat=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.KhaoSat) + "</div>";
                     htmlMenu += "   </a>";
                 }
                 if (admin.IsSuperAdmin || admin.getQuyen.Contains(9))
                 {
                     htmlMenu += "   <a href=\"tu-van-truc-tuyen.htm\">";
                     htmlMenu += "       <div class=\"page-menu-group-item\" menu-tuvan=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TuVan) + "</div>";
+                    htmlMenu += "   </a>";
+                }
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(8))
+                {
+                    htmlMenu += "   <a href=\"tai-khoan-quan-tri.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-account=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.Account) + "</div>";
+                    htmlMenu += "   </a>";
+                }
+                if (admin.IsSuperAdmin || admin.getQuyen.Contains(10))
+                {
+                    htmlMenu += "   <a href=\"cau-hinh.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-cauhinh=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.CauHinh) + "</div>";
                     htmlMenu += "   </a>";
                 }
 
@@ -608,6 +626,7 @@ public static class Lib
         txt = txt.Replace("\"", "");
         txt = txt.Replace("“", "");
         txt = txt.Replace("”", "");
+        txt = txt.Replace("+", "");
         while (txt.IndexOf("--") > -1)
         {
             txt = txt.Replace("--", "-");
@@ -982,40 +1001,44 @@ public static class Lib
         else
             return "<div class='alertmessage-lintam bg-danger-lintam'>" + info + "</div>";
     }
-    public static string createPhanTrang(int totalRow, int numInPage, int pageSelect, int numberPageShow, string scrollview = "")
+    public static string createPhanTrang(int totalRow, int numInPage, int pageSelect, int numberPageShow, string scrollview = "", string nameQueryString = "page")
     {
         int maxPage = totalRow > numInPage && totalRow % numInPage != 0 ? totalRow / numInPage + 1 : totalRow / numInPage;
         string html = "<div class=\"pagePhanTrang\">";
-        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1, scrollview) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
+        html += pageSelect > 1 ? "<a href=\"" + createLinkPhanTrang(pageSelect - 1, scrollview, nameQueryString) + "\" class=\"btnPhanTrangLeft\"></a>" : "";
         int numPageFor = pageSelect + numberPageShow;
         int pageStart = pageSelect < numberPageShow ? 1 : (pageSelect) % numberPageShow == 0 ? (pageSelect) : pageSelect - ((pageSelect) % numberPageShow);
         int pageEnd = pageSelect < numberPageShow ? numberPageShow : (pageStart + numberPageShow);
         pageEnd = pageEnd > maxPage ? maxPage : pageEnd;
         for (int i = pageStart; i <= pageEnd; i++)
         {
-            html += i == pageSelect ? "<span class=\"btnPhanTrangItem\">" + i + "</span>" : "<a href=\"" + createLinkPhanTrang(i, scrollview) + "\" class=\"btnPhanTrangItem\">" + i + "</a>";
+            html += i == pageSelect ? "<span class=\"btnPhanTrangItem\">" + i + "</span>" : "<a href=\"" + createLinkPhanTrang(i, scrollview, nameQueryString) + "\" class=\"btnPhanTrangItem\">" + i + "</a>";
         }
 
-        html += pageSelect < maxPage ? "<a href=\"" + createLinkPhanTrang(pageSelect + 1, scrollview) + "\" class=\"btnPhanTrangRight\"></a>" : "";
+        html += pageSelect < maxPage ? "<a href=\"" + createLinkPhanTrang(pageSelect + 1, scrollview, nameQueryString) + "\" class=\"btnPhanTrangRight\"></a>" : "";
         html += "</div>";
         return html;
     }
-    private static string createLinkPhanTrang(int page, string scrollview)
+    private static string createLinkPhanTrang(int page, string scrollview, string nameQueryString)
     {
         string url = HttpContext.Current.Request.RawUrl;
         if (url.IndexOf("?") <= -1)
         {
-            url += "?page=" + page;
+            url += "?" + nameQueryString + "=" + page;
         }
         else
         {
             string pageOld;
-            if (HttpContext.Current.Request.QueryString["page"] != null)
-                url = url.Replace("page=" + HttpContext.Current.Request.QueryString["page"], "page=" + page);
+            if (HttpContext.Current.Request.QueryString[nameQueryString] != null)
+                url = url.Replace(nameQueryString + "=" + HttpContext.Current.Request.QueryString[nameQueryString], nameQueryString + "=" + page);
             else if (url.LastIndexOf("&") != url.Length)
-                url = url + "&page=" + page;
+                url = url + "&" + nameQueryString + "=" + page;
             else
-                url = url.IndexOf("&") <= -1 ? url + "&page=" + page : url + "page=" + page;
+                url = url.IndexOf("&") <= -1 ? url + "&" + nameQueryString + "=" + page : url + nameQueryString + "=" + page;
+        }
+        if (url.IndexOf("#") > -1)
+        {
+            url = url.Split('#')[0];
         }
         if (url.IndexOf("#" + scrollview) == -1)
             url += "#" + scrollview;

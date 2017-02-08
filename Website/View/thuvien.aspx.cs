@@ -12,16 +12,16 @@ public partial class View_thuvien : BaseHome
     {
         this.Title = "Thư viện";
     }
-    public List<TinTuc> getThuVien(int pageSize, out int totalRowCount, out int pageSelect)
+    public List<TinTuc> getThuVien(int pageSize, int cate, out int totalRowCount, out int pageSelect)
     {
         int pageNum = 1;
-        if (Request.QueryString["page"] != null)
-            pageNum = Convert.ToInt32(Request.QueryString["page"]);
+        if (Request.QueryString["page" + cate] != null)
+            pageNum = Convert.ToInt32(Request.QueryString["page" + cate]);
         if (pageNum < 1)
             pageNum = 1;
         pageSelect = pageNum;
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.ThuVien && d.Status == (int)Enums.Status.active);
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.ThuVien && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active);
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();

@@ -14,10 +14,13 @@ using Newtonsoft.Json;
 public partial class admin_tu_van_truc_tuyen : BasePage
 {
     public string keyDangKy = "";
+    public Admin _admin_login = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (admin_login != null)
             keyDangKy = Lib.create_codeChat(JsonConvert.SerializeObject(admin_login), Enums.LoaiAccount.QuanTri);
+        _admin_login = admin_login;
+        this.Title = "Tư vấn trực tuyến";
     }
 
 

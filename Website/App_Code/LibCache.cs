@@ -1,16 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using Entity;
-
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for LibCeach
 /// </summary>
 public static class LibCache
 {
-    
+    private static List<KhaoSat> cache_khaosat { get; set; }
+    public static void convertCauHoi(this KhaoSat data)
+    {
+        data.arrayCauHoi = JsonConvert.DeserializeObject<List<Entity.KhaoSat.strucData>>(data.ContentKhaoSat);
+    }
+    public static List<KhaoSat> getKhaoSat(this LinqDataContext sql)
+    {
+        if (cache_khaosat == null) {
+            cache_khaosat = sql.KhaoSats.Where(d => d.Status != (int)Enums.Status.delete).ToList();
+            cache_khaosat.ForEach(d => {
+                d.convertCauHoi();
+                d.arrayCauTraLoi = sql.KhaoSat_TraLois.Where(c => c.IDKhaoSat == d.ID).ToList();
+            });
+        }
+        return cache_khaosat;
+    }
+    public static void AddOrUpdateCache(this KhaoSat dataUpdate, LinqDataContext sql)
+    {
+        var admin = sql.getKhaoSat().Where(d => d.ID == dataUpdate.ID).FirstOrDefault();
+        if (admin == null){
+            dataUpdate.arrayCauTraLoi = new System.Collections.Generic.List<KhaoSat_TraLoi>();
+            cache_khaosat.Add(dataUpdate);
+        }
+        else
+        {
+            dataUpdate.arrayCauTraLoi = admin.arrayCauTraLoi;
+            cache_khaosat.Remove(admin);
+            if (dataUpdate.Status != (int)Enums.Status.delete) {
+                dataUpdate.convertCauHoi();
+                cache_khaosat.Add(dataUpdate);
+            }
+        }
+
+    }
+
+
     private static List<Admin> cache_admin { get; set; }
 
     public static void AddOrUpdateCache(this Admin dataUpdate, LinqDataContext sql)
@@ -97,4 +134,16 @@ public static class LibCache
         return cache_user;
     }
 
+    private static SettingWeb _settingWeb { get; set; }
+    public static void AddOrUpdateCache(this SettingWeb dataUpdate)
+    {
+
+        _settingWeb = dataUpdate;
+    }
+    public static SettingWeb getSettingWeb(this LinqDataContext sql)
+    {
+        if (_settingWeb == null)
+            _settingWeb = sql.SettingWebs.FirstOrDefault();
+        return _settingWeb;
+    }
 }

@@ -152,6 +152,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
+    <div class="cate-link" style="padding-left: 5px;margin-bottom:0px;border:none;">
+        <span class="item-link-cate">
+            <a href="<%=Lib.urlhome %>">Trang chủ</a>
+        </span>
+        <span class="item-link-cate">Kết nối
+        </span>
+    </div>
     <div class="panel_1k2">
         <%foreach (var item in getNhom())
           {%>

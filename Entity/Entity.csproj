@@ -45,6 +45,8 @@
     <Compile Include="Enums.cs" />
     <Compile Include="expandClass\Admin.cs" />
     <Compile Include="expandClass\Comment.cs" />
+    <Compile Include="expandClass\KhaoSat.cs" />
+    <Compile Include="expandClass\ThreadChat.cs" />
     <Compile Include="expandClass\ThanhPho.cs" />
     <Compile Include="Linq.cs">
       <DependentUpon>Linq.dbml</DependentUpon>

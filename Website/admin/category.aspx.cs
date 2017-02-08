@@ -55,7 +55,7 @@ public partial class admin_category : BasePage
                         txtDiaChi.Text = _data.DiaChi;
                         txtEmail.Text = _data.Email;
                         txtDienThoai.Text = _data.DienThoai;
-                        Response.Write("<script type=\"text/javascript\">var ListImgOld = " + JsonConvert.SerializeObject(_data.Img.Split(',').Where(d => !string.IsNullOrEmpty(d))) + ";</script>");
+                        Response.Write("<script type=\"text/javascript\">var ListImgOld = " + JsonConvert.SerializeObject((_data.Img ?? "").Split(',').Where(d => !string.IsNullOrEmpty(d))) + ";</script>");
                     }
                 }
 

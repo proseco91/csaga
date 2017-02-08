@@ -19,7 +19,7 @@ using Entity;
 /// </summary>
 public class BasePage : System.Web.UI.Page
 {
-    public LinqDataContext sql = new LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString());
+    public LinqDataContext sql = Lib.createSQL();
     public Admin admin_login = null;
     public int TypeAction = 0;
     public int TypePage = -1;

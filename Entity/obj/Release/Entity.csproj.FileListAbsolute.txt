@@ -1,0 +1,6 @@
+D:\GitHub\csaga\Entity\bin\Release\Entity.dll.config
+D:\GitHub\csaga\Entity\bin\Release\Entity.dll
+D:\GitHub\csaga\Entity\bin\Release\Entity.pdb
+D:\GitHub\csaga\Entity\obj\Release\Entity.csprojResolveAssemblyReference.cache
+D:\GitHub\csaga\Entity\obj\Release\Entity.dll
+D:\GitHub\csaga\Entity\obj\Release\Entity.pdb

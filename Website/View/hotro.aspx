@@ -2,196 +2,196 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="Server">
     <style type="text/css">
-        .hotro-left {
-            min-height: 1150px;
-            background-color: #d7d7d7;
-            width: 350px;
-            float: left;
-            box-sizing: border-box;
-            padding: 50px 0px 20px 50px;
+        .list-item-thuvien
+        {
+            padding-bottom: 0px;
+        bo
         }
-
-        .hotro-right {
-            float: left;
-            width: calc(100% - 350px);
-            padding: 50px 10px 20px 20px;
-            box-sizing: border-box;
-        }
-
-        .hotro-left .hotro-left-title {
-            height: 40px;
-            width: 100%;
-            background-color: #ae4bce;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-            .hotro-left .hotro-left-title:before {
-                content: " ";
-                width: 10px;
-                height: 100%;
-                background-color: #000;
-                top: 0px;
-                left: 0px;
-                position: absolute;
+            .list-item-thuvien:nth-child(2n+0)
+            {
+                background-color: #c9dbff;
+            }
+            .list-item-thuvien:nth-child(2n+0) .cate-link{
+                border-bottom: 1px dashed #FFF;
+            }
+            .list-item-thuvien .item-thuvien
+            {
+                width: 240px;
+                height: 480px;
+                float: left;
+                margin: 40px 70px;
             }
 
-            .hotro-left .hotro-left-title::after {
-                content: "Hỗ trợ";
-                text-transform: uppercase;
-                font-size: 20px;
-                font-weight: 700;
-                color: #FFF;
-                padding: 0px 20px;
-                position: relative;
-                top: 7px;
-            }
-
-        .detail-tintuckhac-item {
-            font-size: 18px;
-            color: #333333;
-            position: relative;
-            margin: 10px 0px;
-            padding-left: 30px;
-        }
-
-            .detail-tintuckhac-item:before {
-                content: url('../Images/Csaga/icon-tinkhac.png');
-                position: absolute;
-                top: 2px;
-                left: 0px;
-            }
-
-            .detail-tintuckhac-item[category="selected"] {
-                border-bottom: 1px dashed #333;
-                font-weight: 700;
-            }
-
-        .hotro-item {
-            height: 300px;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-            .hotro-item .hotro-item-img {
-                height: 300px;
-                width: 270px;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                position: absolute;
-                left: 0px;
-                top: 0px;
-            }
-
-            .hotro-item .hotro-item-content {
-                margin-left: 290px;
-                position: relative;
-                height: 300px;
-            }
-
-            .hotro-item .hotro-item-title {
-                font-size: 20px;
-                font-weight: 700;
-                max-height: 64px;
-                overflow: hidden;
-            }
-
-            .hotro-item .hotro-item-date {
-                font-size: 15px;
-                color: #555;
-            }
-
-            .hotro-item .hotro-item-des {
-                margin-top: 5px;
-                border-top: 1px dashed #DDD;
-                font-size: 15px;
-                color: #444;
-                padding-top: 10px;
-                max-height: 145px;
-                overflow: hidden;
-            }
-
-            .hotro-item .item-hotro-btn {
-                height: 32px;
-                background-color: #ae4bce;
-                position: absolute;
-                bottom: 0px;
-                width: 100%;
-            }
-
-                .hotro-item .item-hotro-btn::before {
-                    content: "Xem thêm";
-                    position: absolute;
-                    right: 30px;
-                    top: 10px;
-                    color: #FFF;
+                .list-item-thuvien .item-thuvien:nth-child(1)
+                {
+                    margin-left: 0px;
                 }
 
-                .hotro-item .item-hotro-btn::after {
-                    content: url('../Images/Csaga/icon-xemthem.png');
-                    position: absolute;
-                    right: 05px;
-                    top: 10px;
+                .list-item-thuvien .item-thuvien:nth-child(3)
+                {
+                    margin-right: 0px;
                 }
 
-        .pagePhanTrang {
-            text-align: right;
+                .list-item-thuvien .item-thuvien .item-thuvien-img
+                {
+                    height: 240px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius:50%;
+                }
+
+                .list-item-thuvien .item-thuvien .item-thuvien-title
+                {
+                    font-size: 23px;
+                    font-weight: 700;
+                    text-align: center;
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 10px 0px;
+                    color: #000;
+                }
+
+                    .list-item-thuvien .item-thuvien .item-thuvien-title::after
+                    {
+                        content: " ";
+                        width: 50%;
+                        border-bottom: 1px solid #CCC;
+                        position: absolute;
+                        bottom: 5px;
+                        left: 25%;
+                    }
+
+                .list-item-thuvien .item-thuvien .item-thuvien-des
+                {
+                    font-size: 15px;
+                    color: #666666;
+                    text-align: justify;
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 5px 0px;
+                    height: 112px;
+                }
+
+                .list-item-thuvien .item-thuvien .item-thuvien-btn
+                {
+                    height: 32px;
+                    background-color: #ae4bce;
+                    position: relative;
+                }
+
+                    .list-item-thuvien .item-thuvien .item-thuvien-btn::before
+                    {
+                        content: "<%=Lib.ContentLag("Xem thêm","More")%>";
+                        position: absolute;
+                        right: 30px;
+                        top: 10px;
+                        color: #FFF;
+                    }
+
+                    .list-item-thuvien .item-thuvien .item-thuvien-btn::after
+                    {
+                        content: url('../Images/Csaga/icon-xemthem.png');
+                        position: absolute;
+                        right: 05px;
+                        top: 10px;
+                    }
+        .pagePhanTrang
+        {
+            padding-bottom:80px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div class="panel_1k2">
-        <div class="panel-hotro">
-            <div class="hotro-left">
-                <div class="hotro-left-title">
-                </div>
-                <%foreach (var item in arrcate)
-                  {%>
-                <a href="mucluc-hotro-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
-                    <div class="detail-tintuckhac-item" category="<%=item.ID==category?"selected":"" %>">
-                        <%=item.TieuDe_Vn %>
-                    </div>
-                </a>
-                <%} %>
+    <div>
+
+        <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro))
+          {%>
+        <div class="list-item-thuvien">
+            <div style="clear: both; height: 1px;"></div>
+            <div class="cate-link" style="padding-left: 5px;">
+                <span class="item-link-cate">
+                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
+                </span>
+                <span class="item-link-cate">
+                    <%=Lib.convertNoiDungHTML(cate.TieuDe_Vn,cate.TieuDe_En) %>
+                </span>
             </div>
-            <div class="hotro-right" id="viewnews">
-                <%
-                    int totalRow = 0;
-                    int pageSelect = 1;
-                    int numInPage = 3;
-                    foreach (var item in getHoTro(numInPage, out totalRow, out pageSelect).Select((value, i) => new { i, value }))
-                    {
+            <div style="clear: both; height: 0px;"></div>
+            <div class="panel_1k " id="view<%=cate.ID %>">
+                <% 
+              int totalRow = 0;
+              int pageSelect = 1;
+              int numInPage = 3;
+              var thuVien = getThuVien(numInPage, cate.ID, out totalRow, out pageSelect);
+              foreach (var item in thuVien.Select((value, i) => new { i, value }))
+              {    
                 %>
 
-                <div class="hotro-item">
-                    <div class="hotro-item-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');">
-                    </div>
-                    <div class="hotro-item-content">
-                        <div class="hotro-item-title">
-                            <%=Lib.subString(item.value.TieuDe_En,110) %>
-                        </div>
-                        <div class="hotro-item-date">
-                            <%=item.value.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
-                        </div>
-                        <div class="hotro-item-des">
-                            <%=item.value.Des_En %>
-                        </div>
-                        <a href="hotro-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
-                            <div class="item-hotro-btn"></div>
-                        </a>
-                    </div>
+                <div class="item-thuvien">
+                    <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
+                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_En,40) %></div>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_En,140) %></div>
+                    <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                        <div class="item-thuvien-btn"></div>
+                    </a>
                 </div>
+
                 <%}%>
-                <div style="clear: both; height: 0px;"></div>
-                <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
+                <div style="clear: both;"></div>
+                <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"view"+cate.ID,"page"+cate.ID)%>
             </div>
             <div style="clear: both;"></div>
         </div>
+        <%}%>
+
+        <%--<%
+            int totalRow = 0;
+            int pageSelect = 1;
+            int numInPage = 6;
+            var thuVien = getThuVien(numInPage, out totalRow, out pageSelect);
+            foreach (var item in thuVien.Select((value, i) => new { i, value }))
+            {
+        %>
+        <%if (item.i == 0 || item.i == 3)
+          { %>
+        <div class="list-item-thuvien">
+            <div class="panel_1k ">
+
+                <%}%>
+
+
+                <div class="item-thuvien">
+                    <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
+                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_En,40) %></div>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_En,140) %></div>
+                    <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                        <div class="item-thuvien-btn"></div>
+                    </a>
+                </div>
+
+                <%if (item.i == 2 || item.i == 5)
+                  { %>
+                <div style="clear: both;"></div>
+                <%if (item.i == 5)
+                  { %>
+                <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
+                <%}%>
+            </div>
+        </div>
+        <%}%>
+
+        <%}%>
+        <%if (thuVien.Count < 3 || thuVien.Count < 6)
+          { %>
+        <div style="clear: both;"></div>
+        <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
     </div>
-
-
+    </div>
+                <%}%>
+    <div style="clear: both; height: 0px;"></div>--%>
+    </div>
 </asp:Content>
 

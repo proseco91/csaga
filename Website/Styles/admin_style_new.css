@@ -1301,7 +1301,10 @@ a.btnPhanTrangItem:hover
     height: 100%;
     z-index: 11;
     background-color: rgba(255, 255, 255, 0.7);
-    display: none;
+    background-image: url('../images/loadingClass.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    display:none;
 }
 
 .page-logined

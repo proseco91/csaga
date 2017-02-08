@@ -32,6 +32,11 @@ public static class Lib
     public static string hostchat = "http://localhost:1230";
 
 
+    public static Entity.LinqDataContext createSQL()
+    {
+        return new Entity.LinqDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ToString());
+    }
+
     public static string CreateGuid()
     {
         return Guid.NewGuid().ToString().Trim();

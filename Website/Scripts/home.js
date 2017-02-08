@@ -1,8 +1,12 @@
 ﻿var filter_number = /^[0-9]{1,}$/;
+var filter_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 var lib = new Lib();
 function Lib() {
     this.isNumber = function (value) {
         return filter_number.test(value);
+    }
+    this.isEmail = function (value) {
+        return filter_email.test(value);
     }
     this.message = function (status, info) {
         setTimeout(function () {

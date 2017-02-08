@@ -4,7 +4,7 @@
     <style type="text/css">
         .hotro-left
         {
-            width: 600px;
+            width: 800px;
             padding: 20px;
             padding-left: 0px;
             box-sizing: border-box;
@@ -26,7 +26,7 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 position: absolute;
-                left: 0px;
+                left: 5px;
                 top: 0px;
             }
 
@@ -91,7 +91,7 @@
         .hotro-right
         {
             float: left;
-            width: calc(100% - 600px);
+            width: calc(100% - 800px);
             height: 1020px;
             box-sizing: border-box;
         }
@@ -111,14 +111,14 @@
         {
             border-bottom: 1px dashed #CCC;
             margin-bottom: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 0px;
             text-align: right;
         }
 
-            .panel-btn-guicauchuyen span
+            .panel-btn-guicauchuyen .btn-guicauchuyen
             {
-                padding: 5px 20px;
-                font-size: 13px;
+                padding: 8px 20px;
+                font-size: 15px;
                 text-transform: uppercase;
                 color: #FFF;
                 background-color: #ae4bce;
@@ -126,7 +126,7 @@
                 cursor: pointer;
             }
 
-                .panel-btn-guicauchuyen span:hover
+                .panel-btn-guicauchuyen .btn-guicauchuyen:hover
                 {
                     background-color: #8e2bae;
                 }
@@ -174,14 +174,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
+
     <div panel-addcauchuyen>
         <span btn-close></span>
         <iframe style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; border: 0px;" src="<%=Lib.urlhome %>/View/ThemCauChuyen.aspx"></iframe>
     </div>
     <div class="panel_1k2">
         <div class="hotro-left" id="viewnews">
+            <div class="cate-link" style="padding-left: 5px;">
+                <span class="item-link-cate">
+                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
+                </span>
+                <span class="item-link-cate">Tôi là nữ yêu nữ
+                </span>
+            </div>
             <div class="panel-btn-guicauchuyen">
-                <span class="btn-guicauchuyen">Gửi câu chuyện</span>
+                <span class="btn-guicauchuyen">Mời bạn gửi câu chuyện của mình tại đây</span>
+                <span style="display: block; margin-top: 20px;">Lưu ý: các thông tin cá nhân sẽ hoàn toàn được giữ bí mật, chúng tôi sẽ biên tập lại trước khi lên trang nếu cần thiết. Cám ơn bạn.
+                </span>
             </div>
             <%
                 int totalRow = 0;

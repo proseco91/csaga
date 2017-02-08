@@ -37,9 +37,11 @@ public partial class admin_admin : BasePage
             if (!IsPostBack)
             {
 
-                for (int i = 1; i <= 9; i++)
+                for (int i = 1; i <= 11; i++)
                 {
-                    cbCate.Items.Add(new ListItem(Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i), i.ToString()));
+                    string cate = Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i);
+                    if (!string.IsNullOrEmpty(cate))
+                        cbCate.Items.Add(new ListItem(Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i), i.ToString()));
                 }
 
             }

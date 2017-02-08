@@ -10,7 +10,7 @@ public partial class View_hinhanhcongdong : BaseHome
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Title = "Hình ảnh cộng đồng nữ yêu nữ";
+        this.Title = "Tôi là nữ yêu nữ";
     }
     public string getThanhPhoSoLuong()
     {

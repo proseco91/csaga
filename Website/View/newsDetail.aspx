@@ -36,7 +36,7 @@
             color: #000;
             font-size: 17px;
             margin-top: 10px;
-            text-align:justify;
+            text-align: justify;
         }
 
             .detail-content img
@@ -44,8 +44,8 @@
                 text-align: center;
                 border: 1px solid #CCC;
                 padding: 2px;
-                max-width:100%;
-                height:auto;
+                max-width: 100%;
+                height: auto;
             }
 
         .detail-tintuckhac
@@ -78,8 +78,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div style="clear: both; height: 30px;"></div>
     <div class="panel_1k">
+        <div class="cate-link">
+            <span class="item-link-cate">
+                <a href="<%=Lib.urlhome %>">Trang chủ</a>
+            </span>
+            <span class="item-link-cate">
+                <%=Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)tintuc.Type) %>
+            </span>
+        </div>
         <div class="detail-title">
             <%=tintuc.TieuDe_Vn %>
         </div>
@@ -96,7 +103,8 @@
         <div class="detail-tintuckhac">
             Các tin tức khác
         </div>
-        <%foreach (var item in getTinTucKhac()){%>
+        <%foreach (var item in getTinTucKhac())
+          {%>
         <a href="<%=Lib.urlChiTiet((Enums.LoaiTinTuc)item.Type) %>-<%=Lib.LocDau(item.TieuDe_Vn) %>-z-<%=item.ID %>.htm">
             <div class="detail-tintuckhac-item">
                 <%=item.TieuDe_Vn %>

@@ -4,7 +4,7 @@
     <style type="text/css">
         .hotro-left
         {
-            width: 600px;
+            width: 800px;
             padding: 20px;
             box-sizing: border-box;
             float: left;
@@ -56,7 +56,7 @@
         .hotro-right
         {
             float: left;
-            width: calc(100% - 600px);
+            width: calc(100% - 800px);
             height: 1020px;
         }
 
@@ -172,6 +172,15 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
     <div class="panel_1k2">
         <div class="hotro-left" id="viewnews">
+            <div class="cate-link">
+                <span class="item-link-cate">
+                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
+                </span>
+                <span class="item-link-cate">
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">Tôi là nữ yêu nữ</a>
+                </span>
+            </div>
+
             <div class="detail-title">
                 <%=tintuc.TieuDe_Vn %>
             </div>

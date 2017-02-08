@@ -10,7 +10,7 @@ public partial class View_nhomyeunu : BaseHome
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Title = "Nhóm nữ yêu nữ";
+        this.Title = "Kết nối";
     }
     public List<Category> getNhom()
     {

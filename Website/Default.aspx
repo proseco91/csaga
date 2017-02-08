@@ -175,7 +175,7 @@
                 </div>
             </div>
             <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">
-                <div class="item-home-name">Nhóm nữ yêu nữ</div>
+                <div class="item-home-name">Kết nối</div>
             </a>
         </div>
         <div class="item-home flip-container">
@@ -193,7 +193,7 @@
                 </div>
             </div>
             <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">
-                <div class="item-home-name">Hỗ trợ</div>
+                <div class="item-home-name">Alo tôi nghe</div>
             </a>
         </div>
         <div class="item-home flip-container">

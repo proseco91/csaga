@@ -156,7 +156,7 @@ $(document).ready(function () {
     $('.panel_from .panel_from_row_file').each(function () {
         var _this = $(this).find('input:file');
         _this.uploadFile({
-            size: 2097152,
+            size: 10097152,
             autostart: false,
             base64: function (base, el) {
                 _this.val('').clone(true);
@@ -176,7 +176,7 @@ $(document).ready(function () {
                 }
             },
             error: function (file, thrownError) {
-                console.log(thrownError);
+                chatLinkTamFun.message(false, thrownError);
             }
         });
     });

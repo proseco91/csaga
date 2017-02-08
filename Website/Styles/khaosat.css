@@ -1,0 +1,218 @@
+﻿#khao-sat {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 10002;
+}
+
+    #khao-sat .khao-sat-panel {
+        width: 500px;
+        max-width: calc(100% - 20px);
+        max-height: calc(100% - 20px);
+        background-color: #FFF;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+        #khao-sat .khao-sat-panel:after {
+            position: absolute;
+            z-index: 0;
+            box-sizing: border-box;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            border: 1px dashed #DDD;
+            content: " ";
+            left: 10px;
+            top: 10px;
+        }
+
+        #khao-sat .khao-sat-panel .khao-sat-panel-content {
+            z-index: 1;
+            position: absolute;
+            width: calc(100% - 40px);
+            max-height: calc(100% - 90px);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-content[overflow] {
+                overflow: auto;
+            }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item {
+                display: none;
+                opacity: 0;
+                -webkit-transition: opacity 1s ease-out 0s;
+                -moz-transition: opacity 1s ease-out 0s;
+                transition: opacity 1s ease-out 0s;
+            }
+
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[show] {
+                    display: block;
+                }
+
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[showeff] {
+                    opacity: 1;
+                }
+
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check] {
+                    position: relative;
+                    padding-left: 25px;
+                    font-size: 14px;
+                    margin: 5px 0px;
+                }
+
+                    #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check] input {
+                        position: absolute;
+                        left: 0px;
+                        top: 1px;
+                    }
+
+        #khao-sat .khao-sat-panel .khao-sat-panel-btn {
+            z-index: 1;
+            position: absolute;
+            width: calc(100% - 40px);
+            height: 30px;
+            box-sizing: border-box;
+            bottom: 20px;
+        }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn:before {
+                position: absolute;
+                content: url('../Images/loadingClass.gif');
+                height: 30px;
+                width: 30px;
+                right: 0px;
+                z-index: 1;
+                display: none;
+            }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn[loading]:before {
+                display: block;
+            }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right {
+                position: absolute;
+                top: 0px;
+                height: 100%;
+                line-height: 34px;
+                background-color: #DDD;
+                box-sizing: border-box;
+                padding: 0px 10px;
+                min-width: 60px;
+                text-align: center;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: none;
+            }
+
+                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left[show], #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right[show] {
+                    display: block;
+                }
+
+                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left:hover, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right:hover {
+                    background-color: #b200ff;
+                    color: #FFF;
+                }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left {
+                left: 0px;
+            }
+
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right {
+                right: 0px;
+            }
+
+
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input {
+    padding: 2px;
+    position: relative;
+    height: 27px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn {
+    text-align: right;
+}
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_err {
+    text-align: justify;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ff6a00;
+}
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button] {
+    padding: 3px 15px;
+    text-transform: uppercase;
+    border: 1px solid #DDD;
+    cursor: pointer;
+}
+
+    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:hover, .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:active {
+        border: 1px solid #77018b;
+        background-color: #77018b;
+        color: #FFF;
+    }
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input::before {
+    content: attr(title);
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 5px;
+    width: 90px;
+    border-right: 1px dashed #DDD;
+    line-height: 34px;
+    color: #000;
+    font-weight: 700;
+    color: #77018b;
+}
+
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px 5px 5px 100px;
+    left: 0px;
+    top: 0px;
+    border: 1px solid #DDD;
+    background-color: transparent;
+}
+
+    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text]:focus {
+        border-color: #77018b;
+    }
+
+
+.khao-sat-item[thanhcong="false"] [panelthanhcong] {
+    display: none;
+}
+
+.khao-sat-item[thanhcong="true"] [panelinfo] {
+    display: none;
+}
+
+.khao-sat-item[thanhcong="true"] [panelthanhcong] {
+    font-size: 22px;
+    color: #0094ff;
+    text-transform: uppercase;
+    text-align: center;
+    height:80px;
+    line-height:80px;
+}

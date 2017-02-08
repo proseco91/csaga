@@ -1,17 +1,11 @@
 ﻿<%@ Application Language="C#" %>
-<%@ Import Namespace="System.Web.Routing" %>
-<%@ Import Namespace="Microsoft.AspNet.SignalR" %>
 
 <script runat="server">
 
     void Application_Start(object sender, EventArgs e) 
     {
         // Code that runs on application startup
-        //var config = new HubConfiguration
-        //{
-        //    EnableCrossDomain = true
-        //};
-        //RouteTable.Routes.MapHubs("linktam",config);
+        
         //new threadChat();
     }
     

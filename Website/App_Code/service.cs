@@ -36,7 +36,7 @@ public class strucItemCart
 [System.Web.Script.Services.ScriptService]
 public class service : System.Web.Services.WebService
 {
-    LinqDataContext sql = new LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString());
+    LinqDataContext sql = Lib.createSQL();
     public service()
     {
 
@@ -68,6 +68,80 @@ public class service : System.Web.Services.WebService
 
     }
 
+
+    [WebMethod(EnableSession = true)]
+    public void doneKhaoSat(string ID, string array, string fullname, string email, string phone)
+    {
+        KhaoSat khaosat = sql.getKhaoSat().Where(d => d.ID == ID).FirstOrDefault();
+        if (khaosat != null)
+        {
+            KhaoSat_TraLoi traloi = new KhaoSat_TraLoi()
+            {
+                CreateDate = DateTime.Now,
+                Email = email,
+                FullName = fullname,
+                ID = Lib.CreateGuid(),
+                IDKhaoSat = ID,
+                NoiDung = array,
+                PhoneNumber = phone
+            };
+            sql.KhaoSat_TraLois.InsertOnSubmit(traloi);
+            sql.SubmitChanges();
+            khaosat.arrayCauTraLoi.Add(traloi);
+            List<string> arrayTraLoi = new List<string>();
+            arrayTraLoi.Add(khaosat.ID);
+
+            HttpCookie userKhaoSat = Context.Request.Cookies["guid_khao_sat"];
+            if (userKhaoSat != null) {
+                arrayTraLoi.AddRange(JsonConvert.DeserializeObject<List<string>>(userKhaoSat["ArrayID"]));
+            }
+            userKhaoSat = new HttpCookie("guid_khao_sat");
+            userKhaoSat["ArrayID"] = JsonConvert.SerializeObject(arrayTraLoi);
+            userKhaoSat.Expires = DateTime.Now.AddYears(10);
+            Context.Response.Cookies.Add(userKhaoSat);
+
+        }
+        
+        
+
+        //ThreadChat thread = Newtonsoft.Json.JsonConvert.DeserializeObject<ThreadChat>(data);
+        //Context.Response.Cookies["guid_Chat"].Expires = DateTime.Now.AddYears(-10);
+        //HttpCookie userInfoCookie = new HttpCookie("guid_Chat");
+        //userInfoCookie["UserID"] = Lib.Encrypt(JsonConvert.SerializeObject(thread), "crazylady9x@gmail.com-csaga");
+        //userInfoCookie.Expires = DateTime.Now.AddYears(10);
+        //Context.Response.Cookies.Add(userInfoCookie);
+        //Session["ThreadChat"] = thread;
+        //return JsonConvert.SerializeObject(thread);
+
+
+    }
+    [WebMethod(EnableSession = true)]
+    public void doneketThucTuvan(string id)
+    {
+        Session["ThreadChat"] = null;
+        Context.Response.Cookies["guid_Chat"].Expires = DateTime.Now.AddYears(-11);
+        ThreadChat thread = sql.ThreadChats.Where(d => d.ID == id).FirstOrDefault();
+        thread.ClientEnd = true;
+        sql.SubmitChanges();
+
+
+
+    }
+    [WebMethod(EnableSession = true)]
+    public string editClientThread(string data)
+    {
+        ThreadChat thread = Newtonsoft.Json.JsonConvert.DeserializeObject<ThreadChat>(data);
+        Context.Response.Cookies["guid_Chat"].Expires = DateTime.Now.AddYears(-10);
+        HttpCookie userInfoCookie = new HttpCookie("guid_Chat");
+        userInfoCookie["UserID"] = Lib.Encrypt(JsonConvert.SerializeObject(thread), "crazylady9x@gmail.com-csaga");
+        userInfoCookie.Expires = DateTime.Now.AddYears(10);
+        Context.Response.Cookies.Add(userInfoCookie);
+        Session["ThreadChat"] = thread;
+        return JsonConvert.SerializeObject(thread);
+
+
+    }
+
     [WebMethod]
     public string addCommnet(string idTin, string comment)
     {
@@ -87,7 +161,6 @@ public class service : System.Web.Services.WebService
 
 
     }
-
 
 
 

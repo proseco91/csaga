@@ -1,4 +1,9 @@
-﻿body
+﻿*
+{
+    outline: none;
+}
+
+body
 {
     font-family: 'Arima Madurai', cursive;
     font-size: 12px;
@@ -41,15 +46,15 @@ a
 .bodyCrazy .slogan_search
 {
     width: 100%;
-    height: 152px;
+    height: 80px;
     margin: auto;
     background-color: #77018b;
 }
 
 .bodyCrazy .eff_7mau
 {
-    height: 18px;
     width: 100%;
+    position:relative;
 }
 
     .bodyCrazy .eff_7mau div
@@ -57,12 +62,25 @@ a
         float: left;
         width: 14.28571428571429%;
         height: 18px;
+        text-align: center;
+        color: #333;
+        padding: 10px 0px;
+        font-size: 14px;
+        font-weight: 700;
     }
+
+        .bodyCrazy .eff_7mau div[active]
+        {
+            position: relative;
+            padding-bottom: 15px;
+            margin-top: -5px;
+        }
 
 .bodyCrazy .banner
 {
     width: 100%;
-    height: 550px;
+    height: 360px;
+    position: relative;
 }
 
     .bodyCrazy .banner .banner_content
@@ -79,8 +97,60 @@ a
             height: 100%;
             background-position: center center;
             background-size: cover;
-            background-repeat:no-repeat;
+            background-repeat: no-repeat;
+            position: absolute;
+            opacity: 0;
+            -webkit-transition: opacity 1s ease-out 0s;
+            -moz-transition: opacity 1s ease-out 0s;
+            transition: opacity 1s ease-out 0s;
+            top: 0px;
+            left: 0px;
         }
+
+            .bodyCrazy .banner .banner_content .item_banner[show]
+            {
+                opacity: 1;
+            }
+
+    .bodyCrazy .banner .banner_index
+    {
+        position: absolute;
+        z-index: 2;
+        bottom: 10px;
+        text-align: right;
+        right: 10px;
+    }
+
+        .bodyCrazy .banner .banner_index .banner_index_span
+        {
+            display: inline-block;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 3px;
+            padding: 0px 20px;
+            height: 42px;
+        }
+
+            .bodyCrazy .banner .banner_index .banner_index_span span
+            {
+                cursor: pointer;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: #FFF;
+                margin: 10px 5px;
+                
+            }
+
+                .bodyCrazy .banner .banner_index .banner_index_span span:after
+                {
+                    content: ".";
+                    opacity:0;
+                }
+                .bodyCrazy .banner .banner_index .banner_index_span span[show]{
+                    background-color:#77018b;
+                    border:5px solid #FFF;
+                }
 
 .bottom
 {
@@ -102,7 +172,13 @@ a
             background-color: #77018b;
             margin-top: -40px;
             border-radius: 3px 3px 0px 0px;
+            cursor: pointer;
         }
+
+            .bottom .bottom_line .bottom_btn_tuvan[none]
+            {
+                display: none;
+            }
 
             .bottom .bottom_line .bottom_btn_tuvan::after
             {
@@ -217,7 +293,7 @@ a
     color: #FFF;
     position: absolute;
     left: 0px;
-    top: 55px;
+    top: 22px;
     width: calc(100% - 300px);
 }
 
@@ -227,10 +303,50 @@ a
     border: none;
     position: absolute;
     right: 0px;
-    top: 57px;
+    top: 26px;
     height: 30px;
     width: 250px;
     box-sizing: border-box;
     padding: 3px 5px;
-    font-size:12px;
+    font-size: 12px;
+    padding-right: 33px;
+    background-image: url('../Images/Csaga/search.png');
+    background-position: calc(100% - 0px) center;
+    background-repeat: no-repeat;
+    background-size: 36px;
 }
+
+.cate-link
+{
+    margin: 20px 0px;
+    border-bottom: 1px dashed #DDD;
+    padding-bottom: 5px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+    .cate-link .item-link-cate a
+    {
+        color: #ae4bce;
+    }
+
+    .cate-link .item-link-cate::after
+    {
+        content: " ";
+        font-weight: bold;
+        background-image: url('../Images/Csaga/next.png');
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 13px;
+        display: inline-block;
+        position: relative;
+        top: 1px;
+        margin: 0px 9px;
+    }
+
+    .cate-link .item-link-cate:last-child::after
+    {
+        display: none;
+    }

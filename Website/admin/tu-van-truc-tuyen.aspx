@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Masster/MasterPage.master" AutoEventWireup="true" CodeFile="tu-van-truc-tuyen.aspx.cs" Inherits="admin_tu_van_truc_tuyen" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    
+
     <link href="../Styles/style_chat.css" rel="stylesheet" />
 
     <style type="text/css">
@@ -22,18 +22,16 @@
                 width: calc(100% - 10px);
                 height: calc(100% - 10px);
                 left: 5px;
-                display: none;
                 border: 1px solid #DDD;
-                box-shadow:none;
+                box-shadow: none;
             }
+
                 #crazylady_chat .crazylady_chat_windown .crazylady_chat_windown_title
                 {
-                    border-radius:0px;
+                    border-radius: 0px;
                 }
-                #crazylady_chat .crazylady_chat_windown[show]
-                {
-                    display: block;
-                }
+
+                
 
         #crazylady_chat_list
         {
@@ -41,7 +39,7 @@
             height: calc(100% - 20px);
             width: calc(550px - 300px);
             top: 10px;
-            left: 950px;
+            right: 10px;
             box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
             overflow-x: hidden;
             overflow-y: auto;
@@ -71,150 +69,93 @@
                     color: #FFF;
                     border: 1px solid #76008a;
                 }
+                #crazylady_chat_list [item-windown][number]:after
+                {
+                    content: attr(number);
+                    margin-left: 10px;
+                    background-color: #76008a;
+                    color: #FFF;
+                    padding: 3px 10px;
+                    border-radius: 3px;
+                    font-weight: 700;
+                }
+                #crazylady_chat_list [item-windown][show][number]:after
+                {
+                    content: attr(number);
+                    margin-left: 10px;
+                    background-color: #FFF;
+                    color: red;
+                    padding: 3px 10px;
+                    border-radius: 3px;
+                    font-weight: 700;
+                }
+        #crazylady_chat .crazylady_chat_windown[valIsStart="false"] .crazylady_chat_windown_content
+        {
+            display:none;
+        }
     </style>
     <script src="<%=Lib.urlhome %>/create-signal-chat.js"></script>
     <script src="<%=Lib.hostchat %>/linktam/hubs"></script>
     <script src="<%=Lib.urlhome %>/Scripts/chat.js"></script>
     <script type="text/javascript">
+        var idUser = 'admin';
+        var idSendMessage = '<%=admin_login.ID%>';
         $(document).ready(function () {
-            $.chat.init('<%=Lib.hostchat%>', '<%=keyDangKy%>');
+            $('.htm_loading_page').css({ 'display': 'block' });
+            $.chat.init('<%=Lib.urlhome%>', '<%=Lib.hostchat%>', '<%=keyDangKy%>',
+                function () {
+                    $.chat.libserver.server.getThreadChatWaint('<%=_admin_login.ID%>');
+                    
+                },
+                function () {
+                    
+                    $.chat.libserver.client.doneketThucTuvan = function (id) {
+                        $('.htm_loading_page').css({ 'display': 'none' });
+                        chatLinkTamFun.message(true, 'Cuộc tư vấn đã được kết thúc');
+                        $('#crazylady_chat_list [item-windown="' + id + '"]').remove();
+                        $('#crazylady_chat .crazylady_chat_windown[valid="' + id + '"]').remove();
+
+                    }
+                    $.chat.libserver.client.getThreadChatWaint = function (data) {
+                        $.each(data, function (index, item) {
+                            var element = $($.chat.createWindowRightAdmin(item)).appendTo('#crazylady_chat_list');
+                            element.create_Event_ListWindown_Admin();
+
+                            var windown = $($.chat.createWindowLeftAdmin(element)).appendTo('#crazylady_chat');
+                            windown.create_Event_Windown();
+                            $('.htm_loading_page').css({ 'display': 'none' });
+                        });
+                    }
+                    $.chat.libserver.client.addWindowTuvan = function (data) {
+                        var element = $($.chat.createWindowRightAdmin(data)).appendTo('#crazylady_chat_list');
+                        element.create_Event_ListWindown_Admin();
+                        var windown = $($.chat.createWindowLeftAdmin(element)).appendTo('#crazylady_chat');
+                        windown.create_Event_Windown();
+                    }
+                    $.chat.libserver.client.removeCuocTuvan = function (ID, message) {
+                        if (message != null && message.length > 0)
+                            chatLinkTamFun.message(false, message);
+                        $('.crazylady_chat_windown[valid="' + ID + '"]').remove();
+                        $('[item-windown="' + ID + '"]').remove();
+                        $('.htm_loading_page').css({ 'display': 'none' });
+                    }
+                    $.chat.libserver.client.doneNhanCuocTuVan = function (thread) {
+                        $('[item-windown="' + thread.ID + '"]').attr('valIsStart', true);
+                        $('.crazylady_chat_windown[valid="' + thread.ID + '"]').attr('valIsStart', true);
+                        $('.htm_loading_page').css({ 'display': 'none' });
+                    }
+                }
+            );
             $('div[menu-tuvan]').addClass('page-menu-group-item-active');
-            $('.crazylady_chat_windown').create_Event_Windown();
-            $('[item-windown]').create_Event_ListWindown_Admin();
+
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="position: relative;">
         <div id="crazylady_chat">
-            <div class="crazylady_chat_windown" valid="a1">
-                <div class="crazylady_chat_windown_title" valname="Nguyễn Văn Thắng">
-                </div>
-                <div class="crazylady_chat_windown_content">
-                    <div class="crazylady_rowchat left">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                    <div class="crazylady_rowchat right">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                    <div class="crazylady_rowchat left">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                </div>
-                <div class="crazylady_chat_windown_input">
-                    <textarea placeholder="Nhập tin nhắn ..." maxlength="500"></textarea>
-                </div>
-                <div class="crazylady_chat_windown_input_height"></div>
-            </div>
-            <div class="crazylady_chat_windown" valid="a2">
-                <div class="crazylady_chat_windown_title" valname="Nguyễn Văn Thắng2">
-                </div>
-                <div class="crazylady_chat_windown_content">
-                    <div class="crazylady_rowchat left">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                    <div class="crazylady_rowchat right">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                    <div class="crazylady_rowchat left">
-                        <a href="javascript:;">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-1/c15.105.576.576/s24x24/15134724_923291264467558_8862329354434493752_n.jpg?oh=84c78a7721a14ac8a0a9d7266291ba67&oe=591C872F" class="crazylady_rowchat_avarta" />
-                        </a>
-                        <div class="crazylady_rowchat_text">
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn Thắng chat nhiều hơn Thắng chat nhiều hơn v Thắng chat nhiều hơn</span>
-                            </div>
-                            <div class="crazylady_rowchat_text_content_parent">
-                                <span class="crazylady_rowchat_text_content">Thắng chat nhiều hơn</span>
-                            </div>
-                        </div>
-                        <div class="crazylady_rowchat_clear"></div>
-                    </div>
-                </div>
-                <div class="crazylady_chat_windown_input">
-                    <textarea placeholder="Nhập tin nhắn ..." maxlength="500"></textarea>
-                </div>
-                <div class="crazylady_chat_windown_input_height"></div>
-            </div>
         </div>
         <div id="crazylady_chat_list">
-            <span item-windown="a1">Nguyễn Văn Thắng
-            </span>
-            <span item-windown="a2">Nguyễn Văn Thắng 2
-            </span>
         </div>
     </div>
 

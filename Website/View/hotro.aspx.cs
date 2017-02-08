@@ -8,31 +8,20 @@ using Entity;
 
 public partial class View_hotro : BaseHome
 {
-    public int category = -1;
-    public List<Category> arrcate = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Title = "Hỗ trợ";
-        category = Convert.ToInt32(Request.QueryString["id"]);
-        arrcate = getCate();
-        if (category == -1)
-            category = arrcate.FirstOrDefault().ID;
-
+        this.Title = "Alo tôi nghe";
     }
-    public List<Category> getCate()
-    {
-        return sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro).ToList();
-    }
-    public List<TinTuc> getHoTro(int pageSize, out int totalRowCount, out int pageSelect)
+    public List<TinTuc> getThuVien(int pageSize, int cate, out int totalRowCount, out int pageSelect)
     {
         int pageNum = 1;
-        if (Request.QueryString["page"] != null)
-            pageNum = Convert.ToInt32(Request.QueryString["page"]);
+        if (Request.QueryString["page" + cate] != null)
+            pageNum = Convert.ToInt32(Request.QueryString["page" + cate]);
         if (pageNum < 1)
             pageNum = 1;
         pageSelect = pageNum;
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro && (d.Category.LastIndexOf(category.ToString() + ",") > -1 || d.Category.LastIndexOf(category.ToString()) > -1) && d.Status == (int)Enums.Status.active);
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active);
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
