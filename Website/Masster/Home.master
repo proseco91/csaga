@@ -85,9 +85,7 @@
         <div class="bodyCrazy">
             <div class="slogan_search">
                 <div class="panel_1k" style="position: relative;">
-                    <marquee>
-                    Thông tin kiến thức, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam
-                </marquee>
+                    <marquee>Thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam</marquee>
                     <input type="text" id="searchinput" placeholder="<%=Lib.convertNoiDungHTML("Tìm kiếm ...","Search ...") %>" />
                 </div>
             </div>
@@ -158,7 +156,7 @@
                 </div>
             </div>
             <div class="bottom_end">
-                Website này được thành lập và duy trì với sự tài trợ bởi COC Hà Lan (12/2016 - 4/2017). Vận hành bởi CSAGA và cồng đồng nữ yêu nữ tại Việt Nam.
+                Website này được thành lập và duy trì với sự tài trợ từ COC Hà Lan, vận hành bởi CSAGA và cộng đồng Nữ Yêu Nữ tại Việt Nam.
             </div>
         </div>
     </div>
