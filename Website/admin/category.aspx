@@ -21,8 +21,11 @@
                 <div class="panel_from_row panel_from_row_radio_btn">
                     <a href="<%=Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)Type) %>">
                         <input typeaction="0" type="button" value="Danh sách <%=Enums.MucLucDesc((Enums.LoaiTinTuc)Type) %>" /></a>
+                    <%if (Type != 0)
+                        { %>
                     <a href="<%=Enums.MucLucUrlThemMoi((Enums.LoaiTinTuc)Type) %>">
                         <input typeaction="1" type="button" value="Thêm mới <%=Enums.MucLucDesc((Enums.LoaiTinTuc)Type) %>" /></a>
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -50,8 +53,9 @@
 
                     <tr>
                         <th style="width: 50px; text-align: center;" enabled-sort>STT</th>
-                        <th style="width: calc(100% - 550px);" enabled-sort>Tên</th>
+                        <th style="width: calc(100% - 700px);" enabled-sort>Tên</th>
                         <th style="width: 150px;" enabled-sort sorted="desc">Ngày tạo</th>
+                        <th style="width: 150px; text-align: center;">Số thứ tự</th>
                         <th style="width: 150px; text-align: center;">Trạng thái</th>
                         <th style="width: 100px;"></th>
                     </tr>
@@ -67,13 +71,17 @@
                         <td style="width: 50px; text-align: center;" class="ellipsis">
                             <%=((pageSelect-1)*numInPage)+(item.i+1) %>
                         </td>
-                        <td style="width: calc(100% - 550px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
-                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
+                        <td style="width: calc(100% - 700px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
+                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Value.Ticks %>"><%=item.value.CreateDate.Value.ToString("dd/MM/yyyy, HH:mm") %></td>
+                        <td style="width: 150px; text-align: center;"><%=item.value.Number.HasValue?item.value.Number.Value:0 %></td>
                         <td style="width: 150px; text-align: center;"><%=item.value.Status==1?"Hiển thị":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
                             <a href="<%=string.Format(Enums.MucLucUrlChinhSua((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
+                            <%if (Type != 0)
+                                { %>
                             <a delete-link="Bạn chắc chắn muốn thay đổi trạng thái từ <%=item.value.Status==(int)Enums.Status.active?"ẩn thành hiển thị":"hiển thị thành ẩn" %> <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.MucLucUrlTrangThai((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-check-circle" title="<%=item.value.Status==1?"Ẩn":"Hiển thị" %>" style="<%=item.value.Status==1?"": "color:#CCC;" %>"></i></a>
                             <a delete-link="Bạn chắc chắn muốn xóa <%=item.value.TieuDe_Vn %>" href="<%=string.Format(Enums.MucLucUrlXoa((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-times" title="Xóa"></i></a>
+                            <%}%>
                         </td>
                     </tr>
                     <%}%>
@@ -103,6 +111,7 @@
                         <asp:TextBox ID="txtTitleEn" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
                     </span>
                 </div>
+
                 <asp:Panel ID="panelNhom" runat="server" Visible="false">
                     <div style="clear: both; height: 20px;"></div>
                     <div class="panel_from_row panel_from_row_input">
@@ -132,12 +141,14 @@
                             <asp:TextBox ID="txtDienThoai" no-empty runat="server" Width="100%" MaxLength="400"></asp:TextBox>
                         </span>
                     </div>
+                </asp:Panel>
+                <asp:Panel ID="panelImg" runat="server" Visible="false">
                     <div style="clear: both; height: 20px;"></div>
                     <div class="panel_from_row panel_from_row_file">
                         <lable>Ảnh đại diên</lable>
                         <span img-oldaaa></span>
                         <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg />
+                        <asp:FileUpload ID="fileUpload" ClientIDMode="Static" runat="server" dataImg />
                         </span>
                     </div>
                     <script type="text/javascript">
@@ -152,6 +163,31 @@
                         });
                     </script>
                 </asp:Panel>
+                <asp:Panel ID="panelColor" runat="server" Visible="false">
+                    <div style="clear: both; height: 20px;"></div>
+                    <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                        <lable>Màu nền</lable>
+                        <span>
+                            <asp:TextBox ID="colorBackgrould" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
+                            <span><span></span></span>
+                        </span>
+                    </div>
+                    <div style="clear: both; height: 20px;"></div>
+                    <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                        <lable>Màu chữ</lable>
+                        <span>
+                            <asp:TextBox ID="colorText" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
+                            <span><span></span></span>
+                        </span>
+                    </div>
+                </asp:Panel>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Số thứ tự</lable>
+                    <span style="width: 400px;">
+                        <asp:TextBox ID="txtSoTT" runat="server" Width="100%" MaxLength="3" valtype="number"></asp:TextBox>
+                    </span>
+                </div>
             </div>
             <div style="clear: both; height: 50px;"></div>
             <div class="panel_from">
@@ -163,9 +199,9 @@
             </div>
         </div>
         <script type="text/javascript">
-            $(document).ready(function () {
+                        $(document).ready(function () {
 
-            });
+                        });
         </script>
     </asp:Panel>
 

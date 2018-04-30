@@ -103,7 +103,7 @@ public partial class View_ThemCauChuyen : BaseHome
             Des_En = "",
             Des_Vn = txtDes.Text,
             ID = Lib.CreateGuid(),
-            Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
+            Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["fileUpload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
             NoiDung_Vn = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/")),
             NoiDung_En="",
             Status = (int)Enums.Status.pending,

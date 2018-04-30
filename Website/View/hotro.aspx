@@ -5,7 +5,6 @@
         .list-item-thuvien
         {
             padding-bottom: 0px;
-        bo
         }
             .list-item-thuvien:nth-child(2n+0)
             {
@@ -100,27 +99,105 @@
         {
             padding-bottom:80px;
         }
+        .panel-btn-guicauchuyenhotro
+        {
+            
+            padding: 10px;
+            text-align: left;
+        }
+
+            .panel-btn-guicauchuyenhotro .btn-guicauchuyenhotro
+            {
+                padding: 8px 20px;
+                font-size: 15px;
+                text-transform: uppercase;
+                color: #FFF;
+                background-color: #ae4bce;
+                font-weight: 700;
+                cursor: pointer;
+            }
+
+                .panel-btn-guicauchuyenhotro .btn-guicauchuyenhotro:hover
+                {
+                    background-color: #8e2bae;
+                }
+        [panel-addcauchuyen]
+        {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            left: 10px;
+            top: 10px;
+            background-color: #FFF;
+            box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+
+        [panel-addcauchuyen="show"]
+        {
+            display: block;
+        }
+
+        [panel-addcauchuyen] [btn-close]
+        {
+            display: block;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            z-index: 1;
+            right: -3px;
+            top: -7px;
+            cursor: pointer;
+            background-image: url('../Images/close-popupnew.png');
+            background-position: center center;
+            background-size: 15px;
+            background-repeat: no-repeat;
+            background-color: #FFF;
+            border-radius: 50%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div>
-
+    <div panel-addcauchuyen>
+        <span btn-close></span>
+        <iframe style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; border: 0px;" src="<%=Lib.urlhome %>/View/ThemCauHoi.aspx"></iframe>
+    </div>
+    <div class="panel_1k2" style="background-color: rgba(255,255,255,0.8); padding: 20px 0px;">
+        <div style="clear: both; height: 0px;"></div>
+        <div class="cate-link" style="padding-left: 10px; margin-bottom: 20px; border: none;margin-top:0px;">
+            <span class="item-link-cate">
+                <a href="<%=Lib.urlhome %>">Trang chủ</a>
+            </span>
+            <span class="item-link-cate">Alo tôi nghe
+            </span>
+        </div>
+        <div style="clear: both; height: 0px;"></div>
         <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro))
           {%>
-        <div class="list-item-thuvien">
-            <div style="clear: both; height: 1px;"></div>
-            <div class="cate-link" style="padding-left: 5px;">
+        <div class="list-item-thuvien" style="padding-top: 0px;">
+            <div style="clear: both; height: 0px;"></div>
+            <div class="cate-link" style="padding-left: 10px; margin-top: 0px; background-color: #ae4bce; padding-top: 9px; color: rgb(255, 255, 255); border: medium none;">
+
                 <span class="item-link-cate">
-                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
-                </span>
-                <span class="item-link-cate">
-                    <%=Lib.convertNoiDungHTML(cate.TieuDe_Vn,cate.TieuDe_En) %>
+                    <%=Lib.ContentLag(cate.TieuDe_Vn,cate.TieuDe_En) %>
                 </span>
             </div>
             <div style="clear: both; height: 0px;"></div>
-            <div class="panel_1k " id="view<%=cate.ID %>">
+            <%if (cate.ID == 1023)
+              { %>
+            <div class="panel-btn-guicauchuyenhotro">
+                <span class="btn-guicauchuyenhotro">Gửi câu hỏi tư vấn cho chúng tôi</span>
+                <span style="display: block; margin-top: 20px;font-size:14px;">Nếu bạn đang gặp một tình huống cần được giải quyết, hãy ghi rõ và gửi câu hỏi cho chúng tôi bằng cách ấn vào phần “Gửi câu hỏi tư vấn cho chúng tôi” để được chuyên gia tư vấn giải đáp. Các thông tin cá nhân sẽ hoàn toàn được giữ bí mật, chúng tôi sẽ biên tập lại trước khi lên trang nếu cần thiết. Cảm ơn bạn.</span>
+            </div>
+            <%}%>
+            <div style="clear: both; height: 0px;"></div>
+            <div class="panel_1k arrayThuVien" id="view<%=cate.ID %>">
                 <% 
               int totalRow = 0;
               int pageSelect = 1;
@@ -132,8 +209,10 @@
 
                 <div class="item-thuvien">
                     <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
-                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_En,40) %></div>
-                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_En,140) %></div>
+                    <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                        <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_Vn,40) %></div>
+                    </a>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,140) %></div>
                     <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
                         <div class="item-thuvien-btn"></div>
                     </a>
@@ -193,5 +272,18 @@
                 <%}%>
     <div style="clear: both; height: 0px;"></div>--%>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.panel-btn-guicauchuyenhotro .btn-guicauchuyenhotro').click(function () {
+                $('[panel-addcauchuyen]').attr('panel-addcauchuyen', 'show');
+            });
+            $('[panel-addcauchuyen] [btn-close]').click(function () {
+                $('[panel-addcauchuyen]').attr('panel-addcauchuyen', '');
+            });
+        });
+        function closeThemCauChuyen() {
+            $('[panel-addcauchuyen] [btn-close]').click();
+        }
+    </script>
 </asp:Content>
 

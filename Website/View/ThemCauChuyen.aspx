@@ -98,7 +98,7 @@
                             <lable>Ảnh câu chuyện</lable>
                             <span img-oldaaa></span>
                             <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg />
+                        <asp:FileUpload ID="fileUpload" ClientIDMode="Static" runat="server" no-empty dataImg />
                             </span>
                         </div>
                         <div style="clear: both; height: 20px;"></div>

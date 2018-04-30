@@ -28,7 +28,7 @@ public partial class admin_category : BasePage
         }
         else if (TypeAction == 1 || TypeAction == 2)
         {
-            if (Type == (int)Enums.LoaiTinTuc.TinTucSuKien || Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+            if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
             {
                 PanelMucLuc.Visible = false;
             }
@@ -152,7 +152,7 @@ public partial class admin_category : BasePage
                 Des_En = txtDesEn.Text,
                 Des_Vn = txtDes.Text,
                 ID = Lib.CreateGuid(),
-                Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
+                Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["fileUpload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/")),
                 ModifyBy = admin_login.ID,
                 ModifyDate = DateTime.Now,
                 NoiDung_En = Lib.convertNoiDungHTML(txtChiTietEn.Text, Server.MapPath("~/images/imageUpload/")),
@@ -176,9 +176,9 @@ public partial class admin_category : BasePage
             _data.Category = string.Join(",", cbCate.Items.Cast<ListItem>().Where(x => x.Selected).Select(d => d.Value));
             _data.Des_En = txtDesEn.Text;
             _data.Des_Vn = txtDes.Text;
-            if (Request.Form["img_upload"] != null)
+            if (Request.Form["fileUpload"] != null)
             {
-                _data.Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["img_upload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"));
+                _data.Img = Lib.saveImgFromBase64(Regex.Split(Request.Form["fileUpload"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"));
             }
             _data.ModifyBy = admin_login.ID;
             _data.ModifyDate = DateTime.Now;

@@ -4,7 +4,7 @@
     <style type="text/css">
         .hotro-left
         {
-            width: 800px;
+            width: calc(100% / 3 * 2);
             padding: 20px;
             padding-left: 0px;
             box-sizing: border-box;
@@ -91,8 +91,8 @@
         .hotro-right
         {
             float: left;
-            width: calc(100% - 800px);
-            height: 1020px;
+            width: calc(100% / 3 * 1);
+            height: 1156px;
             box-sizing: border-box;
         }
 
@@ -109,10 +109,9 @@
 
         .panel-btn-guicauchuyen
         {
-            border-bottom: 1px dashed #CCC;
-            margin-bottom: 10px;
+            
             padding-bottom: 0px;
-            text-align: right;
+            text-align: left;
         }
 
             .panel-btn-guicauchuyen .btn-guicauchuyen
@@ -179,9 +178,9 @@
         <span btn-close></span>
         <iframe style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; border: 0px;" src="<%=Lib.urlhome %>/View/ThemCauChuyen.aspx"></iframe>
     </div>
-    <div class="panel_1k2">
+    <div class="panel_1k2" style="background-color: rgba(255,255,255,0.8); padding: 0px 0px;">
         <div class="hotro-left" id="viewnews">
-            <div class="cate-link" style="padding-left: 5px;">
+            <div class="cate-link" style="padding-left: 10px;">
                 <span class="item-link-cate">
                     <a href="<%=Lib.urlhome %>">Trang chủ</a>
                 </span>
@@ -190,9 +189,9 @@
             </div>
             <div class="panel-btn-guicauchuyen">
                 <span class="btn-guicauchuyen">Mời bạn gửi câu chuyện của mình tại đây</span>
-                <span style="display: block; margin-top: 20px;">Lưu ý: các thông tin cá nhân sẽ hoàn toàn được giữ bí mật, chúng tôi sẽ biên tập lại trước khi lên trang nếu cần thiết. Cám ơn bạn.
-                </span>
+                <span style="display: block; margin-top: 20px;font-size:14px;">Để chia sẻ câu chuyện của bản thân hoặc của người mà bạn quen biết, hãy gửi về cho chúng tôi bằng cách ấn vào phần “Mời bạn gửi câu chuyện của mình tại đây”. Các thông tin cá nhân sẽ hoàn toàn được giữ bí mật, chúng tôi sẽ biên tập lại trước khi lên trang nếu cần thiết. Cảm ơn bạn.</span>
             </div>
+            <div style="clear: both; height: 10px;border-top:1px dashed #CCC;margin-top:5px;"></div>
             <%
                 int totalRow = 0;
                 int pageSelect = 1;
@@ -222,6 +221,8 @@
             <%}%>
             <div style="clear: both; height: 0px;"></div>
             <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"viewnews")%>
+            <div style="clear: both; height: 25px;"></div>
+            
         </div>
         <div class="hotro-right">
             <div id="map"></div>
@@ -233,17 +234,17 @@
                         zoom: 6,
                         center: { lat: 18.565253, lng: 104.732666 }
                     });
-                    $.each(<%=getThanhPhoSoLuong()%>,function(index,item){
-                        addMarker({ lat: item.lat, lng: item.lng }, map,item.name,item.count);
+                    $.each(<%=getThanhPhoSoLuong()%>, function (index, item) {
+                        addMarker({ lat: item.lat, lng: item.lng }, map, item.name, item.count);
                     });
-                    
+
 
                 }
-                function addMarker(location, map,name,count) {
+                function addMarker(location, map, name, count) {
                     // Add the marker at the clicked location, and add the next-available label
                     // from the array of alphabetical characters.
                     var infowindow = new google.maps.InfoWindow({
-                        content: '<div style="background-color:#FFF;text-align:center;">Khu vực '+name+'<br/>'+count+' câu chuyện được đăng</div>'
+                        content: '<div style="background-color:#FFF;text-align:center;">Khu vực ' + name + '<br/>' + count + ' câu chuyện được đăng</div>'
                     });
                     var marker = new google.maps.Marker({
                         position: location,
@@ -251,9 +252,9 @@
                         map: map,
                         icon:'<%=Lib.urlhome%>/Images/Csaga/iconMap.png'
                     });
-                    marker.addListener('click', function(){
-                        $.each(arrayMarker,function(index,item){
-                            if (item!=marker && item.getAnimation() !== null) {
+                    marker.addListener('click', function () {
+                        $.each(arrayMarker, function (index, item) {
+                            if (item != marker && item.getAnimation() !== null) {
                                 item.setAnimation(null);
                                 arrayWindow[index].close();
                             }
@@ -270,7 +271,7 @@
                     arrayMarker.push(marker);
                     arrayWindow.push(infowindow);
                 }
-     
+
 
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTwFsp9CfUVh-a_B7ql4J0A6NtLqjBHI8&callback=initMap&language=vi&region=VI" async defer></script>
@@ -279,17 +280,17 @@
         <div style="clear: both;"></div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.panel-btn-guicauchuyen span').click(function(){
-                $('[panel-addcauchuyen]').attr('panel-addcauchuyen','show');
-            });
-            $('[panel-addcauchuyen] [btn-close]').click(function(){
-                $('[panel-addcauchuyen]').attr('panel-addcauchuyen','');
-            });
-        });
-        function closeThemCauChuyen(){
-            $('[panel-addcauchuyen] [btn-close]').click();
-        }
+                $(document).ready(function () {
+                    $('.panel-btn-guicauchuyen .btn-guicauchuyen').click(function () {
+                        $('[panel-addcauchuyen]').attr('panel-addcauchuyen', 'show');
+                    });
+                    $('[panel-addcauchuyen] [btn-close]').click(function () {
+                        $('[panel-addcauchuyen]').attr('panel-addcauchuyen', '');
+                    });
+                });
+                function closeThemCauChuyen() {
+                    $('[panel-addcauchuyen] [btn-close]').click();
+                }
     </script>
 </asp:Content>
 

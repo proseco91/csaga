@@ -170,7 +170,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div class="panel_1k2">
+    <div class="panel_1k2" style="background-color: rgba(255,255,255,0.8); padding: 0px 0px;">
         <div class="hotro-left" id="viewnews">
             <div class="cate-link">
                 <span class="item-link-cate">
@@ -185,7 +185,7 @@
                 <%=tintuc.TieuDe_Vn %>
             </div>
             <div class="detail-date">
-                <%=tintuc.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                <%=tintuc.CreateDate.Value.ToString("dd-MM-yyyy lúc HH:mm") %>
             </div>
             <div class="detail-des">
                 <%=tintuc.Des_Vn %>

@@ -43,4 +43,28 @@ public partial class View_nhomyeunu : BaseHome
         });
         return arrayData;
     }
+    public List<TinTuc> getTinNhom(int pageSize, int cate, out int totalRowCount, out int pageSelect)
+    {
+        int pageNum = 1;
+        if (Request.QueryString["page" + cate] != null)
+            pageNum = Convert.ToInt32(Request.QueryString["page" + cate]);
+        if (pageNum < 1)
+            pageNum = 1;
+        pageSelect = pageNum;
+
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active);
+        query = query.OrderByDescending(d => d.CreateDate);
+        totalRowCount = query.Count();
+        List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+        string lang = Lib.getLag();
+        arrayData.ForEach(d =>
+        {
+            if (lang != "vi-VN")
+            {
+                d.Des_Vn = d.Des_En;
+                d.TieuDe_Vn = d.TieuDe_En;
+            }
+        });
+        return arrayData;
+    }
 }

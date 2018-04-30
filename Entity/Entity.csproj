@@ -33,9 +33,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -43,11 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="expandClass\SettingWeb.cs" />
     <Compile Include="expandClass\Admin.cs" />
     <Compile Include="expandClass\Comment.cs" />
     <Compile Include="expandClass\KhaoSat.cs" />
     <Compile Include="expandClass\ThreadChat.cs" />
     <Compile Include="expandClass\ThanhPho.cs" />
+    <Compile Include="LibCache.cs" />
     <Compile Include="Linq.cs">
       <DependentUpon>Linq.dbml</DependentUpon>
     </Compile>

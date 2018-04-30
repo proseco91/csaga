@@ -69,7 +69,7 @@
                             <span style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></span>
                         </td>
                         <td style="width: calc(100% - 550px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
-                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
+                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Value.Ticks %>"><%=item.value.CreateDate.Value.ToString("dd/MM/yyyy, HH:mm") %></td>
                         <td style="width: 150px; text-align: center;"><%=item.value.Status==1?"Hiển thị":item.value.Status==(int)Enums.Status.pending?"Chờ duyệt":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
                             <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
@@ -119,7 +119,7 @@
                         <lable>Ảnh đại diên</lable>
                         <span img-oldaaa></span>
                         <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" runat="server" no-empty dataImg />
+                        <asp:FileUpload ID="fileUpload" ClientIDMode="Static" runat="server" no-empty dataImg />
                         </span>
                     </div>
                 </asp:Panel>

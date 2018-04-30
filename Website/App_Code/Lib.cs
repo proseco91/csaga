@@ -38,6 +38,12 @@ public static class Lib
         return new Entity.LinqDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ToString());
     }
 
+    public static string ToString(this DateTime? datetime,string format)
+    {
+        if (datetime.HasValue)
+            datetime.Value.ToString(format);
+        return string.Empty;
+    }
     public static string urlChiTiet(Enums.LoaiTinTuc _type)
     {
         switch (_type)
@@ -165,7 +171,7 @@ public static class Lib
                     {
                         string html = "<div class=\"page-menu-group\">";
                         html += "         <div class=\"page-menu-group-title\">" + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)i) + "</div>";
-                        if (i != (int)Enums.LoaiTinTuc.TinTucSuKien && i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
+                        if (i != (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
                         {
                             html += "         <a href=\"" + Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)i) + "\">";
                             html += "             <div class=\"page-menu-group-item\" menu-category=\"" + i + "\"><span class=\"fa fa-th\"></span>" + Enums.MucLucDesc((Enums.LoaiTinTuc)i) + "</div>";
@@ -192,12 +198,12 @@ public static class Lib
                     htmlMenu += "       <div class=\"page-menu-group-item\" menu-khaosat=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.KhaoSat) + "</div>";
                     htmlMenu += "   </a>";
                 }
-                if (admin.IsSuperAdmin || admin.getQuyen.Contains(9))
-                {
-                    htmlMenu += "   <a href=\"tu-van-truc-tuyen.htm\">";
-                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-tuvan=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TuVan) + "</div>";
-                    htmlMenu += "   </a>";
-                }
+                //if (admin.IsSuperAdmin || admin.getQuyen.Contains(9))
+                //{
+                //    htmlMenu += "   <a href=\"tu-van-truc-tuyen.htm\">";
+                //    htmlMenu += "       <div class=\"page-menu-group-item\" menu-tuvan=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TuVan) + "</div>";
+                //    htmlMenu += "   </a>";
+                //}
                 if (admin.IsSuperAdmin || admin.getQuyen.Contains(8))
                 {
                     htmlMenu += "   <a href=\"tai-khoan-quan-tri.htm\">";
@@ -206,6 +212,10 @@ public static class Lib
                 }
                 if (admin.IsSuperAdmin || admin.getQuyen.Contains(10))
                 {
+                    htmlMenu += "   <a href=\"danh-muc.htm\">";
+                    htmlMenu += "       <div class=\"page-menu-group-item\" menu-danh-muc=\"\"><span class=\"fa fa-th\"></span>Danh Mục</div>";
+                    htmlMenu += "   </a>";
+
                     htmlMenu += "   <a href=\"cau-hinh.htm\">";
                     htmlMenu += "       <div class=\"page-menu-group-item\" menu-cauhinh=\"\"><span class=\"fa fa-th\"></span>" + Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.CauHinh) + "</div>";
                     htmlMenu += "   </a>";
@@ -222,11 +232,18 @@ public static class Lib
         return htmlMenu;
     }
 
-    public static string saveImgFromBase64(string base64, string serverMap)
+    public static string saveImgFromBase64(string base64, string serverMap,bool isResize = true)
     {
         string fileName = Lib.CreateGuid() + ".png";
         var imageData = Convert.FromBase64String(Regex.Replace(base64, "data:image/.*?;base64,", ""));
-        Lib.ResizeByWidth(new MemoryStream(imageData), 800).Save(serverMap + fileName, ImageFormat.Png);
+        if (isResize)
+        {
+            Lib.ResizeByWidth(new MemoryStream(imageData), 800).Save(serverMap + fileName);
+        }
+        else
+        {
+            new Bitmap(new MemoryStream(imageData)).Save(serverMap + fileName);
+        }
         return fileName;
     }
 
@@ -672,10 +689,6 @@ public static class Lib
     }
 
 
-
-
-
-
     public static Bitmap ResizeImage(Stream img, int maxWidth, int maxHeight)
     {
         Bitmap imgNew = new Bitmap(img);
@@ -742,10 +755,48 @@ public static class Lib
         }
         return imgRes;
     }
+    public static Image[] GetFramesFromAnimatedGIF(Image IMG)
+    {
+        List<Image> IMGs = new List<Image>();
+        int Length = IMG.GetFrameCount(FrameDimension.Time);
+
+        for (int i = 0; i < Length; i++)
+        {
+            IMG.SelectActiveFrame(FrameDimension.Time, i);
+            IMGs.Add(new Bitmap(IMG));
+        }
+
+        return IMGs.ToArray();
+    }
+    private static Image _ResizeByWidth(Image img, int resizedW, int resizedH)
+    {
+        Bitmap bmp = new Bitmap(resizedW, resizedH, PixelFormat.Format32bppArgb);
+
+        using (Graphics graphics = Graphics.FromImage(bmp))
+        {
+            graphics.CompositingQuality = CompositingQuality.HighQuality;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
+            graphics.DrawImage(img, 0, 0, resizedW, resizedH);
+
+        }
+        return bmp;
+    }
     public static Bitmap ResizeByWidth(Stream img, int width)
     {
         // lấy chiều rộng và chiều cao ban đầu của ảnh
         Bitmap imgNew = new Bitmap(img);
+        try
+        {
+            if (imgNew.GetFrameCount(FrameDimension.Time) > 1)
+            {
+                return imgNew;
+            }
+        }
+        catch (Exception)
+        {
+                      
+        }
 
         int originalW = imgNew.Width;
         int originalH = imgNew.Height;
@@ -758,9 +809,7 @@ public static class Lib
             resizedW = originalW;
             resizedH = (originalH * resizedW) / originalW;
         }
-
-
-        // tạo một Bitmap có kích thước tương ứng với chiều rộng và chiều cao mới
+        //tạo một Bitmap có kích thước tương ứng với chiều rộng và chiều cao mới
         Bitmap bmp = new Bitmap(resizedW, resizedH, PixelFormat.Format32bppArgb);
 
         using (Graphics graphics = Graphics.FromImage(bmp))
@@ -772,6 +821,7 @@ public static class Lib
 
         }
         return bmp;
+
     }
     public static Bitmap ImageColor(Bitmap original, string color)
     {
@@ -1010,6 +1060,7 @@ public static class Lib
         int pageStart = pageSelect < numberPageShow ? 1 : (pageSelect) % numberPageShow == 0 ? (pageSelect) : pageSelect - ((pageSelect) % numberPageShow);
         int pageEnd = pageSelect < numberPageShow ? numberPageShow : (pageStart + numberPageShow);
         pageEnd = pageEnd > maxPage ? maxPage : pageEnd;
+
         for (int i = pageStart; i <= pageEnd; i++)
         {
             html += i == pageSelect ? "<span class=\"btnPhanTrangItem\">" + i + "</span>" : "<a href=\"" + createLinkPhanTrang(i, scrollview, nameQueryString) + "\" class=\"btnPhanTrangItem\">" + i + "</a>";

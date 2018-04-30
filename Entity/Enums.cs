@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,7 @@ public static class Enums
     }
     public enum LoaiTinTuc : byte
     {
+        DanhMuc = 0,
         TinTucSuKien = 1,
         ThuVien = 2,
         HinhAnhCongDongYeuNu = 3,
@@ -34,27 +36,50 @@ public static class Enums
         active = 1,
         pending = 2
     }
-    public static string LoaiTinTucDesc(LoaiTinTuc _type)
+    public static string LoaiTinTucHrefTrangChu(LoaiTinTuc _type)
     {
         switch (_type)
         {
             case LoaiTinTuc.TinTucSuKien:
-                return "Tin tức & Sự kiện";
+                return "tintuc-sukien.html";
 
             case LoaiTinTuc.ThuVien:
-                return "Thư viện";
+                return "thuvien.html";
 
             case LoaiTinTuc.HinhAnhCongDongYeuNu:
-                return "Tôi là nữ yêu nữ";
+                return "hinh-anh-cong-dong.html";
 
             case LoaiTinTuc.CacNhomNuyeuNu:
-                return "Kết nối";
+                return "nhom-nu-yeu-nu.html";
+
+            case LoaiTinTuc.HoTro:
+                return "ho-tro.html";
+            default:
+                return "";
+        }
+    }
+    public static string LoaiTinTucDesc(LoaiTinTuc _type)
+    {
+        Entity.LinqDataContext sql = new Entity.LinqDataContext(ConfigurationManager.ConnectionStrings["Connection"].ToString());
+        switch (_type)
+        {
+            case LoaiTinTuc.TinTucSuKien:
+                return sql.getCategory().FirstOrDefault(d=>d.ID== 1029).TieuDe_Vn;
+
+            case LoaiTinTuc.ThuVien:
+                return sql.getCategory().FirstOrDefault(d => d.ID == 1033).TieuDe_Vn;
+
+            case LoaiTinTuc.HinhAnhCongDongYeuNu:
+                return sql.getCategory().FirstOrDefault(d => d.ID == 1030).TieuDe_Vn;
+
+            case LoaiTinTuc.CacNhomNuyeuNu:
+                return sql.getCategory().FirstOrDefault(d => d.ID == 1031).TieuDe_Vn;
 
             //case LoaiTinTuc.GiaiTri:
             //    return "Giải trí";
 
             case LoaiTinTuc.HoTro:
-                return "Alo tôi nghe";
+                return sql.getCategory().FirstOrDefault(d => d.ID == 1032).TieuDe_Vn;
 
             //case LoaiTinTuc.Event:
             //    return "Sự kiện";
@@ -65,7 +90,7 @@ public static class Enums
             case LoaiTinTuc.CauHinh:
                 return "Cấu hình";
             case LoaiTinTuc.KhaoSat:
-                return "Khảo sát";
+                return sql.getCategory().FirstOrDefault(d => d.ID == 1034).TieuDe_Vn;
             default:
                 return "";
         }
@@ -232,6 +257,7 @@ public static class Enums
 
     public static string MucLucDesc(LoaiTinTuc _type)
     {
+        return "Mục lục " + LoaiTinTucDesc(_type);
         switch (_type)
         {
             case LoaiTinTuc.TinTucSuKien:
@@ -262,8 +288,10 @@ public static class Enums
     {
         switch (_type)
         {
+            case LoaiTinTuc.DanhMuc:
+                return "danh-muc.htm";
             case LoaiTinTuc.TinTucSuKien:
-                return "muc-luc-lgbt.htm";
+                return "muc-luc-tintuc-sukien.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien.htm";
@@ -291,7 +319,7 @@ public static class Enums
         switch (_type)
         {
             case LoaiTinTuc.TinTucSuKien:
-                return "them-moi-muc-luc-lgbt.htm";
+                return "them-moi-muc-luc-tintuc-sukien.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "them-moi-muc-luc-thu-vien.htm";
@@ -318,8 +346,10 @@ public static class Enums
     {
         switch (_type)
         {
+            case LoaiTinTuc.DanhMuc:
+                return "muc-luc-danh-muc-chinh-sua-{0}-z-{1}.htm";
             case LoaiTinTuc.TinTucSuKien:
-                return "muc-luc-tintucsukien-chinh-sua-{0}-z-{1}.htm";
+                return "muc-luc-tintuc-sukien-chinh-sua-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-chinh-sua-{0}-z-{1}.htm";
@@ -347,7 +377,7 @@ public static class Enums
         switch (_type)
         {
             case LoaiTinTuc.TinTucSuKien:
-                return "muc-luc-tintucsukien-trangthai-{0}-z-{1}.htm";
+                return "muc-luc-tintuc-sukien-trangthai-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-trangthai-{0}-z-{1}.htm";
@@ -375,7 +405,7 @@ public static class Enums
         switch (_type)
         {
             case LoaiTinTuc.TinTucSuKien:
-                return "muc-luc-tintucsukien-xoa-{0}-z-{1}.htm";
+                return "muc-luc-tintuc-sukien-xoa-{0}-z-{1}.htm";
 
             case LoaiTinTuc.ThuVien:
                 return "muc-luc-thu-vien-xoa-{0}-z-{1}.htm";

@@ -1,0 +1,131 @@
+﻿@media only screen and (max-width: 1200px) {
+    .bodyCrazy .slogan_search {
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
+
+    .list-item-news .item-news:nth-child(4n+0), .list-item-news .item-news {
+        margin: 10px 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .panel_1k {
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .slogan_search marquee {
+        font-size: 21px;
+        color: #FFF;
+        position: relative;
+        left: 0px;
+        top: 6px;
+        width: 100%;
+    }
+
+    .slogan_search input {
+        top: 40px;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .eff_7mau {
+        overflow: auto;
+        position: relative;
+        height: 38px;
+    }
+
+    .bodyCrazy .eff_7mau .eff_7mau_content {
+        width: calc(130px * 7);
+    }
+
+        .bodyCrazy .eff_7mau .eff_7mau_content div {
+            min-width: 130px;
+        }
+}
+
+@media only screen and (max-width: 1199px) {
+    .list-item-news .item-news {
+        width: calc(100% / 3 - 20px) !important;
+        margin: 10px 10px !important;
+    }
+}
+
+@media only screen and (max-width: 979px) {
+    .list-item-news .item-news {
+        width: calc(50% - 20px) !important;
+        margin: 10px 10px !important;
+    }
+}
+
+@media only screen and (max-width: 659px) {
+    .list-item-news .item-news {
+        width: 100% !important;
+        margin: 10px 0px !important;
+    }
+}
+
+
+@media only screen and (max-width: 1015px) {
+    .arrayThuVien {
+        text-align: center;
+    }
+
+        .arrayThuVien .item-thuvien {
+            float: none !important;
+            display: inline-block;
+            margin: 40px 30px !important;
+        }
+}
+
+@media only screen and (max-width: 622px) {
+
+    .arrayThuVien .item-thuvien {
+        width: 100% !important;
+        box-sizing: border-box;
+        margin: 15px 0px !important;
+    }
+
+    .list-item-thuvien .item-thuvien .item-thuvien-img {
+        border-radius: 3px !important;
+    }
+}
+
+@media only screen and (max-width: 799px) {
+    .hotro-left {
+        width: 100% !important;
+    }
+
+    .hotro-right {
+        width: 100% !important;
+        height: 300px !important;
+        box-sizing: border-box;
+        padding: 0px 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 899px) {
+    .item-nhomyeunu {
+        height: auto !important;
+    }
+
+        .item-nhomyeunu .item-nhomyeunu-tennhom {
+            width: 100% !important;
+            position: relative !important;
+        }
+
+        .item-nhomyeunu .item-nhomyeunu-news {
+            margin-left: 0px !important;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+        }
+        .item-nhomyeunu:nth-child(2n+0) {
+            padding-top:1px;
+        }
+}

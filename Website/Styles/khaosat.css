@@ -1,4 +1,5 @@
-﻿#khao-sat {
+﻿#khao-sat
+{
     position: fixed;
     width: 100%;
     height: 100%;
@@ -6,9 +7,24 @@
     left: 0px;
     background-color: rgba(0,0,0,0.3);
     z-index: 10002;
+    display: none;
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-out 0s;
+    -moz-transition: opacity 1s ease-out 0s;
+    transition: opacity 1s ease-out 0s;
 }
 
-    #khao-sat .khao-sat-panel {
+    #khao-sat[show]
+    {
+        display: block;
+    }
+    #khao-sat[show][showeff]
+    {
+        opacity: 1;
+    }
+
+    #khao-sat .khao-sat-panel
+    {
         width: 500px;
         max-width: calc(100% - 20px);
         max-height: calc(100% - 20px);
@@ -26,7 +42,8 @@
         padding: 20px;
     }
 
-        #khao-sat .khao-sat-panel:after {
+        #khao-sat .khao-sat-panel:after
+        {
             position: absolute;
             z-index: 0;
             box-sizing: border-box;
@@ -38,7 +55,8 @@
             top: 10px;
         }
 
-        #khao-sat .khao-sat-panel .khao-sat-panel-content {
+        #khao-sat .khao-sat-panel .khao-sat-panel-content
+        {
             z-index: 1;
             position: absolute;
             width: calc(100% - 40px);
@@ -47,11 +65,13 @@
             box-sizing: border-box;
         }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-content[overflow] {
+            #khao-sat .khao-sat-panel .khao-sat-panel-content[overflow]
+            {
                 overflow: auto;
             }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item {
+            #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item
+            {
                 display: none;
                 opacity: 0;
                 -webkit-transition: opacity 1s ease-out 0s;
@@ -59,28 +79,33 @@
                 transition: opacity 1s ease-out 0s;
             }
 
-                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[show] {
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[show]
+                {
                     display: block;
                 }
 
-                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[showeff] {
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item[showeff]
+                {
                     opacity: 1;
                 }
 
-                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check] {
+                #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check]
+                {
                     position: relative;
                     padding-left: 25px;
                     font-size: 14px;
                     margin: 5px 0px;
                 }
 
-                    #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check] input {
+                    #khao-sat .khao-sat-panel .khao-sat-panel-content .khao-sat-item [item-khaosat-check] input
+                    {
                         position: absolute;
                         left: 0px;
                         top: 1px;
                     }
 
-        #khao-sat .khao-sat-panel .khao-sat-panel-btn {
+        #khao-sat .khao-sat-panel .khao-sat-panel-btn
+        {
             z-index: 1;
             position: absolute;
             width: calc(100% - 40px);
@@ -89,7 +114,8 @@
             bottom: 20px;
         }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-btn:before {
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn:before
+            {
                 position: absolute;
                 content: url('../Images/loadingClass.gif');
                 height: 30px;
@@ -99,11 +125,13 @@
                 display: none;
             }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-btn[loading]:before {
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn[loading]:before
+            {
                 display: block;
             }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right {
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right
+            {
                 position: absolute;
                 top: 0px;
                 height: 100%;
@@ -118,26 +146,31 @@
                 display: none;
             }
 
-                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left[show], #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right[show] {
+                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left[show], #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right[show]
+                {
                     display: block;
                 }
 
-                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left:hover, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right:hover {
+                #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left:hover, #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right:hover
+                {
                     background-color: #b200ff;
                     color: #FFF;
                 }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left {
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-left
+            {
                 left: 0px;
             }
 
-            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right {
+            #khao-sat .khao-sat-panel .khao-sat-panel-btn .khao-sat-panel-btn-right
+            {
                 right: 0px;
             }
 
 
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input
+{
     padding: 2px;
     position: relative;
     height: 27px;
@@ -145,31 +178,36 @@
     margin-bottom: 10px;
 }
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn
+{
     text-align: right;
 }
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_err {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_err
+{
     text-align: justify;
     margin-top: 10px;
     font-size: 12px;
     color: #ff6a00;
 }
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button] {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]
+{
     padding: 3px 15px;
     text-transform: uppercase;
     border: 1px solid #DDD;
     cursor: pointer;
 }
 
-    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:hover, .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:active {
+    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:hover, .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_btn input[type=button]:active
+    {
         border: 1px solid #77018b;
         background-color: #77018b;
         color: #FFF;
     }
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input::before {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input::before
+{
     content: attr(title);
     position: absolute;
     height: 100%;
@@ -183,7 +221,8 @@
     color: #77018b;
 }
 
-.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text] {
+.khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text]
+{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -195,24 +234,28 @@
     background-color: transparent;
 }
 
-    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text]:focus {
+    .khao-sat-item .khao-sat-item_updateinfo .khao-sat-item_updateinfo_input input[type=text]:focus
+    {
         border-color: #77018b;
     }
 
 
-.khao-sat-item[thanhcong="false"] [panelthanhcong] {
+.khao-sat-item[thanhcong="false"] [panelthanhcong]
+{
     display: none;
 }
 
-.khao-sat-item[thanhcong="true"] [panelinfo] {
+.khao-sat-item[thanhcong="true"] [panelinfo]
+{
     display: none;
 }
 
-.khao-sat-item[thanhcong="true"] [panelthanhcong] {
+.khao-sat-item[thanhcong="true"] [panelthanhcong]
+{
     font-size: 22px;
     color: #0094ff;
     text-transform: uppercase;
     text-align: center;
-    height:80px;
-    line-height:80px;
+    height: 80px;
+    line-height: 80px;
 }

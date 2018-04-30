@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Home.master.cs" Inherits="Masster_Home" %>
 
-<%@ Register Src="~/Masster/ChatHome.ascx" TagPrefix="uc1" TagName="ChatHome" %>
-<%@ Register Src="~/Masster/KhaoSat.ascx" TagPrefix="uc1" TagName="KhaoSat" %>
+<%--<%@ Register Src="~/Masster/ChatHome.ascx" TagPrefix="uc1" TagName="ChatHome" %>
+--%>
 
 
 
@@ -10,12 +10,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="http://nuyeunu.vn/Images/Csaga/icon.png">
+    <meta property="og:title" content="Nư yêu nữ thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam" />
+    <meta property="og:description" content="Nư yêu nữ thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam" />
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900&amp;subset=latin-ext,tamil,vietnamese" rel="stylesheet">
     <link href="../Styles/home.css" rel="stylesheet" />
     <link href="../linktamchat/Styles/chat/popup.css" rel="stylesheet" />
     <link href="../Styles/style_chat.css" rel="stylesheet" />
     <link href="../Styles/khaosat.css" rel="stylesheet" />
+    <link href="../Styles/responsive.css" rel="stylesheet" />
     <script src="<%=Lib.urlhome %>/Scripts/jquery-1.10.2.js"></script>
     <script src="<%=Lib.urlhome %>/Scripts/home.js"></script>
     <script src="<%=Lib.urlhome %>/linktamchat/Scripts/chat/popup.js"></script>
@@ -23,9 +27,17 @@
         var lag = '<%=Lib.getLag()%>';
         var urlNow = '<%=Request.RawUrl.ToString().ToLower()%>';
         $(document).ready(function () {
-            $('.eff_7mau a').each(function () {
-                if (urlNow.indexOf($(this).attr('href').toLowerCase()) > -1 || $(this).attr('href').toLowerCase().indexOf(urlNow) > -1)
-                    $(this).children('div').attr('active', '');
+            $(window).resize(function () {
+                $('.bodyCrazy .banner').css('height', ($('.bodyCrazy .banner').outerWidth(true)*0.37)+ 'px');
+            }).resize();
+            $('.eff_7mau_content [menu-panel]').children('a').each(function (index) {
+                if (urlNow.indexOf($(this).attr('href').toLowerCase()) > -1 || $(this).attr('href').toLowerCase().indexOf(urlNow) > -1) {
+                    $(this).parents('[menu-panel]').attr('active', '');
+                    if (index == $('.eff_7mau a').size() - 1)
+                        $('.bodyCrazy .eff_7mau .eff_7mau_content').attr('effcuoi', true);
+                    else
+                        $('.bodyCrazy .eff_7mau .eff_7mau_content').attr('effcuoi', false);
+                }
             });
             $(document).click(function () {
                 $('.htm_err_respon').html('');
@@ -70,6 +82,19 @@
     </script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-92001435-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
     <div id="loading_masster"></div>
@@ -85,36 +110,94 @@
         <div class="bodyCrazy">
             <div class="slogan_search">
                 <div class="panel_1k" style="position: relative;">
-                    <marquee>Thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam</marquee>
                     <input type="text" id="searchinput" placeholder="<%=Lib.convertNoiDungHTML("Tìm kiếm ...","Search ...") %>" />
                 </div>
             </div>
             <div class="eff_7mau">
-                
-                <a href="<%=Lib.urlhome%>"><div style="background-color: #e62e1b;">Trang chủ</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>"><div style="background-color: #f89201;">Tin tức & Sự kiện</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>"><div style="background-color: #f8e900;">Thư viện</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>"><div style="background-color: #3cc061;">Tôi là nữ yêu nữ</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>"><div style="background-color: #3996d3;">Kết nối</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>"><div style="background-color: #ae4bce;">Alo tôi nghe</div></a>
-                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>"><div style="background-color: #dc3473;width: 172px;position: absolute;right: 0px;">Liên hệ</div></a>
-                
+                <div class="eff_7mau_content">
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1035).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1035).TextColor %>" href="<%=Lib.urlhome%>">
+                            <div>Trang chủ</div>
+                        </a>
+                    </div>
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1029).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1029).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">
+                            <div><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TinTucSuKien) %></div>
+                        </a>
+                        <div menu-chi style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1029).BackgroundColor %>;">
+                            <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.TinTucSuKien))
+                                {%>
+                            <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1029).TextColor %>" style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1035).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm#view"+cate.ID %>"><%=cate.TieuDe_Vn %></a>
+                            <%} %>
+                        </div>
+                    </div>
+
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1033).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1033).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">
+                            <div><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.ThuVien) %></div>
+                        </a>
+                        <div menu-chi style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1033).BackgroundColor %>;">
+                            <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.ThuVien))
+                                {%>
+                            <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1033).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm#view"+cate.ID %>"><%=cate.TieuDe_Vn %></a>
+                            <%} %>
+                        </div>
+                    </div>
+
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1030).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1030).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">
+                            <div><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HinhAnhCongDongYeuNu) %></div>
+                        </a>
+                    </div>
+
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1031).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1031).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">
+                            <div><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.CacNhomNuyeuNu) %></div>
+                        </a>
+                    </div>
+
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1032).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1032).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">
+                            <div><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HoTro) %></div>
+                        </a>
+                        <div menu-chi style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1032).BackgroundColor %>;">
+                            <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.HoTro))
+                                {%>
+                            <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1032).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm#view"+cate.ID %>"><%=cate.TieuDe_Vn %></a>
+                            <%} %>
+                        </div>
+                    </div>
+
+                    <div menu-panel style="background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1036).BackgroundColor %>;">
+                        <a style="color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1036).TextColor %>" href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>">
+                            <div>Liên hệ</div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div style="clear:both;"></div>
+            <div style="clear: both;"></div>
             <div class="banner" valindex="0">
                 <div class="banner_content">
-                    <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value,index }))
-                      {%>
+                    <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value, index }))
+                        {%>
                     <div class="item_banner" style="background-image: url('<%=Lib.urlhome%>/Images/imageUpload/<%=item.value%>');" valindex="<%=item.index %>"></div>
                     <%}%>
                 </div>
                 <div class="banner_index">
-                    <span  class="banner_index_span">
-                        <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value,index }))
-                          {%>
+                    <span class="banner_index_span">
+                        <%foreach (var item in sql.getSettingWeb().Banner.Split(',').Select((value, index) => new { value, index }))
+                            {%>
                         <span valindex="<%=item.index %>"></span>
                         <%}%>
                     </span>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="slogan_search">
+                <div class="panel_1k" style="position: relative;">
+                    <marquee sty>
+                    Thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam
+                </marquee>
                 </div>
             </div>
         </div>
@@ -126,12 +209,12 @@
         <div class="bottom">
             <%--<div class="bottom_line">
                 <div class="panel_1k" style="position: relative;">
-                    <div class="bottom_btn_tuvan" title="Đang kết nối"></div>
+                    <div class="bottom_btn_tuvan" title="Đang Nữ yêu nữ địa phương"></div>
                 </div>
             </div>--%>
             <div class="bottom_center">
                 <div class="list-item-link">
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">Tin tức & Sự kiện
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">Tin tức - Sự kiện
                     </a>
                     <span style="background-color: #981e20;"></span>
                     <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">Thư viện
@@ -140,7 +223,7 @@
                     <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">Tôi là nữ yêu nữ
                     </a>
                     <span style="background-color: #f8e900;"></span>
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">Kết nối
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">Nữ yêu nữ địa phương
                     </a>
                     <span style="background-color: #358e52;"></span>
                     <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">Alo tôi nghe
@@ -160,7 +243,28 @@
             </div>
         </div>
     </div>
-    <uc1:ChatHome runat="server" ID="ChatHome" />
-    <uc1:KhaoSat runat="server" ID="KhaoSat" />
+    <style type="text/css">
+        .bodyCrazy .eff_7mau .eff_7mau_content:before {
+            background-color: <%=sql.getCategory().FirstOrDefault(d=>d.ID==1036).BackgroundColor %>;
+        }
+        body {
+            background-size: cover;
+            background-position: center center;
+            <%if(sql.getSettingWeb().Use_ImgBackground==0){%> 
+                background-image:url('<%=Lib.urlhome %>/Images/imageUpload/<%=sql.getSettingWeb().Img_Background %>');
+                background-attachment:fixed;
+            <%}%>
+            <%if(sql.getSettingWeb().Use_ImgBackground==1){%> 
+                background-color:<%=sql.getSettingWeb().Color_Background %>;
+            <%}%>
+            <%if(sql.getSettingWeb().Use_ImgBackground==2){%> 
+                background-image:url('<%=Lib.urlhome %>/Images/imageUpload/<%=sql.getSettingWeb().Img_Background %>');
+                background-attachment:fixed;
+                background-color:<%=sql.getSettingWeb().Color_Background %>;
+            <%}%>
+        }
+    </style>
+    
+    <%--<uc1:ChatHome runat="server" ID="ChatHome" />--%>
 </body>
 </html>

@@ -105,22 +105,29 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div>
-
+    <div class="panel_1k2" style="background-color:rgba(255,255,255,0.8);padding:20px 0px;">
+        <div style="clear: both; height: 0px;"></div>
+        <div class="cate-link" style="padding-left: 10px; margin-bottom: 20px; border: none;margin-top:0px;">
+            <span class="item-link-cate">
+                <a href="<%=Lib.urlhome %>">Trang chủ</a>
+            </span>
+            <span class="item-link-cate">
+                Thư viện
+            </span>
+        </div>
+        <div style="clear: both; height: 0px;"></div>
         <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.ThuVien))
           {%>
-        <div class="list-item-thuvien">
-            <div style="clear: both; height: 1px;"></div>
-            <div class="cate-link" style="padding-left: 5px;">
+        <div class="list-item-thuvien" style="padding-top: 0px;">
+            <div style="clear: both; height: 0px;"></div>
+            <div class="cate-link" style="padding-left: 10px; margin-top: 0px; background-color: #ae4bce; padding-top: 9px; color: rgb(255, 255, 255); border: medium none;">
+                
                 <span class="item-link-cate">
-                    <a href="<%=Lib.urlhome %>">Trang chủ</a>
-                </span>
-                <span class="item-link-cate">
-                    <%=Lib.convertNoiDungHTML(cate.TieuDe_Vn,cate.TieuDe_En) %>
+                    <%=Lib.ContentLag(cate.TieuDe_Vn,cate.TieuDe_En) %>
                 </span>
             </div>
             <div style="clear: both; height: 0px;"></div>
-            <div class="panel_1k " id="view<%=cate.ID %>">
+            <div class="panel_1k arrayThuVien" id="view<%=cate.ID %>">
                 <% 
               int totalRow = 0;
               int pageSelect = 1;
@@ -132,8 +139,8 @@
 
                 <div class="item-thuvien">
                     <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
-                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_En,40) %></div>
-                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_En,140) %></div>
+                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_Vn,40) %></div>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,140) %></div>
                     <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
                         <div class="item-thuvien-btn"></div>
                     </a>

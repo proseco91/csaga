@@ -1327,7 +1327,7 @@ a.btnPhanTrangItem:hover
     z-index: 2;
 }
 
-    .page-logined a
+    .page-logined a[attr-dangxuat]
     {
         color: #ddd;
         font-size: 11px;
@@ -1337,7 +1337,7 @@ a.btnPhanTrangItem:hover
         top: 1px;
     }
 
-        .page-logined a:hover
+        .page-logined a[attr-dangxuat]:hover
         {
             color: #ddd;
             font-weight: bold;

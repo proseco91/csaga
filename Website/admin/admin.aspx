@@ -71,7 +71,7 @@
                         
                         <td style="width: calc(100% - 675px);" class="ellipsis" valdata="<%=item.value.FullName %>"><%=item.value.FullName %></td>
                         <td style="width: 200px;" class="ellipsis" valdata="<%=item.value.Email%>"><%=item.value.Email %></td>
-                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
+                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Value.Ticks %>"><%=item.value.CreateDate.Value.ToString("dd/MM/yyyy, HH:mm") %></td>
                         <td style="width: 150px;text-align:center;"><%=item.value.Status==1?"Hiển thị":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
                             <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc.Account)),Lib.LocDau(item.value.Email),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>

@@ -16,27 +16,27 @@ $(document).ready(function () {
     $(document).click(function () {
         $('.htm_err_respon').html('');
     });
-    $('.panel_from > .panel_from_row_input > span:last-child > input:text[valtype="date"]').datetimepicker({
+    $('.panel_from .panel_from_row_input > span:last-child > input:text[valtype="date"]').datetimepicker({
         format: 'Y/m/d H:i',
         timepicker: true,
         onChangeDateTime: function (dp, $input) {
             $input.keyup();
         }
     });
-    $('.panel_from > .panel_from_row_radio_btn > input:button').click(function () {
+    $('.panel_from .panel_from_row_radio_btn > input:button').click(function () {
         if ($(this).parent('.panel_from_row_radio_btn[disabled]').size() == 0) {
             var arr_item_radio = $(this).parent('.panel_from_row_radio_btn').children('input:button');
             arr_item_radio.removeClass('select');
             $(this).addClass('select');
+            $('#' + $(this).attr('valname')).val($(this).attr('valdata'));
         }
     });
-    $('.panel_from > .panel_from_row_radio_img > span').click(function () {
+    $('.panel_from .panel_from_row_radio_img > span').click(function () {
         var arr_item_radio = $(this).parent('.panel_from_row_radio_img').children('span');
         arr_item_radio.removeClass('select');
         $(this).addClass('select');
     });
-
-    $('.panel_from > .panel_from_row_input_color > span:last-child > span').colpick({
+    $('.panel_from .panel_from_row_input_color > span:last-child > span').colpick({
         layout: 'hex',
         submit: 0,
         onChange: function (hsb, hex, rgb, el, bySetColor) {
@@ -53,13 +53,17 @@ $(document).ready(function () {
             }
         }
     });
-    $('.panel_from > .panel_from_row_input_color > span:last-child > input:text').keyup(function (event) {
+    $('.panel_from .panel_from_row_input_color > span:last-child > input:text').keyup(function (event) {
         if ($(this).parents('.panel_from_row_input_color[disabled]').size() <= 0) {
             if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || (event.keyCode >= 65 && event.keyCode <= 90)) {
                 $(this).next('span').colpickSetColor($(this).val());
             }
         }
     });
+    $('.panel_from .panel_from_row_input_color > span:last-child > input:text').each(function () {
+        $(this).next('span').colpickSetColor($(this).val());
+    });
+    
     $('.panel_from .panel_from_row_number_up_down > span:last-child > span').each(function () {
         var filter_number = /^[0-9]{1,}$/;
         var value = $(this).text();
@@ -118,7 +122,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.panel_from > .panel_from_row_input > span:last-child > input:text[valtype="number"]').keypress(function (e) {
+    $('.panel_from .panel_from_row_input > span:last-child > input:text[valtype="number"]').keypress(function (e) {
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
@@ -132,7 +136,7 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
-    $('.panel_from > .panel_from_row_input > span:last-child > input:text[valtype="money"]').keypress(function (e) {
+    $('.panel_from .panel_from_row_input > span:last-child > input:text[valtype="money"]').keypress(function (e) {
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
@@ -146,11 +150,11 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
-    $('.panel_from > .panel_from_row_input > span:last-child > input:text[valtype="money"]').keyup(function (e) {
+    $('.panel_from .panel_from_row_input > span:last-child > input:text[valtype="money"]').keyup(function (e) {
         var number = $(this).val().replace(/,/g, '');
         $(this).val(parseInt(number).formatMoney(0, '.', ','));
     });
-    $('.panel_from > .panel_from_row_select > span:last-child > select').change(function (event) {
+    $('.panel_from .panel_from_row_select > span:last-child > select').change(function (event) {
         $(this).next('span').text($(this).children('option:selected').text());
     }).change();
     $('.panel_from .panel_from_row_file').each(function () {
@@ -160,15 +164,14 @@ $(document).ready(function () {
             autostart: false,
             base64: function (base, el) {
                 _this.val('').clone(true);
-                //$(el).attr('valdata', base).parent('span').prev('span').css('background-image', 'url(\'' + base + '\')');
-                //$(el).attr('valdata', base).parent('span').prev('span').append('<span style="background-image:url(\'' + base + '\');url(\'' + base + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="img_upload" value="' + base + '-->end<--"/></span>');
+                
                 if (typeof $(el).attr('multiple') != 'undefined') {
-                    var elClick = $('<span title="Xóa" style="background-image:url(\'' + base + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="img_upload" value="' + base + '-->end<--"/></span>').appendTo($(el).attr('valdata', base).parent('span').prev('span'));
+                    var elClick = $('<span title="Xóa" style="background-image:url(\'' + base + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="' + _this.attr('id')+'" value="' + base + '-->end<--"/></span>').appendTo($(el).attr('valdata', base).parent('span').prev('span'));
                     elClick.click(function () {
                         elClick.remove();
                     });
                 } else {
-                    var elClick = $(el).attr('valdata', base).parent('span').prev('span').html('<span title="Xóa" style="background-image:url(\'' + base + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="img_upload" value="' + base + '-->end<--"/></span>').children('span');
+                    var elClick = $(el).attr('valdata', base).parent('span').prev('span').html('<span title="Xóa" style="background-image:url(\'' + base + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="' + _this.attr('id') +'" value="' + base + '-->end<--"/></span>').children('span');
                     elClick.click(function () {
                         $(el).attr('valdata', '')
                         elClick.remove();
@@ -182,11 +185,11 @@ $(document).ready(function () {
     });
 
 
-    $('.panel_from > .panel_from_row_file > span + span > input:file:disabled').each(function () {
+    $('.panel_from .panel_from_row_file > span + span > input:file:disabled').each(function () {
         $(this).parent('span').css({ 'display': 'none' });
     });
 
-    $('.panel_from > .panel_from_row_array > span > .panel_from_row_array_btn').click(function () {
+    $('.panel_from .panel_from_row_array > span > .panel_from_row_array_btn').click(function () {
         var _this = $(this);
         var _parent = _this.parent('span');
         var _element_copy = _parent.children('.panel_from_row_array_item[data-struc]');
