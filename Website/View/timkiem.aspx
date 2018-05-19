@@ -17,6 +17,5 @@
         })();
     </script>
     <gcse:searchresults-only></gcse:searchresults-only>
-    <div style="clear:both;height:50px;"></div>
 </asp:Content>
 

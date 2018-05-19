@@ -142,7 +142,7 @@
             <span class="item-link-cate">
                 <a href="<%=Lib.urlhome %>">Trang chủ</a>
             </span>
-            <span class="item-link-cate">Nữ yêu nữ địa phương
+            <span class="item-link-cate"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.CacNhomNuyeuNu) %>
             </span>
         </div>
         <div class="panel_1k2">

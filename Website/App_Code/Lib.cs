@@ -41,7 +41,7 @@ public static class Lib
     public static string ToString(this DateTime? datetime,string format)
     {
         if (datetime.HasValue)
-            datetime.Value.ToString(format);
+           return datetime.Value.ToString(format);
         return string.Empty;
     }
     public static string urlChiTiet(Enums.LoaiTinTuc _type)

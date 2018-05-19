@@ -29,7 +29,7 @@ public partial class View_nhomyeunu : BaseHome
     {
 
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && d.Status == (int)Enums.Status.active && d.Category.Equals(cate.ToString()));
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && d.Status == (int)Enums.Status.active && d.Category.Equals(cate.ToString()) && (!d.ShowDate.HasValue || (d.ShowDate.HasValue && d.ShowDate.Value <= DateTime.Today)));
         query = query.OrderByDescending(d => d.CreateDate);
         List<TinTuc> arrayData = query.Take(3).ToList();
         string lang = Lib.getLag();
@@ -52,7 +52,7 @@ public partial class View_nhomyeunu : BaseHome
             pageNum = 1;
         pageSelect = pageNum;
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active);
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.CacNhomNuyeuNu && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active && (!d.ShowDate.HasValue || (d.ShowDate.HasValue && d.ShowDate.Value <= DateTime.Today)));
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();

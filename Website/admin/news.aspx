@@ -30,7 +30,7 @@
             $(document).ready(function () {
                 $('.panel_search input:text').unbind("keypress").keypress(function (event) {
                     if (event.which == 13) {
-                        window.location.href = "tin-tuc.htm?seach=" + $(this).val();
+                        window.location.href = "<%=Enums.LoaiTinTucUrlDanhSach((Enums.LoaiTinTuc)Type) %>?seach=" + $(this).val();
                         event.preventDefault();
                     }
                 });
@@ -69,7 +69,7 @@
                             <span style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></span>
                         </td>
                         <td style="width: calc(100% - 550px);" class="ellipsis" valdata="<%=item.value.TieuDe_Vn %>"><%=item.value.TieuDe_Vn %></td>
-                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Value.Ticks %>"><%=item.value.CreateDate.Value.ToString("dd/MM/yyyy, HH:mm") %></td>
+                        <td style="width: 150px;" class="ellipsis" valdata="<%=item.value.CreateDate.Value.Ticks %>"><%=item.value.CreateDate.ToString("dd/MM/yyyy, HH:mm") %></td>
                         <td style="width: 150px; text-align: center;"><%=item.value.Status==1?"Hiển thị":item.value.Status==(int)Enums.Status.pending?"Chờ duyệt":"Ẩn" %></td>
                         <td style="width: 100px; text-align: center;" class="ellipsis">
                             <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc)Type),Lib.LocDau(item.value.TieuDe_En),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
@@ -119,7 +119,7 @@
                         <lable>Ảnh đại diên</lable>
                         <span img-oldaaa></span>
                         <span>Tải hình ảnh lên
-                        <asp:FileUpload ID="fileUpload" ClientIDMode="Static" runat="server" no-empty dataImg />
+                        <asp:FileUpload ID="fileUpload" runat="server" ClientIDMode="Static" no-empty dataImg/>
                         </span>
                     </div>
                 </asp:Panel>
@@ -162,6 +162,20 @@
                         <asp:TextBox ID="txtChiTietEn" runat="server" Width="100%" contenteditable="true" TextMode="MultiLine" no-empty Text="Nội dung tại đây."></asp:TextBox>
                     </span>
                 </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Hashtag<br />(Mỗi hashtag cách nhau dấu <b style="font-size:25px;">,</b>)</lable>
+                    <span style="width: 400px;">
+                        <asp:TextBox ID="txtHashtag" runat="server" Width="100%"></asp:TextBox>
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Ngày hiển thị</lable>
+                    <span style="width: 400px;">
+                        <asp:TextBox ID="txtNgayDang" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
+                    </span>
+                </div>
             </div>
             <div style="clear: both; height: 50px;"></div>
             <div class="panel_from">
@@ -174,6 +188,13 @@
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
+                $("#<%=txtNgayDang.ClientID %>").datetimepicker({
+                    format: 'Y-m-d',
+                    timepicker: false,
+                    onChangeDateTime: function (dp, $input) {
+                        $input.keyup();
+                    }
+                });
                 $.each(typeof ListImgOld == 'undefined' ? [] : ListImgOld, function (i, item) {
                     $('[dataImg]').attr('valdata', item);
                     var elClick = $('<span title="Xóa" style="background-image:url(\'<%=Lib.urlhome+"/Images/imageUpload/"%>' + item + '\');display: inline-block;height: 60px;width: 60px;margin:5px;background-size:cover;border:2px solid #CCC;border-radius:3px;"><input type="hidden" name="img_old" value="' + item + '"/></span>').appendTo($('[img-oldaaa]'));
@@ -182,6 +203,8 @@
                     });
                 });
                 CKEDITOR.disableAutoInline = true;
+                CKEDITOR.config.extraPlugins = "base64image";
+                CKEDITOR.config.removePlugins = 'image';
                 CKEDITOR.inline('<%=txtChiTiet.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
                 CKEDITOR.inline('<%=txtChiTietEn.ClientID %>', { customConfig: '<%=Lib.urlhome %>/admin/ckeditorNew/configmini.js', language: 'vi' });
 

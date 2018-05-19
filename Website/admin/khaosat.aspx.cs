@@ -38,6 +38,7 @@ public partial class admin_khaosat : BasePage
                         txtDateTo.Text = khaosat.KhaoSatTuNgay.ToString("dd-MM-yyyy");
                         txtDes.Text = khaosat.DesVn;
                         txtTitle.Text = khaosat.TitleVn;
+                        txtLink.Text = khaosat.Link;
                         dataContent.Value = khaosat.ContentKhaoSat;
                     }
                 }
@@ -88,11 +89,7 @@ public partial class admin_khaosat : BasePage
         int[] end = txtDateEnd.Text.Split('-').Select(d => Convert.ToInt32(d)).ToArray();
         DateTime dateEnd = new DateTime(end[2], end[1], end[0]);
 
-        if (dateStart <= DateTime.Now)
-        {
-            CreateMessage("Thời gian bắt đầu phải lớn hơn ngày hiện tại", false);
-            return;
-        }
+        
         if (dateEnd < dateStart)
         {
             CreateMessage("Thời gian kết thúc phải lớn hơn thời gian bắt đầu.", false);
@@ -111,6 +108,7 @@ public partial class admin_khaosat : BasePage
                 KhaoSatTuNgay = dateStart,
                 KhaoSatDenNgay = dateEnd.AddHours(23).AddMinutes(59),
                 Status = (int)Enums.Status.active,
+                Link = txtLink.Text,
                 TitleVn = txtTitle.Text
             };
             sql.KhaoSats.InsertOnSubmit(khaosat);
@@ -124,7 +122,7 @@ public partial class admin_khaosat : BasePage
             khaosat = sql.KhaoSats.Where(d => d.ID == khaosat.ID).FirstOrDefault();
             khaosat.ContentKhaoSat = dataContent.Value;
             khaosat.DesVn = txtDes.Text;
-
+            khaosat.Link = txtLink.Text;
             khaosat.KhaoSatTuNgay = dateStart;
             khaosat.KhaoSatDenNgay = dateEnd.AddHours(23).AddMinutes(59);
 

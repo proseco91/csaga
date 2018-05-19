@@ -33,9 +33,9 @@ namespace Entity
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertThreadChatContent(ThreadChatContent instance);
+    partial void UpdateThreadChatContent(ThreadChatContent instance);
+    partial void DeleteThreadChatContent(ThreadChatContent instance);
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
@@ -60,9 +60,9 @@ namespace Entity
     partial void InsertThreadChat(ThreadChat instance);
     partial void UpdateThreadChat(ThreadChat instance);
     partial void DeleteThreadChat(ThreadChat instance);
-    partial void InsertThreadChatContent(ThreadChatContent instance);
-    partial void UpdateThreadChatContent(ThreadChatContent instance);
-    partial void DeleteThreadChatContent(ThreadChatContent instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public LinqDataContext() : 
@@ -104,11 +104,11 @@ namespace Entity
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<ThreadChatContent> ThreadChatContents
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<ThreadChatContent>();
 			}
 		}
 		
@@ -184,11 +184,11 @@ namespace Entity
 			}
 		}
 		
-		public System.Data.Linq.Table<ThreadChatContent> ThreadChatContents
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<ThreadChatContent>();
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -549,35 +549,25 @@ namespace Entity
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThreadChatContent")]
+	public partial class ThreadChatContent : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _ID;
 		
-		private string _UserName;
+		private string _IDThread;
 		
-		private string _Password;
+		private string _Message;
 		
-		private string _Avarta;
+		private string _IDSend;
 		
-		private string _Email;
+		private bool _IsAdminSend;
 		
-		private string _FullName;
+		private System.DateTime _CreateDate;
 		
-		private string _PhoneNumber;
-		
-		private System.Nullable<System.DateTime> _CreateDate;
-		
-		private string _CreateBy;
-		
-		private System.Nullable<System.DateTime> _ModifyDate;
-		
-		private string _ModifyBy;
-		
-		private int _Status;
+		private System.Nullable<System.DateTime> _ReadDate;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -585,31 +575,21 @@ namespace Entity
     partial void OnCreated();
     partial void OnIDChanging(string value);
     partial void OnIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnAvartaChanging(string value);
-    partial void OnAvartaChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnFullNameChanging(string value);
-    partial void OnFullNameChanged();
-    partial void OnPhoneNumberChanging(string value);
-    partial void OnPhoneNumberChanged();
-    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnIDThreadChanging(string value);
+    partial void OnIDThreadChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnIDSendChanging(string value);
+    partial void OnIDSendChanged();
+    partial void OnIsAdminSendChanging(bool value);
+    partial void OnIsAdminSendChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
     partial void OnCreateDateChanged();
-    partial void OnCreateByChanging(string value);
-    partial void OnCreateByChanged();
-    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifyDateChanged();
-    partial void OnModifyByChanging(string value);
-    partial void OnModifyByChanged();
-    partial void OnStatusChanging(int value);
-    partial void OnStatusChanged();
+    partial void OnReadDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnReadDateChanged();
     #endregion
 		
-		public User()
+		public ThreadChatContent()
 		{
 			OnCreated();
 		}
@@ -634,128 +614,88 @@ namespace Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string UserName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDThread", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string IDThread
 		{
 			get
 			{
-				return this._UserName;
+				return this._IDThread;
 			}
 			set
 			{
-				if ((this._UserName != value))
+				if ((this._IDThread != value))
 				{
-					this.OnUserNameChanging(value);
+					this.OnIDThreadChanging(value);
 					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
+					this._IDThread = value;
+					this.SendPropertyChanged("IDThread");
+					this.OnIDThreadChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Message
 		{
 			get
 			{
-				return this._Password;
+				return this._Message;
 			}
 			set
 			{
-				if ((this._Password != value))
+				if ((this._Message != value))
 				{
-					this.OnPasswordChanging(value);
+					this.OnMessageChanging(value);
 					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avarta", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string Avarta
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSend", DbType="NVarChar(128)")]
+		public string IDSend
 		{
 			get
 			{
-				return this._Avarta;
+				return this._IDSend;
 			}
 			set
 			{
-				if ((this._Avarta != value))
+				if ((this._IDSend != value))
 				{
-					this.OnAvartaChanging(value);
+					this.OnIDSendChanging(value);
 					this.SendPropertyChanging();
-					this._Avarta = value;
-					this.SendPropertyChanged("Avarta");
-					this.OnAvartaChanged();
+					this._IDSend = value;
+					this.SendPropertyChanged("IDSend");
+					this.OnIDSendChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
-		public string Email
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdminSend", DbType="Bit NOT NULL")]
+		public bool IsAdminSend
 		{
 			get
 			{
-				return this._Email;
+				return this._IsAdminSend;
 			}
 			set
 			{
-				if ((this._Email != value))
+				if ((this._IsAdminSend != value))
 				{
-					this.OnEmailChanging(value);
+					this.OnIsAdminSendChanging(value);
 					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
+					this._IsAdminSend = value;
+					this.SendPropertyChanged("IsAdminSend");
+					this.OnIsAdminSendChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this.OnFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullName = value;
-					this.SendPropertyChanged("FullName");
-					this.OnFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string PhoneNumber
-		{
-			get
-			{
-				return this._PhoneNumber;
-			}
-			set
-			{
-				if ((this._PhoneNumber != value))
-				{
-					this.OnPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._PhoneNumber = value;
-					this.SendPropertyChanged("PhoneNumber");
-					this.OnPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreateDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
 		{
 			get
 			{
@@ -774,82 +714,22 @@ namespace Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateBy", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string CreateBy
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReadDate
 		{
 			get
 			{
-				return this._CreateBy;
+				return this._ReadDate;
 			}
 			set
 			{
-				if ((this._CreateBy != value))
+				if ((this._ReadDate != value))
 				{
-					this.OnCreateByChanging(value);
+					this.OnReadDateChanging(value);
 					this.SendPropertyChanging();
-					this._CreateBy = value;
-					this.SendPropertyChanged("CreateBy");
-					this.OnCreateByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ModifyDate
-		{
-			get
-			{
-				return this._ModifyDate;
-			}
-			set
-			{
-				if ((this._ModifyDate != value))
-				{
-					this.OnModifyDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifyDate = value;
-					this.SendPropertyChanged("ModifyDate");
-					this.OnModifyDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyBy", DbType="NVarChar(128)")]
-		public string ModifyBy
-		{
-			get
-			{
-				return this._ModifyBy;
-			}
-			set
-			{
-				if ((this._ModifyBy != value))
-				{
-					this.OnModifyByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifyBy = value;
-					this.SendPropertyChanged("ModifyBy");
-					this.OnModifyByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
-		public int Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
+					this._ReadDate = value;
+					this.SendPropertyChanged("ReadDate");
+					this.OnReadDateChanged();
 				}
 			}
 		}
@@ -1596,6 +1476,8 @@ namespace Entity
 		
 		private string _DesVn;
 		
+		private string _Link;
+		
 		private string _ContentKhaoSat;
 		
 		private System.DateTime _CreateDate;
@@ -1618,6 +1500,8 @@ namespace Entity
     partial void OnTitleVnChanged();
     partial void OnDesVnChanging(string value);
     partial void OnDesVnChanged();
+    partial void OnLinkChanging(string value);
+    partial void OnLinkChanged();
     partial void OnContentKhaoSatChanging(string value);
     partial void OnContentKhaoSatChanged();
     partial void OnCreateDateChanging(System.DateTime value);
@@ -1693,6 +1577,26 @@ namespace Entity
 					this._DesVn = value;
 					this.SendPropertyChanged("DesVn");
 					this.OnDesVnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Link", DbType="NVarChar(MAX)")]
+		public string Link
+		{
+			get
+			{
+				return this._Link;
+			}
+			set
+			{
+				if ((this._Link != value))
+				{
+					this.OnLinkChanging(value);
+					this.SendPropertyChanging();
+					this._Link = value;
+					this.SendPropertyChanged("Link");
+					this.OnLinkChanged();
 				}
 			}
 		}
@@ -2068,6 +1972,8 @@ namespace Entity
 		
 		private System.Nullable<int> _Use_ImgBackground;
 		
+		private string _Hotline;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2090,6 +1996,8 @@ namespace Entity
     partial void OnColor_BackgroundChanged();
     partial void OnUse_ImgBackgroundChanging(System.Nullable<int> value);
     partial void OnUse_ImgBackgroundChanged();
+    partial void OnHotlineChanging(string value);
+    partial void OnHotlineChanged();
     #endregion
 		
 		public SettingWeb()
@@ -2277,6 +2185,26 @@ namespace Entity
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hotline", DbType="NVarChar(MAX)")]
+		public string Hotline
+		{
+			get
+			{
+				return this._Hotline;
+			}
+			set
+			{
+				if ((this._Hotline != value))
+				{
+					this.OnHotlineChanging(value);
+					this.SendPropertyChanging();
+					this._Hotline = value;
+					this.SendPropertyChanged("Hotline");
+					this.OnHotlineChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2338,6 +2266,10 @@ namespace Entity
 		
 		private string _UserCreate;
 		
+		private System.Nullable<System.DateTime> _ShowDate;
+		
+		private string _HashTag;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2376,6 +2308,10 @@ namespace Entity
     partial void OnStatusChanged();
     partial void OnUserCreateChanging(string value);
     partial void OnUserCreateChanged();
+    partial void OnShowDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnShowDateChanged();
+    partial void OnHashTagChanging(string value);
+    partial void OnHashTagChanged();
     #endregion
 		
 		public TinTuc()
@@ -2719,6 +2655,46 @@ namespace Entity
 					this._UserCreate = value;
 					this.SendPropertyChanged("UserCreate");
 					this.OnUserCreateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShowDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ShowDate
+		{
+			get
+			{
+				return this._ShowDate;
+			}
+			set
+			{
+				if ((this._ShowDate != value))
+				{
+					this.OnShowDateChanging(value);
+					this.SendPropertyChanging();
+					this._ShowDate = value;
+					this.SendPropertyChanged("ShowDate");
+					this.OnShowDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HashTag", DbType="NVarChar(MAX)")]
+		public string HashTag
+		{
+			get
+			{
+				return this._HashTag;
+			}
+			set
+			{
+				if ((this._HashTag != value))
+				{
+					this.OnHashTagChanging(value);
+					this.SendPropertyChanging();
+					this._HashTag = value;
+					this.SendPropertyChanged("HashTag");
+					this.OnHashTagChanged();
 				}
 			}
 		}
@@ -3180,25 +3156,35 @@ namespace Entity
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThreadChatContent")]
-	public partial class ThreadChatContent : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _ID;
 		
-		private string _IDThread;
+		private string _UserName;
 		
-		private string _Message;
+		private string _Password;
 		
-		private string _IDSend;
+		private string _Avarta;
 		
-		private bool _IsAdminSend;
+		private string _Email;
 		
-		private System.DateTime _CreateDate;
+		private string _FullName;
 		
-		private System.Nullable<System.DateTime> _ReadDate;
+		private string _PhoneNumber;
+		
+		private System.Nullable<System.DateTime> _CreateDate;
+		
+		private string _CreateBy;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
+		
+		private string _ModifyBy;
+		
+		private int _Status;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3206,21 +3192,31 @@ namespace Entity
     partial void OnCreated();
     partial void OnIDChanging(string value);
     partial void OnIDChanged();
-    partial void OnIDThreadChanging(string value);
-    partial void OnIDThreadChanged();
-    partial void OnMessageChanging(string value);
-    partial void OnMessageChanged();
-    partial void OnIDSendChanging(string value);
-    partial void OnIDSendChanged();
-    partial void OnIsAdminSendChanging(bool value);
-    partial void OnIsAdminSendChanged();
-    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnAvartaChanging(string value);
+    partial void OnAvartaChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreateDateChanged();
-    partial void OnReadDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnReadDateChanged();
+    partial void OnCreateByChanging(string value);
+    partial void OnCreateByChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
+    partial void OnModifyByChanging(string value);
+    partial void OnModifyByChanged();
+    partial void OnStatusChanging(int value);
+    partial void OnStatusChanged();
     #endregion
 		
-		public ThreadChatContent()
+		public User()
 		{
 			OnCreated();
 		}
@@ -3245,88 +3241,128 @@ namespace Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDThread", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string IDThread
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string UserName
 		{
 			get
 			{
-				return this._IDThread;
+				return this._UserName;
 			}
 			set
 			{
-				if ((this._IDThread != value))
+				if ((this._UserName != value))
 				{
-					this.OnIDThreadChanging(value);
+					this.OnUserNameChanging(value);
 					this.SendPropertyChanging();
-					this._IDThread = value;
-					this.SendPropertyChanged("IDThread");
-					this.OnIDThreadChanged();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Message
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Password
 		{
 			get
 			{
-				return this._Message;
+				return this._Password;
 			}
 			set
 			{
-				if ((this._Message != value))
+				if ((this._Password != value))
 				{
-					this.OnMessageChanging(value);
+					this.OnPasswordChanging(value);
 					this.SendPropertyChanging();
-					this._Message = value;
-					this.SendPropertyChanged("Message");
-					this.OnMessageChanged();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSend", DbType="NVarChar(128)")]
-		public string IDSend
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avarta", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Avarta
 		{
 			get
 			{
-				return this._IDSend;
+				return this._Avarta;
 			}
 			set
 			{
-				if ((this._IDSend != value))
+				if ((this._Avarta != value))
 				{
-					this.OnIDSendChanging(value);
+					this.OnAvartaChanging(value);
 					this.SendPropertyChanging();
-					this._IDSend = value;
-					this.SendPropertyChanged("IDSend");
-					this.OnIDSendChanged();
+					this._Avarta = value;
+					this.SendPropertyChanged("Avarta");
+					this.OnAvartaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdminSend", DbType="Bit NOT NULL")]
-		public bool IsAdminSend
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
 		{
 			get
 			{
-				return this._IsAdminSend;
+				return this._Email;
 			}
 			set
 			{
-				if ((this._IsAdminSend != value))
+				if ((this._Email != value))
 				{
-					this.OnIsAdminSendChanging(value);
+					this.OnEmailChanging(value);
 					this.SendPropertyChanging();
-					this._IsAdminSend = value;
-					this.SendPropertyChanged("IsAdminSend");
-					this.OnIsAdminSendChanged();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
-		public System.DateTime CreateDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreateDate
 		{
 			get
 			{
@@ -3345,22 +3381,82 @@ namespace Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ReadDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateBy", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string CreateBy
 		{
 			get
 			{
-				return this._ReadDate;
+				return this._CreateBy;
 			}
 			set
 			{
-				if ((this._ReadDate != value))
+				if ((this._CreateBy != value))
 				{
-					this.OnReadDateChanging(value);
+					this.OnCreateByChanging(value);
 					this.SendPropertyChanging();
-					this._ReadDate = value;
-					this.SendPropertyChanged("ReadDate");
-					this.OnReadDateChanged();
+					this._CreateBy = value;
+					this.SendPropertyChanged("CreateBy");
+					this.OnCreateByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyBy", DbType="NVarChar(128)")]
+		public string ModifyBy
+		{
+			get
+			{
+				return this._ModifyBy;
+			}
+			set
+			{
+				if ((this._ModifyBy != value))
+				{
+					this.OnModifyByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyBy = value;
+					this.SendPropertyChanged("ModifyBy");
+					this.OnModifyByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
+		public int Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}

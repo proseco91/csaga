@@ -152,7 +152,7 @@
                         <td style="width: calc(100% - 644px);"><%=item.value.TitleVn %></td>
                         <td style="width: 120px;"><%=item.value.KhaoSatTuNgay.ToString("dd/MM/yyyy, HH:mm") %></td>
                         <td style="width: 120px;"><%=item.value.KhaoSatDenNgay.ToString("dd/MM/yyyy, HH:mm") %></td>
-                        <td style="width: 110px;text-align:center;">0</td>
+                        <td style="width: 110px;text-align:center;"><%=item.value.arrayCauTraLoi.Count %></td>
                         <td style="width: 120px;"><%=item.value.CreateDate.ToString("dd/MM/yyyy") %></td>
                         <td style="width: 100px;">
                             <a href="<%=string.Format(Enums.LoaiTinTucUrlChinhSua((Enums.LoaiTinTuc.KhaoSat)),Lib.LocDau(item.value.TitleVn),item.value.ID) %>"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
@@ -189,6 +189,13 @@
                 </div>
                 <div style="clear: both; height: 20px;"></div>
                 <div class="panel_from_row panel_from_row_input">
+                    <lable>Link khảo sát</lable>
+                    <span style="width: 400px;">
+                        <asp:TextBox ID="txtLink" runat="server" no-empty Width="100%"></asp:TextBox>
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
                     <lable>Thời gian bắt đầu</lable>
                     <span style="width: 400px;">
                         <asp:TextBox ID="txtDateTo" runat="server" no-empty Width="100%" MaxLength="200"></asp:TextBox>
@@ -201,8 +208,8 @@
                         <asp:TextBox ID="txtDateEnd" runat="server" no-empty Width="100%" MaxLength="200"></asp:TextBox>
                     </span>
                 </div>
-                <div style="clear: both; height: 20px;"></div>
-                <div class="panel_from_row panel_from_row_input">
+                <%--<div style="clear: both; height: 20px;"></div>--%>
+                <div class="panel_from_row panel_from_row_input" style="display:none;">
                     <lable style="vertical-align: top;">Nội dung khảo sát</lable>
                     <span style="width: 600px;">
                         <span btn-them>Thêm câu</span>

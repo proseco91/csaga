@@ -190,7 +190,8 @@ public partial class admin_category : BasePage
 
         if (!string.IsNullOrEmpty(seach))
         {
-            query = (from T in query where Convert.ToBoolean(sql.sosanhstring(T.TieuDe_Vn, seach)) || Convert.ToBoolean(sql.sosanhstring(T.TieuDe_En, seach)) select T);
+            seach = seach.ToUpper();
+            query = (from T in query where T.TieuDe_Vn.ToUpper().Contains(seach) || T.TieuDe_En.ToUpper().Contains(seach) select T);
         }
         query = query.OrderBy(d => d.Number);
         totalRowCount = query.Count();

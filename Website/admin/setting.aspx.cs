@@ -72,7 +72,7 @@ public partial class admin_setting : BasePage
         setting.Fax = txtFax.Text;
         setting.Banner = getListImg(setting.Banner.Split(',').ToList());
         setting.Use_ImgBackground = Convert.ToInt32(windown_background_web.Value);
-
+        setting.Hotline = dataHotline.Value;
         if (Request.Form["imageBackgroundweb"] != null)
         {
             setting.Img_Background = Lib.saveImgFromBase64(Regex.Split(Request.Form["imageBackgroundweb"], "-->end<--,")[0].Replace("-->end<--,", "").Replace("-->end<--", ""), Server.MapPath("~/images/imageUpload/"), false);

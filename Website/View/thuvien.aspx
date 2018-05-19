@@ -50,6 +50,7 @@
                     box-sizing: border-box;
                     padding: 10px 0px;
                     color: #000;
+                    min-height:96px;
                 }
 
                     .list-item-thuvien .item-thuvien .item-thuvien-title::after
@@ -112,7 +113,7 @@
                 <a href="<%=Lib.urlhome %>">Trang chủ</a>
             </span>
             <span class="item-link-cate">
-                Thư viện
+              <%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.ThuVien) %>
             </span>
         </div>
         <div style="clear: both; height: 0px;"></div>
@@ -139,8 +140,8 @@
 
                 <div class="item-thuvien">
                     <div class="item-thuvien-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
-                    <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_Vn,40) %></div>
-                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,140) %></div>
+                    <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm"><div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_Vn,40) %></div></a>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,130) %></div>
                     <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
                         <div class="item-thuvien-btn"></div>
                     </a>

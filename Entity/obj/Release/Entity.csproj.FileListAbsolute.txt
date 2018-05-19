@@ -4,3 +4,11 @@ D:\GitHub\csaga\Entity\bin\Release\Entity.pdb
 D:\GitHub\csaga\Entity\obj\Release\Entity.csprojResolveAssemblyReference.cache
 D:\GitHub\csaga\Entity\obj\Release\Entity.dll
 D:\GitHub\csaga\Entity\obj\Release\Entity.pdb
+E:\GitHub\csaga\Entity\bin\Release\Entity.dll.config
+E:\GitHub\csaga\Entity\bin\Release\Entity.dll
+E:\GitHub\csaga\Entity\bin\Release\Entity.pdb
+E:\GitHub\csaga\Entity\bin\Release\Newtonsoft.Json.dll
+E:\GitHub\csaga\Entity\obj\Release\Entity.csprojResolveAssemblyReference.cache
+E:\GitHub\csaga\Entity\obj\Release\Entity.csproj.CoreCompileInputs.cache
+E:\GitHub\csaga\Entity\obj\Release\Entity.dll
+E:\GitHub\csaga\Entity\obj\Release\Entity.pdb

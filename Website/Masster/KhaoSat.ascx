@@ -11,9 +11,13 @@
 
     </div>
     <%if (khaosat != null)
-      { 
-          
+        {
+
     %>
+    <div iframe-khaosat="">
+        <span iframe-btn-dong="">Đóng</span>
+        <iframe src="<%=khaosat.Link %>"></iframe>
+    </div>
     <div id="khao-sat" valnow="-1" valmax="-1">
         <div class="khao-sat-panel">
             <div class="khao-sat-panel-content">
@@ -21,31 +25,7 @@
                     <div style="font-size: 18px; font-weight: bold; color: #333; text-align: center; text-transform: uppercase;"><%=khaosat.TitleVn %></div>
                     <div style="font-size: 15px; font-weight: 700; color: #555; text-align: justify; margin-top: 10px;"><%=khaosat.DesVn.Replace("\n","</br>") %></div>
                 </div>
-                <%foreach (var item in khaosat.arrayCauHoi)
-                  {%>
-                <div class="khao-sat-item" valid="<%=item.id %>">
-                    <div style="font-size: 18px; font-weight: bold; color: #333; text-align: center; text-transform: uppercase;"><%=item.title %></div>
-                    <%foreach (var cauhoi in item.array)
-                      {%>
-                    <div item-khaosat-check="<%=cauhoi.id %>">
-                        <input type="checkbox" value="<%=cauhoi.id %>" groupcheckbox="<%=item.id %>" />
-                        <%=cauhoi.text %>
-                    </div>
-                    <%}%>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $('[groupcheckbox="<%=item.id %>"]').change(function () {
-                                $('[groupcheckbox="<%=item.id %>"]').prop('checked', false);
-                                $(this).prop('checked', true);
-                            }).eq(0).change();
-                        });
-                    </script>
-                </div>
-                <%}%>
                 <div class="khao-sat-item" thanhcong="false">
-                    <div panelthanhcong>
-                        Gửi khảo sát thành công.
-                    </div>
                     <div panelinfo>
                         <div style="font-size: 18px; font-weight: bold; color: #333; text-align: center; text-transform: uppercase;">Thông tin</div>
                         <div class="khao-sat-item_updateinfo">
@@ -77,7 +57,10 @@
             var _max = _khaosat.find('.khao-sat-item').size();
             _khaosat.attr('valmax', _khaosat.find('.khao-sat-item').size());
             var khaosat_info = _khaosat.find('.khao-sat-item_updateinfo');
-
+            $('[iframe-khaosat] [iframe-btn-dong]').click(function () {
+                $('[iframe-khaosat]').css('display', 'none');
+                getKhaoSat();
+            });
             $('[btn-click-khaosat]').click(function () {
                 _khaosat.attr('show', '');
                 setTimeout(function () {
@@ -114,17 +97,11 @@
                     khaosat_info.children('.khao-sat-item_updateinfo_err').html('');
                     showKhaoSat(indexNe - 1);
                     var arrarTL = [];
-                    $('.khao-sat-item[valid]').each(function () {
-                        arrarTL.push({
-                            id: $(this).attr('valid'),
-                            idtraloi: $('[groupcheckbox="' + $(this).attr('valid') + '"]:checked').val()
-                        });
-                    });
                     $('.khao-sat-panel-btn-left,.khao-sat-panel-btn-right').removeAttr('show');
                     $('.khao-sat-panel-btn').attr('loading', '');
                     $.ajax({
                         type: "POST",
-                        url: $.chat.urlWeb + "/service/service.asmx/doneKhaoSat",
+                        url: "/service/service.asmx/doneKhaoSat",
                         data: "{'ID':'<%=khaosat.ID%>',array:" + JSON.stringify(JSON.stringify(arrarTL)) + ",fullname:'" + fullname + "',email:'" + email + "',phone:'" + phone + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -132,17 +109,15 @@
 
                     },
                     success: function (message) {
-                        $('.khao-sat-panel-btn').removeAttr('loading');
-                        $('[thanhcong]').attr('thanhcong', 'true');
-                        showKhaoSat(indexNe - 1);
-                        getKhaoSat();
+                        _khaosat.removeAttr('show');
+                        $('[iframe-khaosat]').css('display', 'block');
                     },
                     error: function (errormessage) {
 
                     }
                 });
                 } else if (_max - 1 == indexNe) {
-                    $(this).text('Gửi khảo sát');
+                    $(this).text('Làm khảo sát');
                     showKhaoSat(indexNe);
                 }
                 else {
@@ -161,17 +136,15 @@
         function getKhaoSat() {
             $.ajax({
                 type: "GET",
-                url: $.chat.urlWeb + '/service/service.asmx/GetKhaoSat',
+                url: '/service/service.asmx/GetKhaoSat',
                 data: '',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 beforeSend: function () {
                 },
                 success: function (message) {
-                    $('#khao-sat').remove();
-                    setTimeout(function () {
-                        $('[content-khaosat]').replaceWith(message.d);
-                    }, 3000);
+                    //$('#khao-sat').remove();
+                    $('[content-khaosat]').replaceWith(message.d);
                 },
                 error: function (errormessage) {
                 }
@@ -209,8 +182,8 @@
         }
     </script>
     <%}
-      else
-      {%>
+        else
+        {%>
     <script type="text/javascript">
         $(document).ready(function () {
 

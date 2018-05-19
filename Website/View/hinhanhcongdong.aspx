@@ -184,7 +184,7 @@
                 <span class="item-link-cate">
                     <a href="<%=Lib.urlhome %>">Trang chủ</a>
                 </span>
-                <span class="item-link-cate">Tôi là nữ yêu nữ
+                <span class="item-link-cate"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HinhAnhCongDongYeuNu) %>
                 </span>
             </div>
             <div class="panel-btn-guicauchuyen">

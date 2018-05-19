@@ -36,7 +36,7 @@
             $(document).ready(function () {
                 $('.panel_search input:text').unbind("keypress").keypress(function (event) {
                     if (event.which == 13) {
-                        window.location.href = "tin-tuc.htm?seach=" + $(this).val();
+                        window.location.href = "<%=Enums.MucLucUrlDanhSach((Enums.LoaiTinTuc)Type) %>?seach=" + $(this).val();
                         event.preventDefault();
                     }
                 });

@@ -35,7 +35,7 @@ public partial class View_hinhanhcongdong : BaseHome
             d.SoLuongBai = query.Where(c => c.ThanhPho.Value == d.region_id).Select(c => c.ID).Count();
 
         });
-        return Newtonsoft.Json.JsonConvert.SerializeObject(array.Where(d => d.SoLuongBai != null && d.SoLuongBai > 0).Select(d => new
+        return Newtonsoft.Json.JsonConvert.SerializeObject(array.Where(d => d.SoLuongBai > 0).Select(d => new
         {
             lat = d.lat,
             lng = d.lng,

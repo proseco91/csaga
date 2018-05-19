@@ -25,7 +25,7 @@ public partial class View_newsDetail : BaseHome
         this.Title = tintuc.TieuDe_Vn;
     }
     public List<TinTuc> getTinTucKhac() {
-        List<TinTuc> customers = sql.ExecuteQuery<TinTuc>(@"SELECT top 7 * from [TinTuc] where Type="+tintuc.Type+" and ID<>'"+tintuc.ID+"' order by newid()").ToList();
+        List<TinTuc> customers = sql.ExecuteQuery<TinTuc>(@"SELECT top 7 * from [TinTuc] where Type="+tintuc.Type+" and ID<>'"+tintuc.ID+ "' and (ShowDate is null or (ShowDate is not null and ShowDate<='"+DateTime.Today.ToString("yyyy-MM-dd")+"')) order by newid()").ToList();
         string lang = Lib.getLag();
         customers.ForEach(d =>
         {
@@ -36,5 +36,9 @@ public partial class View_newsDetail : BaseHome
             }
         });
         return customers;
+    }
+    public List<Comment> getComment()
+    {
+        return sql.Comments.Where(d => d.TinTucID == tintuc.ID).OrderByDescending(d => d.CreateDate).ToList();
     }
 }

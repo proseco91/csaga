@@ -21,7 +21,7 @@ public partial class View_tintuc_sukien : BaseHome
             pageNum = 1;
         pageSelect = pageNum;
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.TinTucSuKien && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active);
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.TinTucSuKien && (d.Category.LastIndexOf(cate.ToString() + ",") > -1 || d.Category.LastIndexOf(cate.ToString()) > -1) && d.Status == (int)Enums.Status.active && (!d.ShowDate.HasValue || (d.ShowDate.HasValue && d.ShowDate.Value <= DateTime.Today)));
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();

@@ -68,21 +68,23 @@ a {
             top: 100%;
             width: 100%;
             box-sizing: border-box;
-            display:none;
+            display: none;
         }
-        .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel]:hover [menu-chi] {
-            display:block;
-        }
-            .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel] [menu-chi] a {
-                display: block;
-                border-top: 1px dashed #FFF;
-                padding: 4px 5px 0px 5px;
-                font-size: 14px;
-            }
 
-                .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel] [menu-chi] a:hover {
-                    box-shadow: 0px 0px 29px rgba(255,255,255,1) inset;
-                }
+        .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel]:hover [menu-chi] {
+            display: block;
+        }
+
+        .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel] [menu-chi] a {
+            display: block;
+            border-top: 1px dashed #FFF;
+            padding: 4px 5px 0px 5px;
+            font-size: 14px;
+        }
+
+            .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel] [menu-chi] a:hover {
+                box-shadow: 0px 0px 29px rgba(255,255,255,1) inset;
+            }
 
         .bodyCrazy .eff_7mau .eff_7mau_content [menu-panel] a {
             color: #333;
@@ -140,10 +142,12 @@ a {
             transition: opacity 1s ease-out 0s;
             top: 0px;
             left: 0px;
+            z-index: 1;
         }
 
             .bodyCrazy .banner .banner_content .item_banner[show] {
                 opacity: 1;
+                z-index: 2;
             }
 
     .bodyCrazy .banner .banner_index {
@@ -355,3 +359,46 @@ a {
     .cate-link .item-link-cate:last-child::after {
         display: none;
     }
+
+#hotline {
+    right: 0px;
+    bottom: 40%;
+    position: fixed;
+    z-index: 10;
+}
+
+    #hotline .hotline-item {
+        height: 45px;
+        width: 50px;
+        background-color: #77018b;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        right: -10px;
+        -webkit-transition: right 0.5s,border-radius 0.5s; /* Safari */
+        transition: right 0.5s,border-radius 0.5s;
+    }
+
+        #hotline .hotline-item:hover {
+            right: 0px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        #hotline .hotline-item i {
+            color: #FFF;
+            font-size: 30px;
+            position: absolute;
+            left: 10px;
+        }
+
+    #hotline a:first-child .hotline-item {
+        border-top-left-radius: 5px;
+    }
+
+    #hotline a:last-child .hotline-item {
+        border-bottom-left-radius: 5px;
+    }
+
+
+

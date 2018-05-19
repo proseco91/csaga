@@ -55,9 +55,9 @@ public class service : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
-    public string GetCart()
+    public string GetKhaoSat()
     {
-        var fullPath = "~/View/CartDetail.ascx";
+        var fullPath = "~/Masster/KhaoSat.ascx";
         System.Web.UI.Page page = new System.Web.UI.Page();
 
         System.Web.UI.Control control = page.LoadControl(fullPath);
@@ -67,7 +67,7 @@ public class service : System.Web.Services.WebService
 
 
     }
-
+          
 
     [WebMethod(EnableSession = true)]
     public void doneKhaoSat(string ID, string array, string fullname, string email, string phone)

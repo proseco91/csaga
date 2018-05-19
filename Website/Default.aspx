@@ -10,7 +10,6 @@
             margin: 0px;
             box-sizing: border-box;
             margin: 20px;
-            
         }
 
             /*.item-home:nth-child(1), .item-home:nth-child(4) {
@@ -50,7 +49,7 @@
                 margin-top: 20px;
                 position: relative;
                 z-index: 1;
-                background-color:rgba(255,255,255,0.7);
+                background-color: rgba(255,255,255,0.7);
             }
 
             .item-home:hover .item-home-name {
@@ -270,13 +269,127 @@
                 top: 0px;
                 left: 0px;
             }
+
+        .hinhanhcongdong-item {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+            .hinhanhcongdong-item .hinhanhcongdong-item-img {
+                height: 100%;
+                width: 60%;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+
+            .hinhanhcongdong-item .hinhanhcongdong-item-content {
+                position: absolute;
+                height: 100%;
+                padding: 20px;
+                right: 0px;
+                overflow: hidden;
+                width: 40%;
+                box-sizing: border-box;
+                background-color: rgba(255,255,255,0.7);
+            }
+
+            .hinhanhcongdong-item .hinhanhcongdong-item-title {
+                font-size: 20px;
+                font-weight: 700;
+                max-height: 64px;
+                overflow: hidden;
+            }
+
+            .hinhanhcongdong-item .hinhanhcongdong-item-date {
+                font-size: 15px;
+                color: #555;
+            }
+
+            .hinhanhcongdong-item .hinhanhcongdong-item-des {
+                margin-top: 5px;
+                border-top: 1px dashed #DDD;
+                font-size: 15px;
+                color: #444;
+                padding-top: 10px;
+                max-height: 145px;
+                overflow: hidden;
+            }
+
+            .hinhanhcongdong-item .item-hotro-btn {
+                height: 32px;
+                background-color: #ae4bce;
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+            }
+
+                .hinhanhcongdong-item .item-hotro-btn::before {
+                    content: "<%=Lib.ContentLag("Xem thêm","More")%>";
+                    position: absolute;
+                    right: 30px;
+                    top: 10px;
+                    color: #FFF;
+                }
+
+                .hinhanhcongdong-item .item-hotro-btn::after {
+                    content: url('../Images/Csaga/icon-xemthem.png');
+                    position: absolute;
+                    right: 05px;
+                    top: 10px;
+                }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
+    <div style="clear: both;"></div>
+    <div class="bodyCrazy">
+        <div class="banner" valindex="0">
+            <%
+                var arrayNuYeuNu = getHinhAnh();
+            %>
+            <div class="banner_content">
+                <%foreach (var item in arrayNuYeuNu.Select((value, index) => new { value, index }))
+                    {%>
+                <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/" %>chitiet-hinh-anh-cong-dong-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                    <div class="item_banner" valindex="0">
+                        <div class="hinhanhcongdong-item">
+                            <div class="hinhanhcongdong-item-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');">
+                            </div>
+                            <div class="hinhanhcongdong-item-content">
+                                <div class="hinhanhcongdong-item-title">
+                                    <%=Lib.subString(item.value.TieuDe_Vn,110) %>
+                                </div>
+                                <div class="hinhanhcongdong-item-date">
+                                    <%=item.value.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                                </div>
+                                <div class="hinhanhcongdong-item-des">
+                                    <%=item.value.Des_Vn %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+            </div>
+            <div class="banner_index">
+                <span class="banner_index_span">
+                    <%foreach (var item in arrayNuYeuNu.Select((value, index) => new { value, index }))
+                            {%>
+                        <span valindex="<%=item.index %>"></span>
+                    <%}%>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
     <div style="clear: both; height: 20px;"></div>
-    <div class="panel_1k2" style="text-align: center;width: 1260px;max-width:calc(100% + 60px);left:-30px;position:relative;">
+    <div class="panel_1k2" style="text-align: center; width: 1260px; max-width: calc(100% + 60px); left: -30px; position: relative;">
         <div class="item-home flip-container">
             <div class="item-home-hover flipper" ontouchstart="this.classList.toggle('hover');">
                 <div class="item-home-icon front" style="background-image: url('<%=Lib.urlhome%>/Images/imageUpload/<%=sql.getCategory().FirstOrDefault(d=>d.ID==1029).Img %>');"></div>
@@ -370,6 +483,6 @@
         <uc1:KhaoSat runat="server" ID="KhaoSat" />
         <div style="clear: both;"></div>
     </div>
-    <div style="height: 80px; clear: both;"></div>
+    <div style="height: 20px; clear: both;"></div>
 </asp:Content>
 

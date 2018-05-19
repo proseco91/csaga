@@ -49,6 +49,7 @@
                     box-sizing: border-box;
                     padding: 10px 0px;
                     color: #000;
+                    min-height:96px;
                 }
 
                     .list-item-thuvien .item-thuvien .item-thuvien-title::after
@@ -174,7 +175,7 @@
             <span class="item-link-cate">
                 <a href="<%=Lib.urlhome %>">Trang chủ</a>
             </span>
-            <span class="item-link-cate">Alo tôi nghe
+            <span class="item-link-cate"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HoTro) %>
             </span>
         </div>
         <div style="clear: both; height: 0px;"></div>
@@ -212,7 +213,7 @@
                     <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
                         <div class="item-thuvien-title"><%=Lib.subString(item.value.TieuDe_Vn,40) %></div>
                     </a>
-                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,140) %></div>
+                    <div class="item-thuvien-des"><%=Lib.subString(item.value.Des_Vn,130) %></div>
                     <a href="thuvien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
                         <div class="item-thuvien-btn"></div>
                     </a>

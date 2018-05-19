@@ -128,8 +128,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Banner" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
-    <div class="panel_1k2" id="viewnews" style="background-color:rgba(255,255,255,0.8);padding:20px 0px;">
-        <div class="cate-link" style="margin-top:0px;padding-left:10px;">
+    <div class="panel_1k2" id="viewnews" style="background-color: rgba(255,255,255,0.8); padding: 20px 0px;">
+        <div class="cate-link" style="margin-top: 0px; padding-left: 10px;">
             <span class="item-link-cate">
                 <a href="<%=Lib.urlhome %>">Trang chủ</a>
             </span>
@@ -138,7 +138,7 @@
         </div>
         <div style="clear: both; height: 0px;"></div>
         <%foreach (var cate in sql.getCategory().Where(d => d.Type == (int)Enums.LoaiTinTuc.TinTucSuKien))
-          {%>
+            {%>
         <div id="<%="view"+cate.ID %>">
             <div style="clear: both; height: 0px;"></div>
             <div class="cate-link" style="padding-left: 10px; margin-top: 0px; background-color: #c9dbff; padding-top: 9px; color: #333; border: medium none;">
@@ -148,20 +148,22 @@
                 </span>
             </div>
             <div style="clear: both; height: 0px;"></div>
-            <div class="list-item-news" style="padding:0px 20px;">
+            <div class="list-item-news" style="padding: 0px 20px;">
                 <%
-              int totalRow = 0;
-              int pageSelect = 1;
-              int numInPage = 6;
-              var datain = getTinTuc(numInPage, cate.ID, out totalRow, out pageSelect);
-              foreach (var item in datain.Select((value, i) => new { i, value }))
-              {
+                    int totalRow = 0;
+                    int pageSelect = 1;
+                    int numInPage = 6;
+                    var datain = getTinTuc(numInPage, cate.ID, out totalRow, out pageSelect);
+                    foreach (var item in datain.Select((value, i) => new { i, value }))
+                    {
                 %>
 
                 <div class="item-news">
-                    <div class="item-news-title" title="<%=item.value.TieuDe_Vn %>">
-                        <%=item.value.TieuDe_Vn %>
-                    </div>
+                    <a href="tintuc-sukien-<%=Lib.LocDau(item.value.TieuDe_Vn) %>-z-<%=item.value.ID %>.htm">
+                        <div class="item-news-title" title="<%=item.value.TieuDe_Vn.Replace("\"","'") %>">
+                            <%=item.value.TieuDe_Vn %>
+                        </div>
+                    </a>
                     <div class="item-news-center">
                         <div class="item-news-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
                         <div class="item-news-content">
@@ -174,7 +176,7 @@
                     </div>
                 </div>
                 <%}%>
-                <div style="clear:both;"></div>
+                <div style="clear: both;"></div>
             </div>
             <div style="clear: both; height: 0px;"></div>
             <%=Lib.createPhanTrang(totalRow, numInPage, pageSelect,5,"view"+cate.ID,"page"+cate.ID)%>
@@ -182,5 +184,5 @@
         </div>
         <%}%>
     </div>
-    
+
 </asp:Content>

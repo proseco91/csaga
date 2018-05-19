@@ -16,6 +16,8 @@
     <meta property="og:description" content="Nư yêu nữ thông tin, tài liệu về cộng đồng nữ yêu nữ tại Việt Nam" />
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900&amp;subset=latin-ext,tamil,vietnamese" rel="stylesheet">
     <link href="../Styles/home.css" rel="stylesheet" />
+    <link href="../Styles/fonts.css" rel="stylesheet" />
+    <link href="../Styles/font-awesome.min.css" rel="stylesheet" />
     <link href="../linktamchat/Styles/chat/popup.css" rel="stylesheet" />
     <link href="../Styles/style_chat.css" rel="stylesheet" />
     <link href="../Styles/khaosat.css" rel="stylesheet" />
@@ -23,6 +25,8 @@
     <script src="<%=Lib.urlhome %>/Scripts/jquery-1.10.2.js"></script>
     <script src="<%=Lib.urlhome %>/Scripts/home.js"></script>
     <script src="<%=Lib.urlhome %>/linktamchat/Scripts/chat/popup.js"></script>
+    <%--<script src='http://sirenchat.com/create-lib/de3de31a-66f5-40e0-b1d2-c955518be21d' type="text/javascript"></script>
+    <script src='http://sirenchat.com/create-script/de3de31a-66f5-40e0-b1d2-c955518be21d' type="text/javascript"></script>--%>
     <script type="text/javascript">
         var lag = '<%=Lib.getLag()%>';
         var urlNow = '<%=Request.RawUrl.ToString().ToLower()%>';
@@ -51,33 +55,37 @@
                     event.preventDefault();
                 }
             });
-            var count = 0;
-            var maxCount = $('.item_banner').size();
-            var timeEff = null;
-            $('.item_banner:eq(0)').attr('show', '');
-            $('.banner_index_span span:eq(0)').attr('show', '');
-            var fnShowBanner = function () {
-                if (timeEff != null)
-                    clearInterval(timeEff);
-                timeEff = setInterval(function () {
-                    count++;
-                    if (count >= maxCount)
-                        count = 0;
-                    $('.item_banner').removeAttr('show');
-                    $('.banner_index_span span').removeAttr('show');
-                    $('.item_banner:eq(' + count + ')').attr('show', '');
-                    $('.banner_index_span span:eq(' + count + ')').attr('show', '');
-                }, 5000);
-            };
-            $('.banner_index_span span').click(function () {
-                count = $('.banner_index_span span').index($(this));
-                $('.item_banner').removeAttr('show');
-                $('.banner_index_span span').removeAttr('show');
-                $('.item_banner:eq(' + count + ')').attr('show', '');
-                $('.banner_index_span span:eq(' + count + ')').attr('show', '');
+            $('.banner').each(function () {
+                var _this = $(this);
+                var count = 0;
+                var maxCount = _this.find('.item_banner').size();
+                var timeEff = null;
+                _this.find('.item_banner:eq(0)').attr('show', '');
+                _this.find('.banner_index_span span:eq(0)').attr('show', '');
+                var fnShowBanner = function () {
+                    if (timeEff != null)
+                        clearInterval(timeEff);
+                    timeEff = setInterval(function () {
+                        count++;
+                        if (count >= maxCount)
+                            count = 0;
+                        _this.find('.item_banner').removeAttr('show');
+                        _this.find('.banner_index_span span').removeAttr('show');
+                        _this.find('.item_banner:eq(' + count + ')').attr('show', '');
+                        _this.find('.banner_index_span span:eq(' + count + ')').attr('show', '');
+                    }, 5000);
+                };
+                _this.find('.banner_index_span span').click(function () {
+                    count = _this.find('.banner_index_span span').index($(this));
+                    _this.find('.item_banner').removeAttr('show');
+                    _this.find('.banner_index_span span').removeAttr('show');
+                    _this.find('.item_banner:eq(' + count + ')').attr('show', '');
+                    _this.find('.banner_index_span span:eq(' + count + ')').attr('show', '');
+                    fnShowBanner.call($(this));
+                });
                 fnShowBanner.call($(this));
             });
-            fnShowBanner.call($(this));
+            
         });
     </script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
@@ -94,7 +102,24 @@
         ga('send', 'pageview');
 
     </script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1882702138441731',
+                xfbml: true,
+                version: 'v3.0'
+            });
+            FB.AppEvents.logPageView();
+        };
 
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 <body>
     <div id="loading_masster"></div>
@@ -214,19 +239,19 @@
             </div>--%>
             <div class="bottom_center">
                 <div class="list-item-link">
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>">Tin tức - Sự kiện
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/tintuc-sukien.htm" %>"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.TinTucSuKien) %>
                     </a>
                     <span style="background-color: #981e20;"></span>
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>">Thư viện
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/thuvien.htm" %>"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.ThuVien) %>
                     </a>
                     <span style="background-color: #f89201;"></span>
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>">Tôi là nữ yêu nữ
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hinh-anh-cong-dong.htm" %>"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HinhAnhCongDongYeuNu) %>
                     </a>
                     <span style="background-color: #f8e900;"></span>
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>">Nữ yêu nữ địa phương
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/nhom-nu-yeu-nu.htm" %>"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.CacNhomNuyeuNu) %>
                     </a>
                     <span style="background-color: #358e52;"></span>
-                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>">Alo tôi nghe
+                    <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/hotro.htm" %>"><%=Enums.LoaiTinTucDesc(Enums.LoaiTinTuc.HoTro) %>
                     </a>
                     <span style="background-color: #3683bc;"></span>
                     <a href="<%=Lib.urlhome+"/"+(Lib.getLag().Equals("vi-VN")?"vi":"en")+"/lien-he.htm" %>">Liên hệ
@@ -264,7 +289,29 @@
             <%}%>
         }
     </style>
-    
+    <div id="hotline">
+        <%if (!string.IsNullOrEmpty(sql.getSettingWeb().hotlineDictionary["phone"]["data"])) { %>
+        <a href="tel:<%=sql.getSettingWeb().hotlineDictionary["phone"]["data"]%>">
+            <span class="hotline-item" style="background-color:<%=sql.getSettingWeb().hotlineDictionary["phone"]["background"]%>;">
+                <i class="fa fa-phone" style="top: 10px;color:<%=sql.getSettingWeb().hotlineDictionary["phone"]["color"]%>;"></i>
+            </span>
+        </a>
+        <%}%>
+        <%if (!string.IsNullOrEmpty(sql.getSettingWeb().hotlineDictionary["email"]["data"])) { %>
+        <a href="mailto:<%=sql.getSettingWeb().hotlineDictionary["email"]["data"]%>">
+            <span class="hotline-item" style="background-color:<%=sql.getSettingWeb().hotlineDictionary["email"]["background"]%>;">
+                <i class="fa fa-envelope" style="left: 8px;font-size: 26px;top: calc(50% - 14px);color:<%=sql.getSettingWeb().hotlineDictionary["email"]["color"]%>;"></i>
+            </span>
+        </a>
+        <%}%>
+        <%if (!string.IsNullOrEmpty(sql.getSettingWeb().hotlineDictionary["facebook"]["data"])) { %>
+        <a target="_blank" href="<%=sql.getSettingWeb().hotlineDictionary["facebook"]["data"]%>">
+            <span class="hotline-item" style="background-color:<%=sql.getSettingWeb().hotlineDictionary["facebook"]["background"]%>;">
+                <i class="fa fa-facebook" style="top:10px;left:15px;color:<%=sql.getSettingWeb().hotlineDictionary["facebook"]["color"]%>;"></i>
+            </span>
+        </a>
+        <%}%>
+    </div>
     <%--<uc1:ChatHome runat="server" ID="ChatHome" />--%>
 </body>
 </html>

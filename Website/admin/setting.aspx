@@ -26,6 +26,7 @@
                 <input type="button" value="Cấu hình liên hệ" class="select" onclick="show_panel(0);" />
                 <input type="button" value="Photo Banner" onclick="show_panel(1);" />
                 <input type="button" value="Background Website" onclick="show_panel(2);" />
+                <input type="button" value="Hotline" onclick="show_panel(3);" />
             </div>
         </div>
         <div class="htm_err_respon"></div>
@@ -55,13 +56,6 @@
                     <lable>Điện thoại</lable>
                     <span style="width: 400px;">
                         <asp:TextBox ID="txtDienThoai" runat="server" no-empty Width="100%" MaxLength="200"></asp:TextBox>
-                    </span>
-                </div>
-                <div style="clear: both; height: 20px;"></div>
-                <div class="panel_from_row panel_from_row_input">
-                    <lable>Nhánh điện thoại</lable>
-                    <span style="width: 400px;">
-                        <asp:TextBox ID="txtNhanhDienThoai" runat="server" Width="100%" MaxLength="200"></asp:TextBox>
                     </span>
                 </div>
                 <div style="clear: both; height: 20px;"></div>
@@ -99,7 +93,7 @@
                         <input type="button" value="Ảnh nền" valdata="0" valname="windown_background_web" class="select" style="border-left: 1px solid #d9d9d9; border-radius: 3px 0 0 3px;" />
                         <input type="button" value="Màu nền" valdata="1" valname="windown_background_web" />
                         <input type="button" value="Cả 2" valdata="2" valname="windown_background_web" />
-                        <asp:HiddenField ID="windown_background_web" runat="server" ClientIDMode="Static"/>
+                        <asp:HiddenField ID="windown_background_web" runat="server" ClientIDMode="Static" />
                     </div>
                 </div>
                 <div style="clear: both; height: 20px;"></div>
@@ -120,13 +114,138 @@
                 </div>
             </div>
         </div>
+        <div class="panel_from_item">
+            <div class="panel_from_title"><span>Điện thoại</span></div>
+            <div style="clear: both; height: 20px;"></div>
+            <div class="panel_from">
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Số điện thoại</lable>
+                    <span style="width: 400px;">
+                        <input type="text" data="phone" />
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu nền</lable>
+                    <span>
+                        <input type="text" background="phone" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu icon</lable>
+                    <span>
+                        <input type="text" color="phone" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+            </div>
+            <div style="clear: both; height: 20px;"></div>
+            <div class="panel_from_title"><span>Email</span></div>
+            <div style="clear: both; height: 20px;"></div>
+            <div class="panel_from">
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Email</lable>
+                    <span style="width: 400px;">
+                        <input type="text" data="email" />
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu nền</lable>
+                    <span>
+                        <input type="text" background="email" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu icon</lable>
+                    <span>
+                        <input type="text" color="email" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+            </div>
+            <div style="clear: both; height: 20px;"></div>
+            <div class="panel_from_title"><span>Facebook</span></div>
+            <div style="clear: both; height: 20px;"></div>
+            <div class="panel_from">
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input">
+                    <lable>Link</lable>
+                    <span style="width: 400px;">
+                        <input type="text" data="facebook" />
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu nền</lable>
+                    <span>
+                        <input type="text" background="facebook" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+                <div style="clear: both; height: 20px;"></div>
+                <div class="panel_from_row panel_from_row_input panel_from_row_input_color">
+                    <lable>Màu icon</lable>
+                    <span>
+                        <input type="text" color="facebook" />
+                        <span><span></span></span>
+                    </span>
+                </div>
+            </div>
+            <asp:HiddenField ID="dataHotline" runat="server" ClientIDMode="Static" />
+        </div>
         <div style="clear: both; height: 50px;"></div>
         <div class="panel_from">
             <div class="panel_from_dis_panel"></div>
             <div class="panel_from_row panel_from_row_btn_submit">
-                <asp:Button ID="Action_AddNew" runat="server" Text="Chỉnh sửa" CssClass="submit" OnClick="Action_AddNew_Click" />
+                <asp:Button ID="Action_AddNew" runat="server" Text="Chỉnh sửa" ClientIDMode="Static" CssClass="submit" OnClick="Action_AddNew_Click" />
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var hottline = JSON.parse(settings.Hotline);
+            if (hottline != null) {
+                debugger;
+                $('[data="phone"]').val(hottline.phone.data);
+                $('[background="phone"]').val(hottline.phone.background).next('span').colpickSetColor(hottline.phone.background);
+                $('[color="phone"]').val(hottline.phone.color).next('span').colpickSetColor(hottline.phone.color);
+
+                $('[data="email"]').val(hottline.email.data);
+                $('[background="email"]').val(hottline.email.background).next('span').colpickSetColor(hottline.email.background);
+                $('[color="email"]').val(hottline.email.color).next('span').colpickSetColor(hottline.email.color);
+
+                $('[data="facebook"]').val(hottline.facebook.data);
+                $('[background="facebook"]').val(hottline.facebook.background).next('span').colpickSetColor(hottline.facebook.background);
+                $('[color="facebook"]').val(hottline.facebook.color).next('span').colpickSetColor(hottline.facebook.color);
+            }
+            $('#Action_AddNew').click(function () {
+                var data = {
+                    phone: {
+                        data: $('[data="phone"]').val(),
+                        background: $('[background="phone"]').val(),
+                        color: $('[color="phone"]').val(),
+                    },
+                    email: {
+                        data: $('[data="email"]').val(),
+                        background: $('[background="email"]').val(),
+                        color: $('[color="email"]').val(),
+                    },
+                    facebook: {
+                        data: $('[data="facebook"]').val(),
+                        background: $('[background="facebook"]').val(),
+                        color: $('[color="facebook"]').val(),
+                    }
+                };
+                $('#dataHotline').val(JSON.stringify(data));
+            });
+        });
+    </script>
 </asp:Content>
 

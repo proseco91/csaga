@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masster/Home.master" AutoEventWireup="true" CodeFile="hinhanhcongdong-chitiet.aspx.cs" Inherits="View_hinhanhcongdong" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="Server">
+    <meta property="og:url" content="<%=Lib.urlhome %><%=Request.RawUrl.ToString()%>" />
+    <meta property="og:title" content="<%=tintuc.TieuDe_Vn %>" />
+    <meta property="og:description" content="<%=tintuc.Des_Vn %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="<%=Lib.urlhome %>/cat-anh.htm?url=http://nuyeunu.vn/<%="Images/imageUpload/"+tintuc.Img %>&width=500" />
+    <meta property="og:image:url"  content="<%=Lib.urlhome %>/cat-anh.htm?url=http://nuyeunu.vn/<%="Images/imageUpload/"+tintuc.Img %>&width=500" />
     <style type="text/css">
         .hotro-left
         {
@@ -184,8 +190,9 @@
             <div class="detail-title">
                 <%=tintuc.TieuDe_Vn %>
             </div>
-            <div class="detail-date">
-                <%=tintuc.CreateDate.Value.ToString("dd-MM-yyyy lúc HH:mm") %>
+            <div class="detail-date" style="position:relative;">
+                <%=tintuc.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                <div class="fb-share-button" data-href="http://nuyeunu.vn<%=Request.RawUrl.ToString()%>" data-layout="button_count" data-size="small" data-mobile-iframe="true" style="position:absolute;right:0px;top:0px;">Chia sẻ</div>
             </div>
             <div class="detail-des">
                 <%=tintuc.Des_Vn %>
@@ -193,6 +200,11 @@
             <div style="border-bottom: 1px dotted #CCC; margin-top: 20px;"></div>
             <div class="detail-content">
                 <%=tintuc.NoiDung_Vn %>
+            </div>
+            <div style="border:1px dashed #cdcdcd;border-right:none;border-left:none;margin:20px 0px;padding:20px 0px;">
+                <%foreach (var item in ((tintuc.HashTag) ?? string.Empty).Split(',').Where(d => !string.IsNullOrEmpty(d))){%>
+                <span style="background-color:#77018b;padding:2px 8px;font-size:12px;color:#FFF;display:inline-block;margin-right:10px;">#<%=item.Trim() %></span>
+                <%}%>
             </div>
             <div class="panel-comment">
                 <div class="panel-comment-input">

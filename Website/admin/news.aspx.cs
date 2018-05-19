@@ -53,6 +53,7 @@ public partial class admin_category : BasePage
                         lstThanhPho.Items.Add(new ListItem(item.region_name, item.region_id.ToString()));
                     }
                 }
+                txtNgayDang.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
             if (TypeAction == 2)
             {
@@ -75,6 +76,8 @@ public partial class admin_category : BasePage
 
                         txtChiTiet.Text = _data.NoiDung_Vn;
                         txtChiTietEn.Text = _data.NoiDung_En;
+                        txtHashtag.Text = _data.HashTag;
+                        txtNgayDang.Text = !_data.ShowDate.HasValue ? _data.CreateDate.Value.ToString("yyyy-MM-dd") : _data.ShowDate.Value.ToString("yyyy-MM-dd");
 
                         List<string> cate = _data.Category.Split(',').ToList();
                         foreach (ListItem li in cbCate.Items)
@@ -141,9 +144,6 @@ public partial class admin_category : BasePage
     {
         if (TypeAction == 1)
         {
-
-
-
             _data = new TinTuc()
             {
                 Category = string.Join(",", cbCate.Items.Cast<ListItem>().Where(x => x.Selected).Select(d => d.Value)),
@@ -162,10 +162,26 @@ public partial class admin_category : BasePage
                 TieuDe_Vn = txtTitle.Text,
                 Type = Type
             };
+            DateTime ShowDate = DateTime.Today;
+            if (!string.IsNullOrEmpty(txtNgayDang.Text))
+            {
+                try
+                {
+                    ShowDate = Convert.ToDateTime(txtNgayDang.Text);
+                }
+                catch
+                {
+                    ShowDate = DateTime.Today;
+                }
+
+            }
+            _data.ShowDate = ShowDate;
+
             if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
             {
                 _data.ThanhPho = Convert.ToInt32(lstThanhPho.SelectedItem.Value);
             }
+            _data.HashTag = txtHashtag.Text;
             sql.TinTucs.InsertOnSubmit(_data);
             sql.SubmitChanges();
             CreateMessage("Thêm mới " + Enums.LoaiTinTucDesc((Enums.LoaiTinTuc)Type) + " thành công", true);
@@ -186,10 +202,25 @@ public partial class admin_category : BasePage
             _data.NoiDung_Vn = Lib.convertNoiDungHTML(txtChiTiet.Text, Server.MapPath("~/images/imageUpload/"));
             _data.TieuDe_En = txtTitleEn.Text;
             _data.TieuDe_Vn = txtTitle.Text;
+            _data.HashTag = txtHashtag.Text;
             if (Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu)
             {
                 _data.ThanhPho = Convert.ToInt32(lstThanhPho.SelectedItem.Value);
             }
+            DateTime ShowDate = !_data.ShowDate.HasValue ? _data.CreateDate.Value : _data.ShowDate.Value;
+            if (!string.IsNullOrEmpty(txtNgayDang.Text))
+            {
+                try
+                {
+                    ShowDate = Convert.ToDateTime(txtNgayDang.Text);
+                }
+                catch
+                {
+                    ShowDate = !_data.ShowDate.HasValue ? _data.CreateDate.Value : _data.ShowDate.Value;
+                }
+
+            }
+            _data.ShowDate = ShowDate;
             sql.SubmitChanges();
             CreateMessage("Cập nhật " + _data.TieuDe_Vn + " thành công", true);
         }
@@ -211,7 +242,8 @@ public partial class admin_category : BasePage
 
         if (!string.IsNullOrEmpty(seach))
         {
-            query = (from T in query where Convert.ToBoolean(sql.sosanhstring(T.TieuDe_Vn, seach)) || Convert.ToBoolean(sql.sosanhstring(T.TieuDe_En, seach)) || Convert.ToBoolean(sql.sosanhstring(T.Des_Vn, seach)) || Convert.ToBoolean(sql.sosanhstring(T.Des_En, seach)) select T);
+            seach = seach.ToUpper();
+            query = (from T in query where T.TieuDe_Vn.ToUpper().Contains(seach) || T.TieuDe_En.ToUpper().Contains(seach) || T.Des_Vn.ToUpper().Contains(seach) || T.Des_En.ToUpper().Contains(seach) select T);
         }
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();

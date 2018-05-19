@@ -15,13 +15,13 @@ public partial class View_hinhanhcongdong : BaseHome
     public string getThanhPhoSoLuong()
     {
         var array = sql.getThanhPho();
-        var query = sql.TinTucs.Where(d => d.Status == (int)Enums.Status.active && d.Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && d.ThanhPho.HasValue);
+        var query = sql.TinTucs.Where(d => d.Status == (int)Enums.Status.active && d.Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && d.ThanhPho.HasValue && (!d.ShowDate.HasValue || (d.ShowDate.HasValue && d.ShowDate.Value <= DateTime.Today)));
         array.ForEach(d =>
         {
             d.SoLuongBai = query.Where(c => c.ThanhPho.Value == d.region_id).Select(c => c.ID).Count();
 
         });
-        return Newtonsoft.Json.JsonConvert.SerializeObject(array.Where(d => d.SoLuongBai != null && d.SoLuongBai > 0).Select(d => new
+        return Newtonsoft.Json.JsonConvert.SerializeObject(array.Where(d => d.SoLuongBai > 0).Select(d => new
         {
             lat = d.lat,
             lng = d.lng,
@@ -38,7 +38,7 @@ public partial class View_hinhanhcongdong : BaseHome
             pageNum = 1;
         pageSelect = pageNum;
 
-        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && d.Status == (int)Enums.Status.active);
+        var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && d.Status == (int)Enums.Status.active && (!d.ShowDate.HasValue || (d.ShowDate.HasValue && d.ShowDate.Value <= DateTime.Today)));
         query = query.OrderByDescending(d => d.CreateDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
