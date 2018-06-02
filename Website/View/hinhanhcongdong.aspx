@@ -208,7 +208,7 @@
                         <%=Lib.subString(item.value.TieuDe_Vn,110) %>
                     </div>
                     <div class="hinhanhcongdong-item-date">
-                        <%=item.value.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                        <%=item.value.NgayHienThi.ToString("dd-MM-yyyy lúc HH:mm") %>
                     </div>
                     <div class="hinhanhcongdong-item-des">
                         <%=item.value.Des_Vn %>

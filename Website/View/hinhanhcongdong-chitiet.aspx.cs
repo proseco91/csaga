@@ -53,7 +53,7 @@ public partial class View_hinhanhcongdong : BaseHome
         pageSelect = pageNum;
 
         var query = sql.TinTucs.Where(d => d.Type == (int)Enums.LoaiTinTuc.HinhAnhCongDongYeuNu && d.Status == (int)Enums.Status.active);
-        query = query.OrderByDescending(d => d.CreateDate);
+        query = query.OrderByDescending(d => d.ShowDate);
         totalRowCount = query.Count();
         List<TinTuc> arrayData = query.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
         string lang = Lib.getLag();

@@ -167,7 +167,7 @@
                     <div class="item-news-center">
                         <div class="item-news-img" style="background-image: url('<%=Lib.urlhome+"/Images/imageUpload/"+item.value.Img %>');"></div>
                         <div class="item-news-content">
-                            <div class="item-news-date"><%=item.value.CreateDate.Value.ToString("dd-MM-yyyy lúc HH:mm") %></div>
+                            <div class="item-news-date"><%=item.value.NgayHienThi.Value.ToString("dd-MM-yyyy lúc HH:mm") %></div>
                             <div class="item-news-des"><%=Lib.subString(item.value.Des_Vn,120) %></div>
                         </div>
                     </div>

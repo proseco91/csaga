@@ -191,7 +191,7 @@
                 <%=tintuc.TieuDe_Vn %>
             </div>
             <div class="detail-date" style="position:relative;">
-                <%=tintuc.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                <%=tintuc.NgayHienThi.ToString("dd-MM-yyyy lúc HH:mm") %>
                 <div class="fb-share-button" data-href="http://nuyeunu.vn<%=Request.RawUrl.ToString()%>" data-layout="button_count" data-size="small" data-mobile-iframe="true" style="position:absolute;right:0px;top:0px;">Chia sẻ</div>
             </div>
             <div class="detail-des">

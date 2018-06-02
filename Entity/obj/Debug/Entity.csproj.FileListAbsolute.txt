@@ -13,8 +13,7 @@ D:\GitHub\csaga\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 E:\GitHub\csaga\Entity\bin\Debug\Entity.dll.config
 E:\GitHub\csaga\Entity\bin\Debug\Entity.dll
 E:\GitHub\csaga\Entity\bin\Debug\Entity.pdb
-E:\GitHub\csaga\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+E:\GitHub\csaga\Entity\bin\Debug\Newtonsoft.Json.dll
 E:\GitHub\csaga\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
 E:\GitHub\csaga\Entity\obj\Debug\Entity.dll
 E:\GitHub\csaga\Entity\obj\Debug\Entity.pdb
-E:\GitHub\csaga\Entity\bin\Debug\Newtonsoft.Json.dll

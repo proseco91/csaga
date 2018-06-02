@@ -183,7 +183,7 @@
                                 <%=Lib.subString(news.TieuDe_Vn,110) %>
                             </div>
                             <div class="item-nhomyeunu-news-item-date">
-                                <%=news.CreateDate.ToString("dd-MM-yyyy lúc HH:mm") %>
+                                <%=news.NgayHienThi.ToString("dd-MM-yyyy lúc HH:mm") %>
                             </div>
                             <div class="item-nhomyeunu-news-item-des">
                                 <%=news.Des_Vn %>
